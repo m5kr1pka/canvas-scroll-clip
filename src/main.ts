@@ -39,7 +39,7 @@ class Boomerang extends EventEmitter {
     this.init();
   }
 
-  init(): void {
+  private init(): void {
 
     this.callback();
 
