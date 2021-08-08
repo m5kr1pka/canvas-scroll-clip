@@ -1,0 +1,26 @@
+language: node_js
+node_js:
+  - lts/*
+
+os:
+  - linux
+dist: focal
+
+branches:
+  only:
+    - main
+
+cache: yarn
+
+script:
+  - yarn lint
+  - yarn test
+
+notifications:
+  slack:
+    rooms:
+      secure: 
+    template:
+      - "Repo `%{repository_slug}` *%{result}* build (<%{build_url}|#%{build_number}>) for commit (<%{compare_url}|%{commit}>) on branch `%{branch}`."
+      - "Execution time: *%{duration}*"
+      - "Message: %{message}"
