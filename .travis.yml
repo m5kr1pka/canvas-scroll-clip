@@ -19,7 +19,7 @@ script:
 notifications:
   slack:
     rooms:
-      secure: 
+      secure: qRDri8+YQZtdHT5HyejLuOTUUw+deZ5KjYsqm0MiSNGGU+Ty9p56W1aGcvzaS+ij2ndmIamizbxZlx9LqP8H8nMRC1xh/49R/WrX98JuRb+qRIsfwoDHaMXTmP5phQnbIgxJdsOANwWOBklWdOI1upzgmnvnn0p5Ea37W+kUi0VzYPIIvzGnDNdVaLwnaxB5Yb4bfXml+6k//pzFtfi/qX6cRlfFc8U1lu99yG9l2s3i0nuEed5k3KI2vlTX89jZ8ccDQNgT6DRaq6RbSj/htBkQfI5p2NfrHOM97jHdBURhpVcK4FrufvRosGiVkxFZaI4hh/DdsfDP9CjiPEHi5YcMr92DWJW9gkEa/Fj2OvT8AWQ1hJWEvt0A5JB9+U3Nl5r8CyYTOeuZxAJZjcPRiwvyMKAJ2XRbm3RFIcmZpEZhnxRRevwHx/QccWE6PjbtI75uqTBv8XdfcRGA71h5KB6LKUh2lroK6ssc+g1p3fTfBHvSY+JhqgA/M3OMxgn7HwCNUaC+lA+ezjqHl7W5lRNO1szJU3N/fWkCegenfDycNUj0ocA3GkHxoWXAKHHdYfLTjXzPnJcveHhMdqwFMEvmpzabXNJxmY0DZ6gknb4/ABB9JRxkqc0MaD8cX8pOf5hgN92W9VQsJwHolP5BOrohL/wEnLiCzdpK83yCf+4=
     template:
       - "Repo `%{repository_slug}` *%{result}* build (<%{build_url}|#%{build_number}>) for commit (<%{compare_url}|%{commit}>) on branch `%{branch}`."
       - "Execution time: *%{duration}*"
