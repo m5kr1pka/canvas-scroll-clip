@@ -3,8 +3,26 @@
 
 Boomerang.js is a standalone JavaScript micro-library for fancy scroll based image sequence animation.
 
-## esbuild and UMD pending feature
-Pending feature esbuild feature [--format=umd](https://github.com/evanw/esbuild/issues/507) support.
+## Install
+```
 
-## License
+```
+
+## Usage
+```
+new Boomerang(document.querySelector('.element'))
+```
+
+## Events
+```
+'viewport.events.resize' event
+'viewport.events.scroll' event
+```
+
+## Other
+
+### Esbuild and UMD pending feature
+Pending esbuild UMD format feature [--format=umd](https://github.com/evanw/esbuild/issues/507) support.
+
+### License
 MIT license

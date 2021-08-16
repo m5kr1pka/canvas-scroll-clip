@@ -2707,26 +2707,20 @@ img {
 		<li class="current tsd-kind-class">
 			<a href="default.html" class="tsd-kind-icon">default</a>
 			<ul>
-				<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+				<li class=" tsd-kind-constructor tsd-parent-kind-class">
 					<a href="default.html#constructor" class="tsd-kind-icon">constructor</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-class">
 					<a href="default.html#callback" class="tsd-kind-icon">callback</a>
 				</li>
 				<li class=" tsd-kind-property tsd-parent-kind-class">
-					<a href="default.html#container" class="tsd-kind-icon">container</a>
+					<a href="default.html#element" class="tsd-kind-icon">element</a>
 				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-					<a href="default.html#emit" class="tsd-kind-icon">emit</a>
+				<li class=" tsd-kind-property tsd-parent-kind-class">
+					<a href="default.html#events" class="tsd-kind-icon">events</a>
 				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-private">
+				<li class=" tsd-kind-method tsd-parent-kind-class">
 					<a href="default.html#init" class="tsd-kind-icon">init</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-					<a href="default.html#on" class="tsd-kind-icon">on</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-					<a href="default.html#remove" class="tsd-kind-icon">remove</a>
 				</li>
 			</ul>
 		</li>
@@ -2734,17 +2728,32 @@ img {
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
+		<section class="tsd-panel tsd-comment">
+			<div class="tsd-comment tsd-typography">
+				<div class="lead">
+					<p>Base carousel class.</p>
+				</div>
+				<dl class="tsd-comment-tags">
+					<dt>export</dt>
+					<dd></dd>
+					<dt>implements</dt>
+					<dd><p>{BoomerangInterface}</p>
+					</dd>
+				</dl>
+			</div>
+		</section>
 		<section class="tsd-panel tsd-hierarchy">
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="tsd-signature-type">EventEmitter</span>
-					<ul class="tsd-hierarchy">
-						<li>
-							<span class="target">default</span>
-						</li>
-					</ul>
+					<span class="target">default</span>
 				</li>
+			</ul>
+		</section>
+		<section class="tsd-panel">
+			<h3>Implements</h3>
+			<ul class="tsd-hierarchy">
+				<li><span class="tsd-signature-type">BoomerangInterface</span></li>
 			</ul>
 		</section>
 		<section class="tsd-panel-group tsd-index-group">
@@ -2754,23 +2763,21 @@ img {
 					<section class="tsd-index-section ">
 						<h3>Constructors</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="default.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="default.html#constructor" class="tsd-kind-icon">constructor</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-property tsd-parent-kind-class"><a href="default.html#callback" class="tsd-kind-icon">callback</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-class"><a href="default.html#container" class="tsd-kind-icon">container</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class"><a href="default.html#element" class="tsd-kind-icon">element</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class"><a href="default.html#events" class="tsd-kind-icon">events</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="default.html#emit" class="tsd-kind-icon">emit</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><a href="default.html#init" class="tsd-kind-icon">init</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="default.html#on" class="tsd-kind-icon">on</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="default.html#remove" class="tsd-kind-icon">remove</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="default.html#init" class="tsd-kind-icon">init</a></li>
 						</ul>
 					</section>
 				</div>
@@ -2778,29 +2785,33 @@ img {
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Constructors</h2>
-			<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
+			<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
 				<a name="constructor" class="tsd-anchor"></a>
 				<h3>constructor</h3>
-				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-					<li class="tsd-signature tsd-kind-icon">new default<span class="tsd-signature-symbol">(</span>selector<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">NoopFunction</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></li>
+				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">new default<span class="tsd-signature-symbol">(</span>element<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">HTMLElement</span>, callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">NoopFunction</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
-							<p>Overrides EventEmitter.constructor</p>
 							<ul>
-								<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/5665322/src/main.ts#L22">main.ts:22</a></li>
+								<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/33cdba3/src/main.ts#L29">main.ts:29</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
 								<p>Creates an instance of Boomerang.</p>
 							</div>
+							<dl class="tsd-comment-tags">
+								<dt>memberof</dt>
+								<dd><p>Main</p>
+								</dd>
+							</dl>
 						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>selector: <span class="tsd-signature-type">string</span></h5>
+								<h5>element: <span class="tsd-signature-type">HTMLElement</span></h5>
 							</li>
 							<li>
 								<h5><span class="tsd-flag ts-flagOptional">Optional</span> callback: <span class="tsd-signature-type">NoopFunction</span></h5>
@@ -2824,150 +2835,47 @@ img {
 				<div class="tsd-signature tsd-kind-icon">callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">NoopFunction</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/5665322/src/main.ts#L14">main.ts:14</a></li>
+						<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/33cdba3/src/main.ts#L18">main.ts:18</a></li>
 					</ul>
 				</aside>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-				<a name="container" class="tsd-anchor"></a>
-				<h3>container</h3>
-				<div class="tsd-signature tsd-kind-icon">container<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTMLElement</span></div>
+				<a name="element" class="tsd-anchor"></a>
+				<h3>element</h3>
+				<div class="tsd-signature tsd-kind-icon">element<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTMLElement</span></div>
+				<aside class="tsd-sources">
+					<p>Implementation of BoomerangInterface.element</p>
+					<ul>
+						<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/33cdba3/src/main.ts#L16">main.ts:16</a></li>
+					</ul>
+				</aside>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+				<a name="events" class="tsd-anchor"></a>
+				<h3>events</h3>
+				<div class="tsd-signature tsd-kind-icon">events<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/5665322/src/main.ts#L12">main.ts:12</a></li>
+						<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/33cdba3/src/main.ts#L20">main.ts:20</a></li>
 					</ul>
 				</aside>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Methods</h2>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-				<a name="emit" class="tsd-anchor"></a>
-				<h3>emit</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-					<li class="tsd-signature tsd-kind-icon">emit<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, <span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<p>Inherited from EventEmitter.emit</p>
-							<ul>
-								<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/5665322/src/helpers/events.ts#L73">helpers/events.ts:73</a></li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Emit an event with arguments for callbacks</p>
-							</div>
-						</div>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>event: <span class="tsd-signature-type">string</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>the event to emit</p>
-								</div>
-							</li>
-							<li>
-								<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>extra arguments for the callbacks of this event</p>
-								</div>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-private">
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 				<a name="init" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> init</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-private">
+				<h3>init</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
 					<li class="tsd-signature tsd-kind-icon">init<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/5665322/src/main.ts#L42">main.ts:42</a></li>
+								<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/33cdba3/src/main.ts#L52">main.ts:52</a></li>
 							</ul>
 						</aside>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-				<a name="on" class="tsd-anchor"></a>
-				<h3>on</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-					<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, cb<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">noop</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<p>Inherited from EventEmitter.on</p>
-							<ul>
-								<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/5665322/src/helpers/events.ts#L37">helpers/events.ts:37</a></li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Subcribe to an event by providing a callback</p>
-							</div>
-						</div>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>event: <span class="tsd-signature-type">string</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>the event to subscribe to</p>
-								</div>
-							</li>
-							<li>
-								<h5>cb: <span class="tsd-signature-type">noop</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>the callback to run when the event is emitted</p>
-								</div>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-				<a name="remove" class="tsd-anchor"></a>
-				<h3>remove</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
-					<li class="tsd-signature tsd-kind-icon">remove<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, cb<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">noop</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<p>Inherited from EventEmitter.remove</p>
-							<ul>
-								<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/5665322/src/helpers/events.ts#L51">helpers/events.ts:51</a></li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Unsubscribe to an event by removing a specific callback function</p>
-							</div>
-						</div>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>event: <span class="tsd-signature-type">string</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>the event to unsubscribe to</p>
-								</div>
-							</li>
-							<li>
-								<h5>cb: <span class="tsd-signature-type">noop</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>the callback to remove</p>
-								</div>
-							</li>
-						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 					</li>
 				</ul>
@@ -2980,12 +2888,7 @@ img {
 					<ul class="tsd-legend">
 						<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 						<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-					</ul>
-					<ul class="tsd-legend">
-						<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-					</ul>
-					<ul class="tsd-legend">
-						<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+						<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 					</ul>
 				</div>
 			</div>

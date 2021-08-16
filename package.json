@@ -23,10 +23,11 @@
     "esbuild-browser": "esbuild src/browser.ts --external:jquery --format=umd --bundle --minify --sourcemap=external --outfile=dist/build/boomerang.js",
     "esbuild-browser:dev": "esbuild src/browser.ts --external:jquery --format=umd --bundle --outfile=dist/esbuild/boomerang.js",
     "esbuild-browser:watch": "esbuild src/browser.ts --external:jquery --format=umd --bundle --watch --outfile=dist/esbuild/boomerang.js",
-    "preview": "esbuild src/browser.ts --servedir=www  --outdir=www/js --bundle",
+    "preview": "esbuild src/browser.ts --external:jquery --servedir=www  --outdir=www/js --bundle",
     "preview:docs": "esbuild --servedir=docs",
     "post-update": "yarn upgrade --latest"
   },
+  "dependencies": {},
   "devDependencies": {
     "@types/jest": "^26.0.21",
     "@types/jquery": "^3.5.6",

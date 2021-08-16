@@ -1,38 +1,36 @@
-import BoomerangError from "@/helpers/error";
+import { BoomerangInterface } from "./main.d";
+import { BoomerangError } from "@/helpers/error";
 import { Event, EventEmitter } from "@/helpers/events";
-import { NoopFunction, BoomerangInterface } from "./main.d"
+import { NoopFunction } from "@/helpers/utils"
 
 /**
- * Boomerang.js main
+ * Base carousel class.
  *
- * ```
- * const instance = new Boomerang('.selector');
- * ```
+ * @export
+ * @class Main
+ * @implements {BoomerangInterface}
+ * @extends {EventEmitter}
  */
-export class Main implements BoomerangInterface {
+export default class implements BoomerangInterface {
 
-  public selector;
-
-  public container;
+  public element;
 
   public callback: NoopFunction;
 
-  private events: any;
+  public events: EventEmitter;
 
   /**
    * Creates an instance of Boomerang.
    * @constructor
-   * @param {string} HTML element class name.
+   * @param {HTMLElement} An HTML element.
    * @param callback function
+   * @memberof Main
    */
-  constructor(selector: string, callback?: NoopFunction) {
+  constructor(element: HTMLElement, callback?: NoopFunction) {
 
     try {
       // CSS class of a HTML element
-      this.selector = selector;
-
-      // HTMLElement 
-      this.container = <NodeList>document.querySelectorAll(this.selector);
+      this.element = element;
 
       // Callback function if defined
       this.callback = callback || (() => {
@@ -42,35 +40,33 @@ export class Main implements BoomerangInterface {
       // Event bus
       this.events = new EventEmitter();
 
-      this.events.emit(Event.resize);
-
       // Initialitze
       this.init();
 
     } catch (e) {
       // Global error wrapper
-      throw new BoomerangError(e)
+      throw new BoomerangError(e.message)
     }
   }
 
-  private init(): void {
+  init(): void {
 
     if (typeof window !== 'object') {
-      throw new BoomerangError('Window object not found.');
+      throw new Error('Browser object not found.');
     }
 
-    if (!this.container.length) {
-      throw new BoomerangError(`Element with class name ${this.selector} not found.`);
+    if (!(this.element instanceof HTMLElement)) {
+      throw new Error('The required input must be an HTMLElement');
     }
-
-    this.callback();
 
     setTimeout(() => {
-      this.events.on(Event.resize, () => {
-        console.log(`${Event.resize} triggered`)
-      });
+      // console.log(this.events);
+      this.events.emit(Event.resize);
     }, 100)
+
+    // Next tick of instance
+    setTimeout(() => {
+      this.callback();
+    }, 10)
   }
 }
-
-export default Main;

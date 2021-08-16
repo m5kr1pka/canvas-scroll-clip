@@ -1,5 +1,5 @@
-import { NoopFunction } from "@/main.d";
-// import EventEmitter from 'events';
+import { NoopFunction } from "@/helpers/utils";
+import { BoomerangWarning } from "@/helpers/error";
 
 /** 
 * Available events
@@ -17,6 +17,7 @@ export class EventEmitter {
   /**
    * A map of event to a list of callbacks
    */
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   private observers: Map<string, Array<any>>;
 
   /**
@@ -33,7 +34,12 @@ export class EventEmitter {
    * @param event the event to subscribe to
    * @param cb the callback to run when the event is emitted
    */
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   on = (event: string, cb: NoopFunction): void => {
+    if (!Object.values(Event).includes(event)) {
+      new BoomerangWarning(`Event [${event}] is not supported.`);
+    }
+
     // get list of cb for this event
     const observer = this.observers.get(event)
     // add cb to list if list exists
@@ -47,6 +53,7 @@ export class EventEmitter {
    * @param event the event to unsubscribe to
    * @param cb the callback to remove
    */
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   remove = (event: string, cb: NoopFunction): void => {
     // get list of cb for this event;
     const observer = this.observers.get(event)
@@ -68,8 +75,8 @@ export class EventEmitter {
    * @param event the event to emit
    * @param args extra arguments for the callbacks of this event
    */
-  // eslint-disable-next-line
-  emit = <T extends any[]>(event: string, ...args: T): void => {
+  // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+  emit = (event: string, ...args: any[]): void => {
     // get list of cb for this event
     const observer = this.observers.get(event)
     // return if no such list exist
