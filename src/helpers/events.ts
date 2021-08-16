@@ -1,3 +1,4 @@
+import { NoopFunction } from "@/main.d";
 // import EventEmitter from 'events';
 
 /** 
@@ -8,8 +9,6 @@ export const Event = {
   scroll: 'viewport.events.scroll'
 }
 
-declare type noop = (arg?: string) => void;
-
 /** 
 * Event emitter
 * https://github.com/peterkejun/Animated-Canvas/blob/05bf961da7cba31aa901054948293180a6131704/src/Helpers/EventEmitter.ts
@@ -18,7 +17,7 @@ export class EventEmitter {
   /**
    * A map of event to a list of callbacks
    */
-  private observers: Map<string, Array<noop>>;
+  private observers: Map<string, Array<any>>;
 
   /**
    * A new EventEmitter with no observers
@@ -34,7 +33,7 @@ export class EventEmitter {
    * @param event the event to subscribe to
    * @param cb the callback to run when the event is emitted
    */
-  on = (event: string, cb: noop): void => {
+  on = (event: string, cb: NoopFunction): void => {
     // get list of cb for this event
     const observer = this.observers.get(event)
     // add cb to list if list exists
@@ -48,7 +47,7 @@ export class EventEmitter {
    * @param event the event to unsubscribe to
    * @param cb the callback to remove
    */
-  remove = (event: string, cb: noop): void => {
+  remove = (event: string, cb: NoopFunction): void => {
     // get list of cb for this event;
     const observer = this.observers.get(event)
     // return if no such list exists
@@ -70,7 +69,7 @@ export class EventEmitter {
    * @param args extra arguments for the callbacks of this event
    */
   // eslint-disable-next-line
-  emit = (event: string, ...args: any[]): void => {
+  emit = <T extends any[]>(event: string, ...args: T): void => {
     // get list of cb for this event
     const observer = this.observers.get(event)
     // return if no such list exist

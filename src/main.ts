@@ -1,17 +1,23 @@
 import BoomerangError from "@/helpers/error";
 import { Event, EventEmitter } from "@/helpers/events";
+import { NoopFunction, BoomerangInterface } from "./main.d"
 
-/*
-* No operation type of function
-*/
-declare type NoopFunction = () => void;
+/**
+ * Boomerang.js main
+ *
+ * ```
+ * const instance = new Boomerang('.selector');
+ * ```
+ */
+export class Main implements BoomerangInterface {
 
+  public selector;
 
-class Boomerang extends EventEmitter {
+  public container;
 
-  public container: HTMLElement;
+  public callback: NoopFunction;
 
-  callback: NoopFunction;
+  private events: any;
 
   /**
    * Creates an instance of Boomerang.
@@ -20,35 +26,51 @@ class Boomerang extends EventEmitter {
    * @param callback function
    */
   constructor(selector: string, callback?: NoopFunction) {
-    super();
 
-    if (typeof window !== 'object') {
-      throw new BoomerangError();
+    try {
+      // CSS class of a HTML element
+      this.selector = selector;
+
+      // HTMLElement 
+      this.container = <NodeList>document.querySelectorAll(this.selector);
+
+      // Callback function if defined
+      this.callback = callback || (() => {
+        // eslint - do nothing. 
+      });
+
+      // Event bus
+      this.events = new EventEmitter();
+
+      this.events.emit(Event.resize);
+
+      // Initialitze
+      this.init();
+
+    } catch (e) {
+      // Global error wrapper
+      throw new BoomerangError(e)
     }
-
-    this.container = <HTMLElement>document.querySelector(selector);
-
-    if (!this.container) {
-      throw new BoomerangError(`Element with class name ${selector} not found.`);
-    }
-
-    this.callback = callback || (() => {
-      // eslint - do nothing. 
-    })
-
-    this.init();
   }
 
   private init(): void {
 
+    if (typeof window !== 'object') {
+      throw new BoomerangError('Window object not found.');
+    }
+
+    if (!this.container.length) {
+      throw new BoomerangError(`Element with class name ${this.selector} not found.`);
+    }
+
     this.callback();
 
-    this.emit(Event.resize);
-
-    this.on(Event.resize, () => {
-      console.log(`${Event.resize} triggered`)
-    });
+    setTimeout(() => {
+      this.events.on(Event.resize, () => {
+        console.log(`${Event.resize} triggered`)
+      });
+    }, 100)
   }
 }
 
-export default Boomerang;
+export default Main;
