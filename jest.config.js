@@ -12,5 +12,8 @@ module.exports = {
   modulePaths: ['<rootDir>/src'],
   moduleNameMapper: {
     '@/(.*)': '<rootDir>/src/$1'
-  }
+  },
+  setupFiles: [
+    "<rootDir>/src/__mocks__/client.js"
+  ]
 }
