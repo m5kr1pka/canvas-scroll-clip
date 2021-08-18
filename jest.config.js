@@ -14,6 +14,6 @@ module.exports = {
     '@/(.*)': '<rootDir>/src/$1'
   },
   setupFiles: [
-    "<rootDir>/src/__mocks__/client.js"
+    "<rootDir>/src/__mocks__/client.ts"
   ]
 }
