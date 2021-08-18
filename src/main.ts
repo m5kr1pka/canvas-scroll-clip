@@ -1,4 +1,3 @@
-import { BoomerangInterface } from "./main.d";
 import { BoomerangError } from "@/helpers/error";
 import { Event, EventEmitter } from "@/helpers/events";
 import { NoopFunction } from "@/helpers/utils"
@@ -8,16 +7,14 @@ import { NoopFunction } from "@/helpers/utils"
  *
  * @export
  * @class Main
- * @implements {BoomerangInterface}
  * @extends {EventEmitter}
  */
-export default class implements BoomerangInterface {
+export default class {
 
-  public element;
-
-  public callback: NoopFunction;
-
+  public selector: string;
+  public element: HTMLElement;
   public events: EventEmitter;
+  public callback: NoopFunction;
 
   /**
    * Creates an instance of Boomerang.
@@ -26,11 +23,16 @@ export default class implements BoomerangInterface {
    * @param callback function
    * @memberof Main
    */
-  constructor(element: HTMLElement, callback?: NoopFunction) {
+  constructor(selector?: string | undefined, callback?: NoopFunction) {
 
     try {
+
       // CSS class of a HTML element
-      this.element = element;
+      this.selector = selector || '.boomerang';
+
+      console.log(this.selector);
+      // Query document for element
+      this.element = document.querySelector(this.selector) as HTMLElement;
 
       // Callback function if defined
       this.callback = callback || (() => {
@@ -52,11 +54,15 @@ export default class implements BoomerangInterface {
   init(): void {
 
     if (typeof window !== 'object') {
-      throw new Error('Browser object not found.');
+      throw new Error('window not found.');
+    }
+
+    if (!this.element) {
+      throw new Error(`Element with class name "${this.selector}" not found.`)
     }
 
     if (!(this.element instanceof HTMLElement)) {
-      throw new Error('The required input must be an HTMLElement');
+      throw new Error(`Element with class name "${this.selector}" must be an HTMLElement'`);
     }
 
     setTimeout(() => {

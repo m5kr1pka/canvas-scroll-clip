@@ -1,6 +1,8 @@
 const JSDOM = require("jsdom").JSDOM;
 
 const dom = new JSDOM();
+const window = dom.window;
+let document = window.document;
 
-global.document = dom.window.document;
-global.window = dom.window;
+global.document = document;
+global.window = window;

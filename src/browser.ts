@@ -26,7 +26,7 @@ import Boomerang from './main';
 //   }
 // })
 
-const Boomer = new Boomerang(document.querySelector('.boomerang') as HTMLElement, () => {
+const Boomer = new Boomerang('', () => {
   console.log('callback')
 });
 
@@ -41,9 +41,6 @@ Boomer.events.on('viewport.events.scroll', () => {
   console.log('viewport.events.scroll callback triggered.');
 });
 
-Boomer.events.on('Random event', () => {
-  console.log('Random event callback triggered.');
-});
 // $.fn.extend({
 //   boomerang: function (a: any) {
 //     console.log(a)
