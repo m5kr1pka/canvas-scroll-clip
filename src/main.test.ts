@@ -2,31 +2,43 @@ import Boomerang from './main'
 import { BoomerangError } from './helpers/error'
 
 describe("Boomerang", () => {
+
   test("throw error if HTMLElement not found", () => {
-    const fn = () => {
-      new Boomerang('.elementNotFound');
+    const bumer = () => {
+      return new Boomerang('.elementNotFound');
     }
-    expect(fn()).toThrowError(BoomerangError);
+
+    expect(bumer).toThrowError(BoomerangError);
+    expect(bumer).toThrowError(new RegExp('.elementNotFound'));
   });
 
-  test("verify if default HTML element is found", () => {
-    jest.clearAllMocks();
+  test("verify if default element is found", () => {
     document.body.innerHTML = '<div class="boomerang">Hello</div>';
-    const doc = jest.spyOn(document, 'querySelector');
-    // const spyFunc = jest.fn();
-    // Object.defineProperty(global.document, 'querySelector', { value: spyFunc });
 
-    new Boomerang();
-    console.log(document.body.innerHTML);
-    console.log(document.querySelector('.boomerang'));
-    console.log(doc);
+    const mock = jest.spyOn(document, 'querySelector');
+    const instance = new Boomerang();
 
-    expect(document.querySelector).toBeCalled()
+    expect(document.querySelector).toBeCalledTimes(1);
+    expect(document.querySelector).toReturn();
 
-    // expect(
-    //   // getByTestId(document.documentElement, 'html-element')
-    // ).toBeInTheDocument()
+    expect(instance).toHaveProperty('selector', '.boomerang');
+    expect(instance.element).not.toBe(undefined);
 
-    // doc.mockReset();
-  })
+    mock.mockRestore();
+  });
+
+  test('verify that element with class name ".unique-element" is found', () => {
+    document.body.innerHTML = '<div class="unique-element">Hello</div>';
+
+    const mock = jest.spyOn(document, 'querySelector');
+    const instance = new Boomerang('.unique-element');
+
+    expect(document.querySelector).toBeCalledTimes(1);
+    expect(document.querySelector).toReturn();
+
+    expect(instance).toHaveProperty('selector', '.unique-element');
+    expect(instance.element).not.toBe(undefined);
+
+    mock.mockRestore();
+  });
 });

@@ -19,18 +19,17 @@ export default class {
   /**
    * Creates an instance of Boomerang.
    * @constructor
-   * @param {HTMLElement} An HTML element.
-   * @param callback function
+   * @param {string} class name of an HTML element || default '.boomerang'.
+   * @param {function} Callback function
    * @memberof Main
    */
-  constructor(selector?: string | undefined, callback?: NoopFunction) {
+  constructor(selector?: string, callback?: NoopFunction) {
 
     try {
 
       // CSS class of a HTML element
       this.selector = selector || '.boomerang';
 
-      console.log(this.selector);
       // Query document for element
       this.element = document.querySelector(this.selector) as HTMLElement;
 
@@ -53,16 +52,8 @@ export default class {
 
   init(): void {
 
-    if (typeof window !== 'object') {
-      throw new Error('window not found.');
-    }
-
     if (!this.element) {
       throw new Error(`Element with class name "${this.selector}" not found.`)
-    }
-
-    if (!(this.element instanceof HTMLElement)) {
-      throw new Error(`Element with class name "${this.selector}" must be an HTMLElement'`);
     }
 
     setTimeout(() => {
