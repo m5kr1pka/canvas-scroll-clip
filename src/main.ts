@@ -1,9 +1,9 @@
 import { BoomerangError } from "@/helpers/error";
-import { Event, EventEmitter } from "@/helpers/events";
+import { EventEmitter } from "@/helpers/events";
 import { NoopFunction } from "@/helpers/utils"
 
 /**
- * Base carousel class.
+ * Main class.
  *
  * @export
  * @class Main
@@ -35,7 +35,7 @@ export default class {
 
       // Callback function if defined
       this.callback = callback || (() => {
-        // eslint - do nothing. 
+        // eslint - do nothing.
       });
 
       // Event bus
@@ -56,14 +56,14 @@ export default class {
       throw new Error(`Element with class name "${this.selector}" not found.`)
     }
 
-    setTimeout(() => {
-      // console.log(this.events);
-      this.events.emit(Event.resize);
-    }, 100)
+    // setTimeout(() => {
+    //   // console.log(this.events);
+    //   this.events.emit(Event.resize);
+    // }, 100)
 
     // Next tick of instance
     setTimeout(() => {
       this.callback();
-    }, 10)
+    }, 0);
   }
 }

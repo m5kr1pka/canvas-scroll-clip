@@ -37,7 +37,7 @@ export class EventEmitter {
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   on = (event: string, cb: NoopFunction): void => {
     if (!Object.values(Event).includes(event)) {
-      new BoomerangWarning(`Event [${event}] is not supported.`);
+      new BoomerangWarning(`Event ['${event}'] is not supported.`);
     }
 
     // get list of cb for this event

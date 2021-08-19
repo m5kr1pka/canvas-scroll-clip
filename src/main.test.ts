@@ -41,4 +41,20 @@ describe("Boomerang", () => {
 
     mock.mockRestore();
   });
+
+  test('verify callback is triggered at nextTick', done => {
+    document.body.innerHTML = '<div class="boomerang">Hello</div>';
+    const callback = jest.fn();
+
+    new Boomerang('.boomerang', callback);
+
+    expect.assertions(1);
+    setTimeout(() => {
+      // Init async test
+      expect(callback).toBeCalledTimes(1);
+      // Wait for async to finish before continueing to next test
+      // OnFail 5000ms timeout
+      done();
+    });
+  })
 });

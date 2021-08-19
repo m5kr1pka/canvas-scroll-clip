@@ -1,28 +1,24 @@
 import { BoomerangError, BoomerangWarning } from "./error";
 
-describe("BoomerangError", () => {
-  const error = new BoomerangError("throws boomerang error.");
+describe("Error", () => {
 
   test('verify that error is thrown', () => {
     const fn = () => {
-      throw error;
+      throw new BoomerangError(`throws ${BoomerangError.name} error.`);
     };
 
-    expect(() => { fn() }).toThrowError(error);
+    expect(fn).toThrowError(BoomerangError);
   });
-});
-
-describe("BoomerangWarning", () => {
 
   test('verify console.warn message in console', () => {
-    const message = "raises boomerang warning.";
     const warn = jest.spyOn(console, "warn").mockImplementation();
+    const message = `Raises ${BoomerangWarning.name} in console.`;
 
     new BoomerangWarning(message);
 
     expect(console.warn).toBeCalledTimes(1);
-    expect(console.warn).toHaveBeenLastCalledWith(expect.stringContaining('BoomerangWarning'));
-    expect(console.warn).toHaveBeenLastCalledWith(expect.stringContaining(message));
+    expect(console.warn).toBeCalledWith(expect.stringContaining(BoomerangWarning.name));
+    expect(console.warn).toBeCalledWith(expect.stringContaining(message));
 
     warn.mockReset();
   })

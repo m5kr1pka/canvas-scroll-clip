@@ -1,34 +1,22 @@
+import { ConsoleLogger } from "@/helpers/logger";
+
 /**
  * BoomerangError class.
  *
  * @export
- * @class BoomerangWarning
- * @extends {Error}
+ * @class BoomerangError
+ * @extends {ConsoleLogger}
  */
-export class BoomerangError extends Error {
+export class BoomerangError extends ConsoleLogger {
 
   /**
    * Creates an instance of BoomerangError.
    * @param {string} warning message.
    * @memberof BoomerangError
    */
-  constructor(message?: string) {
-
-    if (!message) {
-      message = `message is not defined.`;
-    }
-
-    super(`${message}`);
-
-    // Set the prototype explicitly.
-    Object.setPrototypeOf(this, Object.getPrototypeOf(this));
-
-    if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, BoomerangError);
-    }
+  constructor(message: string) {
+    super(message);
   }
-
-  get name(): string { return `${this.constructor.name}` }
 }
 
 /**
@@ -36,18 +24,18 @@ export class BoomerangError extends Error {
  *
  * @export
  * @class BoomerangWarning
- * @extends {BoomerangError}
+ * @extends {ConsoleLogger}
  */
-export class BoomerangWarning extends BoomerangError {
+export class BoomerangWarning extends ConsoleLogger {
 
   /**
    * Creates an instance of BoomerangWarning.
    * @param {string} warning message.
    * @memberof BoomerangWarning
    */
-  constructor(message?: string) {
+  constructor(message: string) {
     super(message);
 
-    console.warn(`${this}`);
+    this.warn(message);
   }
 }

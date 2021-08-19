@@ -1,4 +1,5 @@
 import { Event, EventEmitter } from "./events";
+import { BoomerangWarning } from "./error"
 
 describe('Event', () => {
 
@@ -17,14 +18,14 @@ describe('Event', () => {
   test("verify console.warn event in console", () => {
     const warn = jest.spyOn(console, "warn").mockImplementation();
     const callback = jest.fn();
-    const testEvent = "Random event";
+    const randomEvent = "Random event";
     const emitter = new EventEmitter();
 
-    emitter.on(testEvent, callback);
+    emitter.on(randomEvent, callback);
 
     expect(console.warn).toBeCalledTimes(1);
-    expect(console.warn).toHaveBeenLastCalledWith(expect.stringContaining('BoomerangWarning'));
-    expect(console.warn).toHaveBeenLastCalledWith(expect.stringContaining(testEvent));
+    expect(console.warn).toBeCalledWith(expect.stringContaining(BoomerangWarning.name));
+    expect(console.warn).toBeCalledWith(expect.stringContaining(randomEvent));
 
     warn.mockReset();
   });

@@ -26,9 +26,7 @@ import Boomerang from './main';
 //   }
 // })
 
-const Boomer = new Boomerang('', () => {
-  console.log('callback')
-});
+const Boomer = new Boomerang();
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 (window as any).boomerang = Boomer // instead of casting window to any, you can extend the Window interface: https://stackoverflow.com/a/43513740/5433572
