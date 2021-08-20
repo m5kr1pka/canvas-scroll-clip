@@ -64,11 +64,7 @@ export class Options implements IOptions {
     }
 
     // TODO: should I refactor this due to frame property?
-    for (const prop in options) {
-      if (options.hasOwnProperty(prop)) {
-        (this as any)[prop] = (options as any)[prop];
-      }
-    }
+    Object.assign(this, options);
 
     // Frame sequence options
     this.frame = {
@@ -93,13 +89,14 @@ export class Options implements IOptions {
   }
 
   /**
+   * Get frame image structure
    * 
    * @param firstFramePath 
    * @returns 
    */
   private getImageStructure(firstFramePath: string, frameCount: number): IFrameSequence {
     const img = this.getPathEnding(firstFramePath);
-    const seq = this.getImageSequence(firstFramePath)
+    const seq = this.getImageSequence(img)
 
     if (frameCount.toString().length > seq.length) {
       throw new Error(`Leading zeros in first frame path has to be more than the frame count and sequence at the end.`);
@@ -115,26 +112,25 @@ export class Options implements IOptions {
   }
 
   /**
-   * Get image sequence
+   * Get image sequence with leading zeros
    * 
-   * @param {string} firstFramePath 
-   * @returns {Number}
+   * @param {string} imageName 
+   * @returns {string}
    * @throws {Error} image sequence format not supported
    */
-  private getImageSequence(firstFramePath: string): string {
-    const ending = this.getPathEnding(firstFramePath);
-    let sequence = '', numbers;
+  private getImageSequence(imageName: string): string {
+    let sequence = '';
 
-    if (!ending || !ending.length) {
+    if (!imageName || !imageName.length) {
       throw new Error('Image sequence format not supported.')
     }
 
-    numbers = ending.replace(/[^0-9]/g, '');
+    const numbers = imageName.replace(/[^0-9]/g, '');
 
     for (let i = 0; i < numbers.length; i++) {
-      let slice = numbers.slice(i);
+      const slice = numbers.slice(i);
 
-      if (ending.includes(slice)) {
+      if (imageName.includes(slice)) {
         sequence = slice;
 
         break;
@@ -151,13 +147,12 @@ export class Options implements IOptions {
   /**
    * Get image extension
    * 
-   * @param firstFramePath 
+   * @param imageName 
    * @returns {string}
    * @throws {Error} Unsupported image
    */
-  private getImageExtension(firstFramePath: string): string {
-    const ending = this.getPathEnding(firstFramePath);
-    const ext = ending.split('.').pop() || '';
+  private getImageExtension(imageName: string): string {
+    const ext = imageName.split('.').pop() || '';
 
     if (!['jpg', 'jpeg', 'png'].includes(ext)) {
       throw new Error(`Image with extension '${ext}' is not supported.`);
@@ -167,6 +162,7 @@ export class Options implements IOptions {
   }
 
   /**
+   * Get ending of a url
    * 
    * @param path 
    * @returns 

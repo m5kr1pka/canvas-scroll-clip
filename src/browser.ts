@@ -32,7 +32,7 @@ const options = {
   framePath: firstFramePath,
   frameCount: frameCount
 }
-const Boomer = new Boomerang('.boomerang' as keyof HTMLElementTagNameMap, options);
+const Boomer = new Boomerang('.boomerang', options);
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 (window as any).boomerang = Boomer // instead of casting window to any, you can extend the Window interface: https://stackoverflow.com/a/43513740/5433572

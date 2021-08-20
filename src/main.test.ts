@@ -1,11 +1,15 @@
 import Boomerang from './main'
 import { BoomerangError } from './helpers/error'
+const defaultOptions = {
+  framePath: "/frame_0001.jpg",
+  frameCount: 30
+}
 
 describe("Boomerang", () => {
 
   test("throw error if HTMLElement not found", () => {
     const bumer = () => {
-      return new Boomerang('.elementNotFound');
+      return new Boomerang('.elementNotFound', defaultOptions);
     }
 
     expect(bumer).toThrowError(BoomerangError);
@@ -16,7 +20,7 @@ describe("Boomerang", () => {
     document.body.innerHTML = '<div class="boomerang">Hello</div>';
 
     const mock = jest.spyOn(document, 'querySelector');
-    const instance = new Boomerang();
+    const instance = new Boomerang('.boomerang', defaultOptions);
 
     expect(document.querySelector).toBeCalledTimes(1);
     expect(document.querySelector).toReturn();
@@ -31,7 +35,7 @@ describe("Boomerang", () => {
     document.body.innerHTML = '<div class="unique-element">Hello</div>';
 
     const mock = jest.spyOn(document, 'querySelector');
-    const instance = new Boomerang('.unique-element');
+    const instance = new Boomerang('.unique-element', defaultOptions);
 
     expect(document.querySelector).toBeCalledTimes(1);
     expect(document.querySelector).toReturn();
@@ -46,7 +50,7 @@ describe("Boomerang", () => {
     document.body.innerHTML = '<div class="boomerang">Hello</div>';
     const callback = jest.fn();
 
-    new Boomerang('.boomerang', callback);
+    new Boomerang('.boomerang', defaultOptions, callback);
 
     expect.assertions(1);
     setTimeout(() => {

@@ -43,11 +43,11 @@ export default class {
    * @param {function} Callback function
    * @memberof Main
    */
-  constructor(selector: keyof HTMLElementTagNameMap, options: IOptions, callback?: CallbackFunction) {
+  constructor(selector: string, options: IOptions, callback?: CallbackFunction) {
 
     try {
       // CSS class of a HTML element
-      this.selector = selector;
+      this.selector = selector as keyof HTMLElementTagNameMap;
 
       // Query document for element
       this.element = document.querySelector(this.selector) as HTMLElement;
@@ -84,19 +84,27 @@ export default class {
       throw new Error(`Element with class name "${this.selector}" not found.`)
     }
 
-    const getByFrameNumber = (frameNumber: number = 1): string => {
+    /**
+     * Get frame URL by frame number
+     * 
+     * @param {number} frameNumber 
+     * @default 1
+     * @returns 
+     */
+    const getByFrameNumber = (frame = 1): string => {
       const frameOptions = this.options.frame;
-      const frameNumberStr = frameNumber.toString();
+      const frameNrStr = frame.toString();
 
       return [
         `${frameOptions.path}/`,
         frameOptions.image.start,
-        frameNumberStr.toString().padStart(frameOptions.image.padStart, "0"),
+        frameNrStr.toString().padStart(frameOptions.image.padStart, "0"),
         frameOptions.image.ending
       ].join("");
     }
 
-    console.log(getByFrameNumber());
+    getByFrameNumber();
+    // console.log(getByFrameNumber());
     // setTimeout(() => {
     //   // console.log(this.events);
     //   this.events.emit(Event.resize);

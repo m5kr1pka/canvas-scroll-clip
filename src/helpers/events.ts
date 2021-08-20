@@ -17,7 +17,7 @@ export const Event = {
 /** 
 * List of events
 **/
-export const EventList = Object.values(Event).map((e: object) => Object.values(e)).flat();
+export const EventList = Object.values(Event).map((e: Record<string, unknown>) => Object.values(e)).flat();
 
 /** 
 * Event emitter
