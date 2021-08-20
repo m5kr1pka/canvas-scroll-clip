@@ -15,7 +15,7 @@ export class BoomerangError extends Error {
   constructor(message?: string) {
 
     if (!message) {
-      message = `Error message is not defined.`;
+      message = `Whoops! Something went wrong.`;
     }
 
     super(`${message}`);

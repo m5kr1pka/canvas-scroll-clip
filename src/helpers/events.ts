@@ -5,9 +5,19 @@ import { BoomerangWarning } from "@/helpers/error";
 * Available events
 **/
 export const Event = {
-  resize: 'viewport.events.resize',
-  scroll: 'viewport.events.scroll'
+  viewport: {
+    resize: 'viewport.resize',
+    scroll: 'viewport.scroll'
+  },
+  images: {
+    loaded: 'images.loaded'
+  }
 }
+
+/** 
+* List of events
+**/
+export const EventList = Object.values(Event).map((e: object) => Object.values(e)).flat();
 
 /** 
 * Event emitter
@@ -36,7 +46,7 @@ export class EventEmitter {
    */
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   on = (event: string, cb: CallbackFunction): void => {
-    if (!Object.values(Event).includes(event)) {
+    if (!EventList.includes(event)) {
       new BoomerangWarning(`Event ['${event}'] is not supported.`);
     }
 

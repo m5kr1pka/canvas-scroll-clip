@@ -4,7 +4,7 @@ import { BoomerangWarning } from "./error"
 describe('Event', () => {
 
   test("has been called", () => {
-    const event = Event.resize;
+    const event = Event.viewport.resize;
     const callback = jest.fn();
 
     const emitter = new EventEmitter();
@@ -31,7 +31,7 @@ describe('Event', () => {
   });
 
   test("verify repeated callback", () => {
-    const event = Event.resize;
+    const event = Event.viewport.resize;
     const callback = jest.fn();
 
     const emitter = new EventEmitter();
@@ -45,8 +45,8 @@ describe('Event', () => {
   });
 
   test("verify multiple events", () => {
-    const event1 = Event.resize;
-    const event2 = Event.scroll;
+    const event1 = Event.viewport.resize;
+    const event2 = Event.viewport.scroll;
     const callback1 = jest.fn();
     const callback2 = jest.fn();
 

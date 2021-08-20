@@ -7,13 +7,16 @@
 </head>
 
 <body>
-  <div class="boomerang">Open the devtools 👇</div>
-
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <canvas class="boomerang"></canvas>
 
   <script src="js/browser.js"></script>
   <script>
+    const frameCount = 148;
+    const firstFramePath = "https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/0001.jpg"
+    const framePath = 'https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/';
+    const currentFrame = index => (
+      `${framePath}${index.toString().padStart(4, '0')}.jpg`
+    )
     var app = window.boomerang;
   </script>
 </body>
