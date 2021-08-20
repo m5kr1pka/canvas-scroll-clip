@@ -1,29 +1,44 @@
 import { BoomerangError } from "@/helpers/error";
 import { EventEmitter } from "@/helpers/events";
-import { NoopFunction } from "@/helpers/utils"
+import { CallbackFunction } from "@/helpers/utils"
 
 /**
- * Main class.
+ * @module
+ * Boomerang.js
  *
  * @export
  * @class Main
- * @extends {EventEmitter}
  */
 export default class {
 
+  /**
+   * Selector class name of an HTML element || ```default '.boomerang'```.
+   */
   public selector: string;
+
+  /**
+   * Queried ```HTMLElement``` based on selector.
+   */
   public element: HTMLElement;
+
+  /**
+   * Events 
+   */
   public events: EventEmitter;
-  public callback: NoopFunction;
+
+  /**
+   * Callback function || ```undefined```
+   */
+  public callback: CallbackFunction;
 
   /**
    * Creates an instance of Boomerang.
    * @constructor
-   * @param {string} class name of an HTML element || default '.boomerang'.
+   * @param {string} class name of an HTML element | default '.boomerang'.
    * @param {function} Callback function
    * @memberof Main
    */
-  constructor(selector?: string, callback?: NoopFunction) {
+  constructor(selector?: string, callback?: CallbackFunction) {
 
     try {
 
@@ -41,7 +56,7 @@ export default class {
       // Event bus
       this.events = new EventEmitter();
 
-      // Initialitze
+      // Initialize
       this.init();
 
     } catch (e) {
@@ -50,7 +65,13 @@ export default class {
     }
   }
 
-  init(): void {
+  /**
+   * Hidden in order not to display this method in docs
+   * Initializes in constructor
+   * 
+   * @hidden
+   */
+  private init(): void {
 
     if (!this.element) {
       throw new Error(`Element with class name "${this.selector}" not found.`)

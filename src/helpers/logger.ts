@@ -1,14 +1,27 @@
-export interface Logger {
+export interface iLogger {
   log(message: string): void;
   warn(message: string): void;
 }
 
-export class ConsoleLogger extends Error implements Logger {
+/**
+ * ConsoleLogger class.
+ *
+ * @export
+ * @class ConsoleLogger
+ * @extends {Error}
+ * @implements {iLogger}
+ */
+export class ConsoleLogger extends Error implements iLogger {
 
+  /**
+   * Creates an instance of ConsoleLogger.
+   * @param {string} warning message.
+   * @memberof ConsoleLogger
+   */
   constructor(message?: string) {
 
     if (!message) {
-      message = `message is not defined.`;
+      message = `Error message is not defined.`;
     }
 
     super(`${message}`);
@@ -21,17 +34,32 @@ export class ConsoleLogger extends Error implements Logger {
     }
   }
 
-  // constructor name
+  /**
+   * Name of the property [of "this" or one of its prototypes] that holds
+   * the current function
+   *
+   * @memberof ConsoleLogger
+   */
   get name(): string {
     return this.constructor.name
   }
 
-  // Log message to console
+  /**
+   * wrapper logger for console.log
+   *
+   * @param {string}
+   * @memberof ConsoleLogger
+   */
   public log(message: string): void {
     console.log(`${this.name}: ${message}`);
   }
 
-  // Warning message to console
+  /**
+   * wrapper logger for console.warn
+   *
+   * @param {string}
+   * @memberof ConsoleLogger
+   */
   public warn(message: string): void {
     console.warn(`${this.name}: ${message}`);
   }

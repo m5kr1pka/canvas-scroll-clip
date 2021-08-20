@@ -2722,26 +2722,12 @@ img {
 				<li class=" tsd-kind-property tsd-parent-kind-class">
 					<a href="default.html#selector" class="tsd-kind-icon">selector</a>
 				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class">
-					<a href="default.html#init" class="tsd-kind-icon">init</a>
-				</li>
 			</ul>
 		</li>
 	</ul>
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
-		<section class="tsd-panel tsd-comment">
-			<div class="tsd-comment tsd-typography">
-				<div class="lead">
-					<p>Main class.</p>
-				</div>
-				<dl class="tsd-comment-tags">
-					<dt>export</dt>
-					<dd></dd>
-				</dl>
-			</div>
-		</section>
 		<section class="tsd-panel tsd-hierarchy">
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
@@ -2769,12 +2755,6 @@ img {
 							<li class="tsd-kind-property tsd-parent-kind-class"><a href="default.html#selector" class="tsd-kind-icon">selector</a></li>
 						</ul>
 					</section>
-					<section class="tsd-index-section ">
-						<h3>Methods</h3>
-						<ul class="tsd-index-list">
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="default.html#init" class="tsd-kind-icon">init</a></li>
-						</ul>
-					</section>
 				</div>
 			</section>
 		</section>
@@ -2784,13 +2764,13 @@ img {
 				<a name="constructor" class="tsd-anchor"></a>
 				<h3>constructor</h3>
 				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">new default<span class="tsd-signature-symbol">(</span>selector<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">NoopFunction</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></li>
+					<li class="tsd-signature tsd-kind-icon">new default<span class="tsd-signature-symbol">(</span>selector<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, callback<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">CallbackFunction</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/ec1d4b8/src/main.ts#L26">main.ts:26</a></li>
+								<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/9254447/src/main.ts#L41">main.ts:41</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2809,7 +2789,7 @@ img {
 								<h5><span class="tsd-flag ts-flagOptional">Optional</span> selector: <span class="tsd-signature-type">string</span></h5>
 							</li>
 							<li>
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> callback: <span class="tsd-signature-type">NoopFunction</span></h5>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> callback: <span class="tsd-signature-type">CallbackFunction</span></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <a href="default.html" class="tsd-signature-type" data-tsd-kind="Class">default</a></h4>
@@ -2822,12 +2802,17 @@ img {
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 				<a name="callback" class="tsd-anchor"></a>
 				<h3>callback</h3>
-				<div class="tsd-signature tsd-kind-icon">callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">NoopFunction</span></div>
+				<div class="tsd-signature tsd-kind-icon">callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">CallbackFunction</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/ec1d4b8/src/main.ts#L17">main.ts:17</a></li>
+						<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/9254447/src/main.ts#L32">main.ts:32</a></li>
 					</ul>
 				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Callback function || <code>undefined</code></p>
+					</div>
+				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 				<a name="element" class="tsd-anchor"></a>
@@ -2835,9 +2820,14 @@ img {
 				<div class="tsd-signature tsd-kind-icon">element<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">HTMLElement</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/ec1d4b8/src/main.ts#L15">main.ts:15</a></li>
+						<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/9254447/src/main.ts#L22">main.ts:22</a></li>
 					</ul>
 				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Queried <code>HTMLElement</code> based on selector.</p>
+					</div>
+				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 				<a name="events" class="tsd-anchor"></a>
@@ -2845,9 +2835,14 @@ img {
 				<div class="tsd-signature tsd-kind-icon">events<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">EventEmitter</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/ec1d4b8/src/main.ts#L16">main.ts:16</a></li>
+						<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/9254447/src/main.ts#L27">main.ts:27</a></li>
 					</ul>
 				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Events</p>
+					</div>
+				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 				<a name="selector" class="tsd-anchor"></a>
@@ -2855,29 +2850,14 @@ img {
 				<div class="tsd-signature tsd-kind-icon">selector<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/ec1d4b8/src/main.ts#L14">main.ts:14</a></li>
+						<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/9254447/src/main.ts#L17">main.ts:17</a></li>
 					</ul>
 				</aside>
-			</section>
-		</section>
-		<section class="tsd-panel-group tsd-member-group ">
-			<h2>Methods</h2>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-				<a name="init" class="tsd-anchor"></a>
-				<h3>init</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">init<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/m5kr1pka/boomerang.js/blob/ec1d4b8/src/main.ts#L53">main.ts:53</a></li>
-							</ul>
-						</aside>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-					</li>
-				</ul>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Selector class name of an HTML element || <code>default &#39;.boomerang&#39;</code>.</p>
+					</div>
+				</div>
 			</section>
 		</section>
 		<footer class="with-border-bottom">
@@ -2887,7 +2867,6 @@ img {
 					<ul class="tsd-legend">
 						<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 						<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-						<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 					</ul>
 				</div>
 			</div>
