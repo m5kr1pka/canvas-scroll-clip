@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "ES6",
     "module": "commonjs",
     "moduleResolution": "node",
     "declaration": true,
@@ -18,6 +18,12 @@
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "sourceMap": true,
+    "baseUrl": ".",
+    "rootDir": "./src",
+    "outDir": "./dist/tsc/",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "types": [
       "node",
       "jest"
@@ -26,9 +32,6 @@
       "ES6",
       "DOM"
     ],
-    "rootDir": "./src",
-    "outDir": "./dist/tsc/",
-    "baseUrl": ".",
     "paths": {
       "@/*": [
         "./src/*"
