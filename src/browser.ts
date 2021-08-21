@@ -27,7 +27,7 @@ import Boomerang from './main';
 // })
 
 const frameCount = 148;
-const firstFramePath = "https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/frame_0001.jpg"
+const firstFramePath = "https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/Some101String123_0001.jpg"
 const options = {
   framePath: firstFramePath,
   frameCount: frameCount

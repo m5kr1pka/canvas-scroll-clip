@@ -96,7 +96,7 @@ export default class {
       const frameNrStr = frame.toString();
 
       return [
-        `${frameOptions.path}/`,
+        frameOptions.path,
         frameOptions.image.start,
         frameNrStr.toString().padStart(frameOptions.image.padStart, "0"),
         frameOptions.image.ending

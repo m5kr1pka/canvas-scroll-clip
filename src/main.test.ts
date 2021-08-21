@@ -7,6 +7,10 @@ const defaultOptions = {
 
 describe("Boomerang", () => {
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   test("throw error if HTMLElement not found", () => {
     const bumer = () => {
       return new Boomerang('.elementNotFound', defaultOptions);
@@ -60,5 +64,5 @@ describe("Boomerang", () => {
       // OnFail 5000ms timeout
       done();
     });
-  })
+  });
 });

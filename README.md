@@ -16,7 +16,7 @@ Type: ```String```
 
 URL of first image of a sequence.
 
-**Important note:** Sequence should start with leading 0, minimum 3 digits and at the end of the name. for example: ```https://<URL>/frame_0001.jpg```. 
+**Important note:** Sequence should start with leading 0, minimum 2 digits and at the end of the name. for example: ```https://<URL>/frame_0001.jpg```. 
 
 #### frameCount (required)
 Type: ```Number```
