@@ -121,29 +121,13 @@ export class Options implements IOptions {
    * @throws {Error} image sequence format not supported
    */
   private getImageSequence(imageName: string): string {
-    let sequence = '';
+    let sequence = new RegExp(/\d+(?!.*\d+)/).exec(imageName);
 
-    if (!imageName || !imageName.length) {
-      throw new Error('Image sequence format not supported.')
+    if (sequence === null || sequence[0].length < 2) {
+      throw new Error('Bad image sequence format. Should start with 0 and be longer than 2 numbers, f.e. "frame_01.jpg"')
     }
 
-    const numbers = imageName.replace(/[^0-9]/g, '');
-
-    for (let i = 0; i < numbers.length; i++) {
-      const slice = numbers.slice(i);
-
-      if (imageName.includes(slice)) {
-        sequence = slice;
-
-        break;
-      }
-    }
-
-    if (sequence.length < 2) {
-      throw new Error('Bad image sequence format. Should start with 0 and be more than 2.')
-    }
-
-    return sequence;
+    return sequence[0];
   }
 
   /**
