@@ -1,3 +1,5 @@
+import { regExpLastDigitsMatch } from './utils'
+
 /**
  * Boomerang.js options interface.
  *
@@ -121,13 +123,14 @@ export class Options implements IOptions {
    * @throws {Error} image sequence format not supported
    */
   private getImageSequence(imageName: string): string {
-    const sequence = new RegExp(/\d+(?!.*\d+)/).exec(imageName);
+    const match = imageName.match(regExpLastDigitsMatch);
+    const sequence = (match && match[0] !== null) ? match[0] : "";
 
-    if (sequence === null || sequence[0].length < 2) {
+    if (sequence.length < 2) {
       throw new Error('Bad image sequence format. Should start with 0 and be longer than 2 numbers, f.e. "frame_01.jpg"')
     }
 
-    return sequence[0];
+    return sequence;
   }
 
   /**
