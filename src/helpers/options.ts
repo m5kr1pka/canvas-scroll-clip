@@ -121,7 +121,7 @@ export class Options implements IOptions {
    * @throws {Error} image sequence format not supported
    */
   private getImageSequence(imageName: string): string {
-    let sequence = new RegExp(/\d+(?!.*\d+)/).exec(imageName);
+    const sequence = new RegExp(/\d+(?!.*\d+)/).exec(imageName);
 
     if (sequence === null || sequence[0].length < 2) {
       throw new Error('Bad image sequence format. Should start with 0 and be longer than 2 numbers, f.e. "frame_01.jpg"')
