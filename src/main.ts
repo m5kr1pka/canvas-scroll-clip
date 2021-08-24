@@ -1,7 +1,8 @@
+import { Base } from "@/base";
+import { IViewport, IOptions } from "@/helpers/intefaces";
+import { NoopFunction, debounce } from "@/helpers/utils";
 import { BoomerangError } from "@/helpers/error";
-import { EventEmitter } from "@/helpers/events";
-import { CallbackFunction } from "@/helpers/utils"
-import { IOptions, Options } from '@/helpers/options';
+import { Options } from '@/helpers/options';
 
 /**
  * @module
@@ -10,7 +11,7 @@ import { IOptions, Options } from '@/helpers/options';
  * @export
  * @class Main
  */
-export default class {
+export class Main extends Base {
 
   /**
    * Selector class name of an HTML element || ```default '.boomerang'```.
@@ -18,23 +19,26 @@ export default class {
   public selector: keyof HTMLElementTagNameMap;
 
   /**
-   * Queried ```HTMLElement``` based on selector.
+   * Queried <HTMLElement> based on selector.
    */
   public element: HTMLElement;
 
-  private options: Options;
+  /**
+   * Options
+   */
+  public options: Options;
 
   /**
-   * Events 
+   * Viewport
    */
-  public events: EventEmitter;
+  public viewport: IViewport;
 
   /**
    * This callback is called when the class is loaded
    * 
    * @callback CallbackFunction
    */
-  public callback: CallbackFunction;
+  public callback: NoopFunction;
 
   /**
    * Creates an instance of Boomerang.
@@ -43,33 +47,40 @@ export default class {
    * @param {function} Callback function
    * @memberof Main
    */
-  constructor(selector: string, options: IOptions, callback?: CallbackFunction) {
+  constructor(selector: string, options: IOptions, callback?: NoopFunction) {
+    super();
 
-    try {
-      // CSS class of a HTML element
-      this.selector = selector as keyof HTMLElementTagNameMap;
+    // CSS class of a HTML element
+    this.selector = selector as keyof HTMLElementTagNameMap;
 
-      // Query document for element
-      this.element = document.querySelector(this.selector) as HTMLElement;
+    // Query document for element
+    this.element = document.querySelector(this.selector) as HTMLElement;
 
-      // Set options
-      this.options = new Options(options);
-
-      // Callback function if defined
-      this.callback = callback || (() => {
-        // eslint - do nothing.
-      });
-
-      // Event bus
-      this.events = new EventEmitter();
-
-      // Initialize
-      this.init();
-
-    } catch (e) {
-      // Global error wrapper
-      throw new BoomerangError(e.message)
+    // Test if HTMLElement exists
+    if (!this.element) {
+      throw new BoomerangError(`Element with class name "${this.selector}" not found.`)
     }
+
+    // Set options
+    this.options = new Options(options);
+
+    // Set viewport
+    this.viewport = this.getViewport();
+
+    // Callback function if defined
+    this.callback = callback || (() => {
+      // eslint - do nothing.
+    });
+
+    // Bind window events
+    window.addEventListener("resize", debounce(this.handleResize.bind(this)));
+    window.addEventListener("scroll", debounce(this.handleScroll.bind(this)));
+
+    // Next tick of instance
+    debounce(this.callback())
+
+    // Initialize
+    this.init();
   }
 
   /**
@@ -79,40 +90,8 @@ export default class {
    * @hidden
    */
   private init(): void {
-
-    if (!this.element) {
-      throw new Error(`Element with class name "${this.selector}" not found.`)
-    }
-
-    /**
-     * Get frame URL by frame number
-     * 
-     * @param {number} frameNumber 
-     * @default 1
-     * @returns 
-     */
-    const getByFrameNumber = (frame = 1): string => {
-      const frameOptions = this.options.frame;
-      const frameNrStr = frame.toString();
-
-      return [
-        frameOptions.path,
-        frameOptions.image.start,
-        frameNrStr.toString().padStart(frameOptions.image.padStart, "0"),
-        frameOptions.image.ending
-      ].join("");
-    }
-
-    getByFrameNumber();
-    // console.log(getByFrameNumber());
-    // setTimeout(() => {
-    //   // console.log(this.events);
-    //   this.events.emit(Event.resize);
-    // }, 100)
-
-    // Next tick of instance
-    setTimeout(() => {
-      this.callback();
-    }, 0);
+    // console.log('init')
   }
 }
+
+export default Main;

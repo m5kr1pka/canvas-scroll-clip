@@ -1,10 +1,10 @@
-import { regExpLastDigitsMatch } from './utils'
+import { RegExpLastDigitsMatch } from './utils'
 
 describe('Utils', () => {
 
   test('verify regexp expression against random string', () => {
     const fn = (someString: string): string => {
-      const match = someString.match(regExpLastDigitsMatch);
+      const match = someString.match(RegExpLastDigitsMatch);
 
       return (match && match[0] !== null) ? match[0] : "";
     };

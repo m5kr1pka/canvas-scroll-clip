@@ -1,4 +1,5 @@
 import Options from './options'
+import { BoomerangError } from "./error"
 
 describe('Options', () => {
   afterEach(() => {
@@ -37,7 +38,7 @@ describe('Options', () => {
       });
     };
 
-    expect(fn).toThrowError(Error);
+    expect(fn).toThrowError(BoomerangError);
     expect(fn).toThrowError(new RegExp('Frame path'));
   });
 
@@ -49,7 +50,7 @@ describe('Options', () => {
       });
     };
 
-    expect(fn).toThrowError(Error);
+    expect(fn).toThrowError(BoomerangError);
     expect(fn).toThrowError(new RegExp('Frame count'));
   });
 
@@ -76,7 +77,7 @@ describe('Options', () => {
       });
     }
 
-    expect(fn).toThrowError(Error);
+    expect(fn).toThrowError(BoomerangError);
     expect(fn).toThrowError(new RegExp('Image with extension'));
   });
 
@@ -88,7 +89,7 @@ describe('Options', () => {
       });
     }
 
-    expect(fn).toThrowError(Error);
+    expect(fn).toThrowError(BoomerangError);
     expect(fn).toThrowError(new RegExp('Leading zeros'));
   });
 });

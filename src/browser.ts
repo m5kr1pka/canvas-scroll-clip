@@ -1,3 +1,4 @@
+import { IViewport } from '@/helpers/intefaces';
 import Boomerang from './main';
 // import $ from "jquery";
 
@@ -32,13 +33,15 @@ const options = {
   framePath: firstFramePath,
   frameCount: frameCount
 }
-const Boomer = new Boomerang('.boomerang', options);
+const Boomer = new Boomerang('.boomerang', options, () => {
+  console.log('Boomerang loaded.')
+});
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 (window as any).boomerang = Boomer // instead of casting window to any, you can extend the Window interface: https://stackoverflow.com/a/43513740/5433572
 
-Boomer.events.on('viewport.resize', () => {
-  console.log('viewport.events.resize event triggered.');
+Boomer.events.on('viewport.resize', (viewport: IViewport) => {
+  console.log(viewport);
 });
 
 Boomer.events.on('viewport.scroll', () => {

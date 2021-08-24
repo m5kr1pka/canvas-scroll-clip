@@ -1,41 +1,6 @@
-import { regExpLastDigitsMatch } from './utils'
-
-/**
- * Boomerang.js options interface.
- *
- * @export
- * @interface IOptions
- */
-export interface IOptions {
-  framePath: string,
-  frameCount: number;
-}
-
-/**
- * Frame Sequence interface.
- *
- * @export
- * @interface IFrame
- */
-export interface IFrameSequence {
-  start: string,
-  sequence: number,
-  padStart: number,
-  ending: string,
-  extension: string,
-}
-
-/**
- * Frame interface.
- *
- * @export
- * @interface IFrame
- */
-export interface IFrame {
-  path: string,
-  count: number,
-  image: IFrameSequence
-}
+import { RegExpLastDigitsMatch } from '@/helpers/utils'
+import { IOptions, IFrame, IFrameSequence } from '@/helpers/intefaces'
+import { BoomerangError } from '@/helpers/error';
 
 /**
  * Boomerang options.
@@ -58,11 +23,11 @@ export class Options implements IOptions {
   constructor(options: IOptions) {
 
     if (!options.framePath) {
-      throw new Error('Frame path is not defined.');
+      throw new BoomerangError('Frame path is not defined.');
     }
 
     if (!options.frameCount) {
-      throw new Error('Frame count is not defined.')
+      throw new BoomerangError('Frame count is not defined.');
     }
 
     // TODO: should I refactor this due to frame property?
@@ -103,7 +68,7 @@ export class Options implements IOptions {
     const seq = this.getImageSequence(img);
 
     if (frameCount.toString().length > seq.length) {
-      throw new Error(`Leading zeros in first frame path has to be more than the frame count and sequence at the end.`);
+      throw new BoomerangError(`Leading zeros in first frame path has to be more than the frame count and sequence at the end.`);
     }
 
     return {
@@ -120,14 +85,14 @@ export class Options implements IOptions {
    * 
    * @param {string} imageName 
    * @returns {string}
-   * @throws {Error} image sequence format not supported
+   * @throws {BoomerangError} image sequence format not supported
    */
   private getImageSequence(imageName: string): string {
-    const match = imageName.match(regExpLastDigitsMatch);
+    const match = imageName.match(RegExpLastDigitsMatch);
     const sequence = (match && match[0] !== null) ? match[0] : "";
 
     if (sequence.length < 2) {
-      throw new Error('Bad image sequence format. Should start with 0 and be longer than 2 numbers, f.e. "frame_01.jpg"')
+      throw new BoomerangError('Bad image sequence format. Should start with 0 and be longer than 2 numbers, f.e. "frame_01.jpg"')
     }
 
     return sequence;
@@ -138,13 +103,13 @@ export class Options implements IOptions {
    * 
    * @param imageName 
    * @returns {string}
-   * @throws {Error} Unsupported image
+   * @throws {BoomerangError} Unsupported image
    */
   private getImageExtension(imageName: string): string {
     const ext = imageName.split('.').pop() || ' ';
 
     if (!['jpg', 'jpeg', 'png'].includes(ext)) {
-      throw new Error(`Image with extension ['${ext}'] is not supported.`);
+      throw new BoomerangError(`Image with extension ['${ext}'] is not supported.`);
     }
 
     return `.${ext}`;

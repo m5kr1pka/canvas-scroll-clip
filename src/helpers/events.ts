@@ -1,4 +1,4 @@
-import { CallbackFunction } from "@/helpers/utils";
+import { NoopFunction } from "@/helpers/utils";
 import { BoomerangWarning } from "@/helpers/error";
 
 /** 
@@ -45,7 +45,7 @@ export class EventEmitter {
    * @param cb the callback to run when the event is emitted
    */
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-  on = (event: string, cb: CallbackFunction): void => {
+  on = (event: string, cb: NoopFunction): void => {
     if (!EventList.includes(event)) {
       new BoomerangWarning(`Event ['${event}'] is not supported.`);
     }
@@ -64,7 +64,7 @@ export class EventEmitter {
    * @param cb the callback to remove
    */
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
-  remove = (event: string, cb: CallbackFunction): void => {
+  remove = (event: string, cb: NoopFunction): void => {
     // get list of cb for this event;
     const observer = this.observers.get(event)
     // return if no such list exists
