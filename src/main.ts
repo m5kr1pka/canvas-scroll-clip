@@ -1,10 +1,9 @@
 import { Base } from "@/common/base";
 import { NoopFunction, IOptions } from "@/helpers/intefaces";
-// import { BoomerangError } from "@/helpers/error";
 import { Canvas } from "@/common/canvas";
 import { Options } from '@/helpers/options';
 import { BoomerangEvent } from "@/helpers/events";
-import { debounce, getFrameNumber, preloadImages } from "@/helpers/utils";
+import { debounce, getFrameNumber, getScrollTop, preloadImages } from "@/helpers/utils";
 
 /**
  * @module
@@ -55,11 +54,11 @@ export class Main extends Base {
     // CSS class of a HTML element
     this.selector = selector as keyof HTMLElementTagNameMap;
 
-    // Set Canvas
-    this.canvas = new Canvas(this.selector);
-
     // Set options
     this.options = new Options(options);
+
+    // Set Canvas
+    this.canvas = new Canvas(this);
 
     // Callback function if defined
     this.callback = callback || (() => {
@@ -82,32 +81,41 @@ export class Main extends Base {
     preloadImages(this.options).then(images => {
       this.images = images;
 
-      // Print first image
-      this.canvas.drawImage(this.images[0]);
-
-      // Bind window events
-      window.addEventListener("resize", debounce(this.handleResize.bind(this)));
-      window.addEventListener("scroll", debounce(this.handleScroll.bind(this)));
-
       // Raise images loaded event
       this.events.emit(BoomerangEvent.images.loaded);
     })
 
-    this.events.on(BoomerangEvent.viewport.scroll, (scrollTop) => {
-      const frameNumber = getFrameNumber(this.options.count, scrollTop);
-      this.canvas.drawImage(this.images[frameNumber]);
+    // On all images loaded event
+    this.events.on(BoomerangEvent.images.loaded, () => {
+      // Initial image load
+      this.drawImageByScrollTop();
+
+      // Bind window events
+      window.addEventListener("resize", debounce(this.handleResize.bind(this)));
+      window.addEventListener("scroll", debounce(this.handleScroll.bind(this)));
     });
 
-    // this.events.on(Event.viewport.resize, () => {
-    //   console.log('resize')
-    // });
-
-    // this.events.on(Event.images.loaded, () => {
-    //   console.log('loaded')
-    // });
+    // On scroll event
+    this.events.on(BoomerangEvent.viewport.scroll, (scrollTop) => {
+      this.drawImageByScrollTop(scrollTop);
+    });
 
     // Next tick of instance
     debounce(this.callback());
+  }
+
+  /**
+   * Draw image in canvas by scroll top position.
+   * @param {scrollTop} number
+   * @private
+   * 
+   * Hidden in order to not display this method in docs
+   * @hidden
+   */
+  private drawImageByScrollTop(scrollTop: number = getScrollTop()): void {
+    const frameNumber = getFrameNumber(this.options.count, scrollTop);
+
+    this.canvas.drawImage(this.images[frameNumber]);
   }
 }
 

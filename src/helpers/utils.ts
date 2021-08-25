@@ -52,6 +52,15 @@ export async function getImage(imageLink: string): Promise<HTMLImageElement> {
 }
 
 /**
+ * Get scroll top position 
+ * 
+ * @returns number
+ */
+export function getScrollTop(): number {
+  return window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+}
+
+/**
  * Preloading images
  * TODO: Maybe implement progress
  * 

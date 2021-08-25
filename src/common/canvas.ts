@@ -1,10 +1,16 @@
 import { BoomerangError } from "@/helpers/error";
-// import { Event } from "@/helpers/events";
+import Main from "@/main";
 
+/**
+ * Canvas
+ *
+ * @export
+ * @class Canvas
+ */
 export class Canvas {
 
   /**
-   * Canvas
+   * Canvas element
    */
   public element: HTMLCanvasElement;
 
@@ -20,10 +26,11 @@ export class Canvas {
    * @param {keyof HTMLElementTagNameMap} selector of an HTML element.
    * @memberof Canvas
    */
-  constructor(selector: keyof HTMLElementTagNameMap) {
+  constructor({ selector }: Main) {
+    // super(options);
 
     // Query document for element
-    this.element = document.querySelector(selector) as HTMLCanvasElement || undefined;
+    this.element = document.querySelector(selector) as HTMLCanvasElement;
 
     // Check if HTMLCanvasElement exists
     if (!this.element) {
@@ -35,7 +42,6 @@ export class Canvas {
 
     // Get context
     this.context = this.element.getContext("2d") as CanvasRenderingContext2D;
-    this.context.imageSmoothingEnabled = true;
   }
 
   /**

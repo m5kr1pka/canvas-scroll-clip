@@ -51,14 +51,18 @@ Type: ```Number```
 Event is triggered with scroll event. Returns ```scrollTop``` position.
 
 #### Usage
+
+> **NOTE:** wrapper div element must have a ```position: sticky``` attribute. Refer to example source code.
+
 ```
 BoomerangInstance.events.on('viewport.scroll', function(scrollTop){
   console.log(scrollTop);
 });
 ```
 
+
 ### images.loaded
-Event is triggered after all images preloaded. Good for displaying loader.
+Event is triggered after all images preloaded. Good place to implement loader animation.
 
 #### Usage
 ```
@@ -69,8 +73,8 @@ BoomerangInstance.events.on('images.loaded', function() {
 
 ## Other
 
-### Esbuild and UMD pending feature
-Pending esbuild UMD format feature [--format=umd](https://github.com/evanw/esbuild/issues/507) support.
-
 ### License
 MIT license
+
+### Esbuild and UMD pending feature
+Pending esbuild UMD format feature [--format=umd](https://github.com/evanw/esbuild/issues/507) support.

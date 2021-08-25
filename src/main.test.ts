@@ -5,9 +5,12 @@ const defaultOptions = {
   frameCount: 30
 }
 
+// let canvas: HTMLCanvasElement;
+
 describe("Boomerang", () => {
 
-  afterEach(() => {
+  beforeEach(() => {
+    document.body.innerHTML = "";
     jest.clearAllMocks();
   });
 
@@ -21,37 +24,35 @@ describe("Boomerang", () => {
   });
 
   test("verify if default element is found", () => {
-    document.body.innerHTML = '<div class="boomerang">Hello</div>';
-
+    document.body.innerHTML = '<canvas class="boomerang"></canvas>';
     const mock = jest.spyOn(document, 'querySelector');
-    // new Boomerang('.boomerang', defaultOptions);
+    const instance = new Boomerang('.boomerang', defaultOptions);
 
-    // expect(document.querySelector).toBeCalledTimes(1);
-    // expect(document.querySelector).toReturn();
+    expect(document.querySelector).toBeCalledTimes(1);
+    expect(document.querySelector).toReturn();
 
-    // expect(instance).toHaveProperty('selector', '.boomerang');
-    // expect(instance.canvas).not.toBe(undefined);
+    expect(instance).toHaveProperty('selector', '.boomerang');
+    expect(instance.canvas).not.toBe(undefined);
 
     mock.mockRestore();
   });
 
   test('verify that element with class name ".unique-element" is found', () => {
-    document.body.innerHTML = '<div class="unique-element">Hello</div>';
-
+    document.body.innerHTML = '<canvas class="unique-element"></canvas>';
     const mock = jest.spyOn(document, 'querySelector');
-    // new Boomerang('.unique-element', defaultOptions);
+    const instance = new Boomerang('.unique-element', defaultOptions);
 
-    // expect(document.querySelector).toBeCalledTimes(1);
-    // expect(document.querySelector).toReturn();
+    expect(document.querySelector).toBeCalledTimes(1);
+    expect(document.querySelector).toReturn();
 
-    // expect(instance).toHaveProperty('selector', '.unique-element');
-    // expect(instance.canvas).not.toBe(undefined);
+    expect(instance).toHaveProperty('selector', '.unique-element');
+    expect(instance.canvas).not.toBe(undefined);
 
     mock.mockRestore();
   });
 
   test('verify callback is triggered at nextTick', done => {
-    document.body.innerHTML = '<div class="boomerang">Hello</div>';
+    document.body.innerHTML = '<canvas class="boomerang"></canvas>';
     const callback = jest.fn();
 
     new Boomerang('.boomerang', defaultOptions, callback);
