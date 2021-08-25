@@ -8,9 +8,10 @@ import { debounce, getFrameNumber, getScrollTop, preloadImages } from "@/helpers
 /**
  * @module
  * Boomerang.js
- *
- * @export
- * @class Main
+ */
+
+/**
+ * @class Main class
  */
 export class Main extends Base {
 
@@ -42,7 +43,8 @@ export class Main extends Base {
   public callback: NoopFunction;
 
   /**
-   * Creates an instance of Boomerang.
+   * An instance of boomerang.js.
+   * 
    * @constructor
    * @param {String} class name of an HTML element.
    * @param {function} Callback function

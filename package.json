@@ -24,7 +24,7 @@
     "test": "jest",
     "clean": "rm -rf dist build package",
     "ts-node": "ts-node",
-    "docs": "typedoc --theme minimal --entryPoints src/main.ts",
+    "docs": "typedoc --entryPoints src/main.ts",
     "build": "tsc -p tsconfig.json",
     "build-all": "yarn clean && yarn build && yarn esbuild-browser",
     "esbuild-browser": "esbuild src/browser.ts --format=umd --bundle --minify --sourcemap=external --outfile=dist/build/boomerang.js",
