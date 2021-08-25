@@ -3,11 +3,15 @@
   "version": "0.1.0",
   "description": "Canvas image sequence animation based on scroll.",
   "author": "Mantas Skripkauskas (https://github.com/m5kr1pka)",
+  "homepage": "https://github.com/m5kr1pka/boomerang.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/m5kr1pka/boomerang.js.git"
   },
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/m5kr1pka/boomerang.js/issues"
+  },
   "keywords": [
     "boomerang",
     "boomerangjs",
@@ -27,9 +31,9 @@
     "docs": "typedoc --entryPoints src/main.ts",
     "build": "tsc -p tsconfig.json",
     "build-all": "yarn clean && yarn build && yarn esbuild-browser",
-    "esbuild-browser": "esbuild src/browser.ts --format=umd --bundle --minify --sourcemap=external --outfile=dist/build/boomerang.js",
-    "esbuild-browser:dev": "esbuild src/browser.ts --format=umd --bundle --outfile=dist/esbuild/boomerang.js",
-    "esbuild-browser:watch": "esbuild src/browser.ts --format=umd --bundle --watch --outfile=dist/esbuild/boomerang.js",
+    "esbuild-browser": "esbuild src/browser.ts --format=umd --bundle --minify --sourcemap=external --outfile=dist/build/browser.js",
+    "esbuild-browser:dev": "esbuild src/browser.ts --format=umd --bundle --outfile=dist/esbuild/browser.js",
+    "esbuild-browser:watch": "esbuild src/browser.ts --format=umd --bundle --watch --outfile=dist/esbuild/browser.js",
     "preview": "esbuild src/browser.ts --servedir=www  --outdir=www/js --bundle",
     "preview:docs": "esbuild --servedir=docs",
     "post-update": "yarn upgrade --latest"
