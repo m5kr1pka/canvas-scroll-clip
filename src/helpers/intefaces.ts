@@ -1,3 +1,9 @@
+/*
+* No operation type of function
+*/
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type NoopFunction = (args?: any) => any;
+
 /**
  * Viewport
  */

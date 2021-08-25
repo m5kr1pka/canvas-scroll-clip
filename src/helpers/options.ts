@@ -9,11 +9,12 @@ import { BoomerangError } from '@/helpers/error';
  * @class Options
  * @implements {IOptions}
  */
-export class Options implements IOptions {
+export class Options implements IFrame {
 
-  public frame: IFrame
-  public framePath = '';
-  public frameCount = 1;
+  // public frame: IFrame;
+  public path: string;
+  public count: number;
+  public image: IFrameSequence;
 
   /**
    * Creates an instance of Options.
@@ -30,15 +31,9 @@ export class Options implements IOptions {
       throw new BoomerangError('Frame count is not defined.');
     }
 
-    // TODO: should I refactor this due to frame property?
-    Object.assign(this, options);
-
-    // Frame sequence options
-    this.frame = {
-      path: this.getImageBasePath(this.framePath),
-      image: this.getImageStructure(this.framePath, this.frameCount),
-      count: this.frameCount
-    } as IFrame;
+    this.count = options.frameCount;
+    this.path = this.getImageBasePath(options.framePath);
+    this.image = this.getImageStructure(options.framePath, this.count)
   }
 
   /**

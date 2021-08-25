@@ -13,17 +13,14 @@ describe('Options', () => {
     });
 
     const expected = {
-      ...options,
-      frame: {
-        path: '/frames/',
-        count: options.frameCount,
-        image: {
-          start: 'frame_',
-          sequence: 1,
-          padStart: 4,
-          ending: '.jpg',
-          extension: '.jpg',
-        }
+      path: '/frames/',
+      count: 121,
+      image: {
+        start: 'frame_',
+        sequence: 1,
+        padStart: 4,
+        ending: '.jpg',
+        extension: '.jpg',
       }
     }
 
@@ -65,8 +62,8 @@ describe('Options', () => {
       frameCount: 121
     });
 
-    expect(a).toHaveProperty(['frame', 'path'], '/');
-    expect(b).toHaveProperty(['frame', 'path'], '/frames/');
+    expect(a).toHaveProperty(['path'], '/');
+    expect(b).toHaveProperty(['path'], '/frames/');
   });
 
   test('verify not supported image extension', () => {

@@ -1,6 +1,6 @@
 import { IViewport } from "@/helpers/intefaces";
-import { Event, EventEmitter } from "@/helpers/events";
-import { BoomerangError } from "./helpers/error";
+import { BoomerangEvent, EventEmitter } from "@/helpers/events";
+import { BoomerangError } from "@/helpers/error";
 
 export class Base {
 
@@ -8,6 +8,11 @@ export class Base {
    * EventEmitter 
    */
   public events: EventEmitter;
+
+  /**
+   * Viewport
+   */
+  public viewport: IViewport;
 
   /**
    * Creates an instance.
@@ -19,15 +24,23 @@ export class Base {
   constructor() {
 
     if (!window) {
-      throw new BoomerangError("window not found.");
+      throw new BoomerangError("window is not found.");
     }
 
     if (!document) {
-      throw new BoomerangError("document not found.");
+      throw new BoomerangError("document is not found.");
     }
 
     // Event bus
     this.events = new EventEmitter();
+
+    // Viewport listener
+    this.events.on(BoomerangEvent.viewport.resize, (viewport: IViewport) => {
+      this.viewport = viewport;
+    });
+
+    // Set viewport
+    this.viewport = this.getViewport();
   }
 
   /**
@@ -35,7 +48,7 @@ export class Base {
    * 
    * @returns {IViewport}
    */
-  public getViewport(): IViewport {
+  private getViewport(): IViewport {
     return {
       x: window.innerWidth || document.documentElement?.clientWidth,
       y: window.innerHeight || document.documentElement?.clientHeight
@@ -46,7 +59,7 @@ export class Base {
    * Set Viewport sizes on window resize event
    */
   public handleResize(): void {
-    this.events.emit(Event.viewport.resize, this.getViewport());
+    this.events.emit(BoomerangEvent.viewport.resize, this.getViewport());
   }
 
   /**
@@ -56,7 +69,7 @@ export class Base {
     // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    this.events.emit(Event.viewport.scroll, scrollTop)
+    this.events.emit(BoomerangEvent.viewport.scroll, scrollTop)
   }
 }
 

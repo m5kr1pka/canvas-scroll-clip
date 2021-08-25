@@ -4,14 +4,77 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <title>Boomerang.js</title>
   <link rel="shortcut icon" href="#" />
+  <style>
+    *,
+    :after,
+    :before {
+      box-sizing: border-box;
+    }
+
+    html {
+      padding: 0;
+      margin: 0;
+      text-rendering: optimizeLegibility;
+      -webkit-text-size-adjust: 100%;
+      -moz-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      min-height: 100%;
+      -webkit-font-smoothing: auto;
+      -moz-osx-font-smoothing: auto;
+      font-size: 16px;
+      background-color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --canvas-top: 30px;
+    }
+
+    .container {
+      min-height: 100%;
+      display: flex;
+      height: 2000px;
+      position: relative;
+    }
+
+    .wrapper {
+      height: 100vh;
+      display: flex;
+      width: 100%;
+      position: sticky;
+      top: 0;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .boomerang {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+  </style>
 </head>
 
 <body>
-  <canvas class="boomerang"></canvas>
+  <div class="container">
+    <div class="wrapper">
+      <canvas class="boomerang" width="1180" height="770"></canvas>
+    </div>
+  </div>
 
   <script src="js/browser.js"></script>
   <script>
-    const frameCount = 148;
+    const frameCount = 147;
     const firstFramePath = "https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/0001.jpg"
     const framePath = 'https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/';
     const currentFrame = index => (

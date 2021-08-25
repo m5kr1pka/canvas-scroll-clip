@@ -1,8 +1,10 @@
-import { Base } from "@/base";
-import { IViewport, IOptions } from "@/helpers/intefaces";
-import { NoopFunction, debounce } from "@/helpers/utils";
-import { BoomerangError } from "@/helpers/error";
+import { Base } from "@/common/base";
+import { NoopFunction, IOptions } from "@/helpers/intefaces";
+// import { BoomerangError } from "@/helpers/error";
+import { Canvas } from "@/common/canvas";
 import { Options } from '@/helpers/options';
+import { BoomerangEvent } from "@/helpers/events";
+import { debounce, getFrameNumber, preloadImages } from "@/helpers/utils";
 
 /**
  * @module
@@ -14,14 +16,14 @@ import { Options } from '@/helpers/options';
 export class Main extends Base {
 
   /**
-   * Selector class name of an HTML element || ```default '.boomerang'```.
+   * Selector class name of an HTML element.
    */
   public selector: keyof HTMLElementTagNameMap;
 
   /**
-   * Queried <HTMLElement> based on selector.
+   * Canvas
    */
-  public element: HTMLElement;
+  public canvas: Canvas;
 
   /**
    * Options
@@ -29,9 +31,9 @@ export class Main extends Base {
   public options: Options;
 
   /**
-   * Viewport
+   * Images
    */
-  public viewport: IViewport;
+  public images: HTMLImageElement[] = [];
 
   /**
    * This callback is called when the class is loaded
@@ -43,7 +45,7 @@ export class Main extends Base {
   /**
    * Creates an instance of Boomerang.
    * @constructor
-   * @param {String} class name of an HTML element | default '.boomerang'.
+   * @param {String} class name of an HTML element.
    * @param {function} Callback function
    * @memberof Main
    */
@@ -53,31 +55,16 @@ export class Main extends Base {
     // CSS class of a HTML element
     this.selector = selector as keyof HTMLElementTagNameMap;
 
-    // Query document for element
-    this.element = document.querySelector(this.selector) as HTMLElement;
-
-    // Test if HTMLElement exists
-    if (!this.element) {
-      throw new BoomerangError(`Element with class name "${this.selector}" not found.`)
-    }
+    // Set Canvas
+    this.canvas = new Canvas(this.selector);
 
     // Set options
     this.options = new Options(options);
-
-    // Set viewport
-    this.viewport = this.getViewport();
 
     // Callback function if defined
     this.callback = callback || (() => {
       // eslint - do nothing.
     });
-
-    // Bind window events
-    window.addEventListener("resize", debounce(this.handleResize.bind(this)));
-    window.addEventListener("scroll", debounce(this.handleScroll.bind(this)));
-
-    // Next tick of instance
-    debounce(this.callback())
 
     // Initialize
     this.init();
@@ -90,7 +77,37 @@ export class Main extends Base {
    * @hidden
    */
   private init(): void {
-    // console.log('init')
+
+    // Preload Images
+    preloadImages(this.options).then(images => {
+      this.images = images;
+
+      // Print first image
+      this.canvas.drawImage(this.images[0]);
+
+      // Bind window events
+      window.addEventListener("resize", debounce(this.handleResize.bind(this)));
+      window.addEventListener("scroll", debounce(this.handleScroll.bind(this)));
+
+      // Raise images loaded event
+      this.events.emit(BoomerangEvent.images.loaded);
+    })
+
+    this.events.on(BoomerangEvent.viewport.scroll, (scrollTop) => {
+      const frameNumber = getFrameNumber(this.options.count, scrollTop);
+      this.canvas.drawImage(this.images[frameNumber]);
+    });
+
+    // this.events.on(Event.viewport.resize, () => {
+    //   console.log('resize')
+    // });
+
+    // this.events.on(Event.images.loaded, () => {
+    //   console.log('loaded')
+    // });
+
+    // Next tick of instance
+    debounce(this.callback());
   }
 }
 

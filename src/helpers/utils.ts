@@ -1,10 +1,5 @@
+import { BoomerangError } from "./error";
 import { IFrame } from "./intefaces";
-
-/*
-* No operation type of function
-*/
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type NoopFunction = (args?: any) => any;
 
 /**
  * RegExp expression to find last digits in a string
@@ -12,7 +7,7 @@ export type NoopFunction = (args?: any) => any;
 export const RegExpLastDigitsMatch = /\d+(?!.*\d+)/;
 
 /**
- * Debouncing function
+ * Debounce ot throttle function
  * 
  * @param {func} 
  * @param {threshold} 
@@ -36,27 +31,61 @@ export const debounce = <F extends ((...args: any) => any)>(func: F, threshold =
 
 /**
  * Preload images
- * TODO: Should I refactor
  * 
  * @param {imagesList} Array of strings
  * @param {callback} CallbackFunction
  */
-export function preloadImages(imagesList: [string], callback: NoopFunction): void {
-  const numImages = imagesList.length;
-  const images = new Array(numImages).fill({ 'src': undefined });
-  let loadedImages = 0;
+export async function getImage(imageLink: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const image: HTMLImageElement = new Image();
 
-  imagesList.forEach((src, index) => {
-    images[index] = new Image();
-    images[index].onload = function () {
-
-      if (++loadedImages >= numImages) {
-        callback(images);
-      }
+    image.onload = () => {
+      resolve(image);
     }
 
-    images[index].src = src;
+    image.src = imageLink;
+
+    image.onerror = () => {
+      reject(new BoomerangError(`Image with name '...${imageLink.slice(-20)}' was not found.`));
+    }
   })
+}
+
+/**
+ * Preloading images
+ * TODO: Maybe implement progress
+ * 
+ * @returns Promise<HTMLImageElement[]> 
+ */
+export function preloadImages(frameOptions: IFrame): Promise<HTMLImageElement[]> {
+  const arrayOfImages = new Array(frameOptions.count).fill(0).map((_elem, index) => {
+    return getImage(getFramePathByIndex(frameOptions, index + 1));
+  });
+
+  return Promise.all(arrayOfImages);
+}
+
+/**
+ * Get frame number
+ * 
+ * @param {number} frameCount 
+ * @param {number} scrollTop 
+ * @returns {number}
+ */
+export function getFrameNumber(frameCount: number, scrollTop: number): number {
+  const html = document.documentElement;
+  const scrollFraction = scrollTop / (html.scrollHeight - window.innerHeight);
+
+  let frameIndex = Math.min(
+    frameCount,
+    Math.ceil(scrollFraction * frameCount)
+  );
+
+  if (frameIndex < 1) {
+    frameIndex = 1;
+  }
+
+  return frameIndex - 1;
 }
 
 /**
@@ -66,13 +95,11 @@ export function preloadImages(imagesList: [string], callback: NoopFunction): voi
  * @param {number} frameNumber 
  * @returns {string}
  */
-export function getFrameByNumber(frameOptions: IFrame, frameNumber = 1): string {
-  const frameNrStr = frameNumber.toString();
-
+export function getFramePathByIndex(frameOptions: IFrame, frameNumber = 1): string {
   return [
     frameOptions.path,
     frameOptions.image.start,
-    frameNrStr.toString().padStart(frameOptions.image.padStart, "0"),
+    frameNumber.toString().padStart(frameOptions.image.padStart, "0"),
     frameOptions.image.ending
   ].join("");
 }
