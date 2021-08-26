@@ -11,7 +11,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -41,12 +40,15 @@ jobs:
       uses: slackapi/slack-github-action@v1.14.0
       env:
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        SLACK_COLOR: "#c3e6cb"
       with:
         attachments: 
-          color: ${{ env.SLACK_COLOR }}
+          color: '#c3e6cb'
           blocks: 
-            type: "section"
+            type: 'section'
             text:
               type: 'mrkdwn'
-              text: "Repo `${{ github.repository }}` *${{ job.status }}* build () for commit () on branch `branch`"
+              text: 'Repo `${{ github.repository }}` *${{ job.status }}* build () for commit () on branch `branch`'
+            type: 'section'
+            text:
+              type: 'mrkdwn'
+              text: '`${{ build }}`'
