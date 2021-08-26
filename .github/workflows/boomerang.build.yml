@@ -31,10 +31,14 @@ jobs:
     - run: yarn test
     
   notify:
+    runs-on: ubuntu-latest
+    
     needs: 
     - build
+
     env:
       SLACK_COLOR: "{\"success\": \"#c3e6cb\", \"failure\": \"#f5c6cb\", \"cancelled\": \"#ffeeba\"}"
+      
     steps:
     - uses: slackapi/slack-github-action@v1.14.0
       with:
