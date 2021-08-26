@@ -36,11 +36,12 @@ jobs:
     needs: 
     - build
 
-    env:
-      SLACK_COLOR: "#c3e6cb"
-
     steps:
-    - uses: slackapi/slack-github-action@v1.14.0
+    - name: "Send notification"
+      uses: slackapi/slack-github-action@v1.14.0
+      env:
+        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        SLACK_COLOR: "#c3e6cb"
       with:
         attachments: 
           color: ${{ env.SLACK_COLOR }}
@@ -49,5 +50,3 @@ jobs:
             text:
               type: 'mrkdwn'
               text: "Repo `${{ github.repository }}` *${{ job.status }}* build () for commit () on branch `branch`"
-      env:
-        SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
