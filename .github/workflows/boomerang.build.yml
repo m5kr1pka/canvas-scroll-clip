@@ -37,12 +37,7 @@ jobs:
     - build
 
     env:
-      - SLACK_COLOR: "#c3e6cb"
-        if: ${{ success() }}
-      - SLACK_COLOR: "#f5c6cb"
-        if: ${{ cancelled() }}
-      - SLACK_COLOR: "#ffeeba"
-        if: ${{ failure() }}
+      SLACK_COLOR: "#c3e6cb"
 
     steps:
     - uses: slackapi/slack-github-action@v1.14.0
