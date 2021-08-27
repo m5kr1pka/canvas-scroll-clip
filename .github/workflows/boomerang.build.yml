@@ -40,8 +40,8 @@ jobs:
 
     env:
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-      BUILD_COLOR: ${{ fromJSON('["red#d32f2f", "green#4caf50" ]')[ contains(fromJSON('["${{ needs.build.result }}", "warning"]'), 'failed') ] }}
-      BUILD_STATUS: ${{ fromJSON('["failed", "passed" ]')[ '${{ needs.build.result }}' == 'success' ] }}
+      BUILD_COLOR: ${{ fromJSON('["#4caf50", "#d32f2f" ]')[contains(needs.build.result,'failure')] }}
+      BUILD_STATUS: ${{ fromJSON('["passed", "failed"]')[contains(needs.build.result,'failure')] }}
       REPOSITORY_ACTION_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
       REPOSITORY_LATEST_COMMIT_URL: https://github.com/${{ github.repository }}/commit/${{ github.sha }}
 
@@ -49,4 +49,4 @@ jobs:
     - name: Sending notification
       uses: slackapi/slack-github-action@v1.15.0
       with:
-        payload: '{"text": "Repo `${{ github.repository }}` *${{ env.BUILD_STATUS }}`${{ env.BUILD_COLOR }}`* build (<${{ env.REPOSITORY_ACTION_URL }}|#${{ github.run_id }}>) for commit (<${{ env.REPOSITORY_LATEST_COMMIT_URL }}|${{ github.sha }}>) on branch `${{ github.ref }}`"}'
+        payload: '{"text": "`${{ env.BUILD_COLOR }}` Repo `${{ github.repository }}` *${{ env.BUILD_STATUS }}* build (<${{ env.REPOSITORY_ACTION_URL }}|#${{ github.run_id }}>) for commit (<${{ env.REPOSITORY_LATEST_COMMIT_URL }}|${{ github.sha }}>) on branch `${{ github.ref }}`"}'
