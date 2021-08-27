@@ -1,0 +1,81 @@
+name: "Send Notification"
+
+on:
+  workflow_run:
+    workflows: ["Boomerang.js CI", "Boomerang.js Publish"]
+    branches: [main]
+    types:
+      - completed
+
+jobs:
+  metadata:
+    name: Collect metadata
+    runs-on: ubuntu-latest
+
+    outputs:
+      SLACK_COLOR: ${{ steps.set-slack-status.outputs.SLACK_COLOR }}
+      SLACK_STATUS: ${{ steps.set-slack-status.outputs.SLACK_STATUS }}
+      ELAPSED_TIME: ${{ steps.set-elapsed-time.outputs.ELAPSED_TIME }}
+
+    steps:
+    - name: set-output slack variables
+      id: set-slack-status
+      run: |
+        SLACK_COLOR="undefined"
+        SLACK_STATUS="undefined"
+
+        if [ '${{ github.event.workflow_run.conclusion }}' == 'success' ]
+        then
+          SLACK_COLOR="#4caf50"
+          SLACK_STATUS="passed"
+        elif [ '${{ github.event.workflow_run.conclusion }}' == 'cancelled' ]
+        then
+          SLACK_COLOR="#ff6d00"
+          SLACK_STATUS="was cancelled"
+        elif [ '${{ github.event.workflow_run.conclusion }}' == 'skipped' ]
+        then
+          SLACK_COLOR="#cfcfcf"
+          SLACK_STATUS="has been skipped"
+        else
+          SLACK_COLOR="#d32f2f"
+          SLACK_STATUS="failed"
+        fi
+
+        echo $SLACK_COLOR
+        echo "::set-output name=SLACK_COLOR::$(echo $SLACK_COLOR)"
+
+        echo $SLACK_STATUS
+        echo "::set-output name=SLACK_STATUS::$(echo $SLACK_STATUS)"
+    - name: set-output elapsed time
+      id: set-elapsed-time
+      run: |
+        started_at='${{ github.event.workflow_run.created_at }}'
+        completed_at='${{ github.event.workflow_run.updated_at }}'
+
+        START_TIME=$(date -d "$started_at" +%s)
+        END_TIME=$(date -d "$completed_at" +%s)
+
+        ELAPSE=$(( $END_TIME - $START_TIME ))
+
+        echo $ELAPSE
+        echo "::set-output name=ELAPSED_TIME::$(echo $(($ELAPSE/60))m $(($ELAPSE%60))s)"
+
+  notification:
+    name: Send Slack Notification
+    if: always()
+
+    runs-on: ubuntu-latest
+
+    needs:
+    - metadata
+
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      REPOSITORY_ACTION_URL: ${{ github.event.workflow_run.html_url }}
+      REPOSITORY_LATEST_COMMIT_URL: ${{ github.event.workflow_run.head_repository.html_url }}/commit/${{ github.event.workflow_run.head_sha }}
+
+    steps:
+    - name: Sending notification
+      uses: slackapi/slack-github-action@v1.15.0
+      with:
+        payload: '{"text": "`${{ needs.metadata.outputs.slack_color }}` On `${{ github.repository }}` repository `${{ github.event.workflow_run.name }}` workflow (<${{ env.REPOSITORY_ACTION_URL }}|#${{ github.run_id }}>) *${{ needs.metadata.outputs.slack_status }}* for commit (<${{ env.REPOSITORY_LATEST_COMMIT_URL }}|${{ github.event.workflow_run.head_sha }}>) on branch `${{ github.event.workflow_run.head_branch }}` \n Execution time: ${{ needs.metadata.outputs.elapsed_time }}"}'
