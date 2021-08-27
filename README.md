@@ -24,7 +24,10 @@ Type: ```Number```
 Number of in total in a sequence.
 
 ## Usage
-
+```diff
+!NOTE:
+Wrapper div element must have a `position: sticky` attribute. Refer to example source code.
+```
 ```
 new Boomerang('.element', {
   framePath: "{first_frame_url_of_a_sequence}",
@@ -51,12 +54,6 @@ Type: ```Number```
 Event is triggered with scroll event. Returns ```scrollTop``` position.
 
 #### Usage
-
-```diff
-!NOTE:
-* Wrapper div element must have a `position: sticky` attribute. Refer to example source code.
-```
-
 
 ```
 BoomerangInstance.events.on('viewport.scroll', function(scrollTop){
