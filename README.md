@@ -54,8 +54,8 @@ Event is triggered with scroll event. Returns ```scrollTop``` position.
 
 ```diff
 !NOTE:
+* Wrapper div element must have a `position: sticky` attribute. Refer to example source code.
 ```
-Wrapper div element must have a `position: sticky` attribute. Refer to example source code.
 
 
 ```
