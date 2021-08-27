@@ -52,7 +52,11 @@ Event is triggered with scroll event. Returns ```scrollTop``` position.
 
 #### Usage
 
-> **NOTE:** wrapper div element must have a ```position: sticky``` attribute. Refer to example source code.
+```diff
+!NOTE:
+```
+Wrapper div element must have a `position: sticky` attribute. Refer to example source code.
+
 
 ```
 BoomerangInstance.events.on('viewport.scroll', function(scrollTop){
