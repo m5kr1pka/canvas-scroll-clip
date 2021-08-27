@@ -78,4 +78,4 @@ jobs:
     - name: Sending notification
       uses: slackapi/slack-github-action@v1.15.0
       with:
-        payload: '{"text": "`${{ needs.metadata.outputs.slack_color }}` At repository `${{ github.repository }}` the `${{ github.event.workflow_run.name }}` workflow (<${{ env.REPOSITORY_ACTION_URL }}|#${{ github.run_id }}>) *${{ needs.metadata.outputs.slack_status }}* for commit (<${{ env.REPOSITORY_LATEST_COMMIT_URL }}|${{ github.event.workflow_run.head_sha }}>) on branch `${{ github.event.workflow_run.head_branch }}` \n Execution time: ${{ needs.metadata.outputs.elapsed_time }}"}'
+        payload: '{"text": "`${{ needs.metadata.outputs.slack_color }}` At repository `${{ github.repository }}` the `${{ github.event.workflow_run.name }}` workflow (<${{ env.REPOSITORY_ACTION_URL }}|#${{ github.run_id }}>) *${{ needs.metadata.outputs.slack_status }}* for commit (<${{ env.REPOSITORY_LATEST_COMMIT_URL }}|${{ github.event.workflow_run.head_sha }}>) on branch `${{ github.event.workflow_run.head_branch }}` \n Execution time: *${{ needs.metadata.outputs.elapsed_time }}*"}'
