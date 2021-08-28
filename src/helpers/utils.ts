@@ -52,15 +52,6 @@ export async function getImage(imageLink: string): Promise<HTMLImageElement> {
 }
 
 /**
- * Get scroll top position 
- * 
- * @returns number
- */
-export function getScrollTop(): number {
-  return window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
-}
-
-/**
  * Preloading images
  * TODO: Maybe implement progress
  * 
@@ -75,26 +66,22 @@ export function preloadImages(frameOptions: IFrame): Promise<HTMLImageElement[]>
 }
 
 /**
- * Get frame number
+ * Get scroll top position 
  * 
- * @param {number} frameCount 
- * @param {number} scrollTop 
- * @returns {number}
+ * @returns number
  */
-export function getFrameNumber(frameCount: number, scrollTop: number): number {
-  const html = document.documentElement;
-  const scrollFraction = scrollTop / (html.scrollHeight - window.innerHeight);
+export function getScrollTop(): number {
+  return window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+}
 
-  let frameIndex = Math.min(
-    frameCount,
-    Math.ceil(scrollFraction * frameCount)
-  );
-
-  if (frameIndex < 1) {
-    frameIndex = 1;
-  }
-
-  return frameIndex - 1;
+/**
+ * Get scroll top position 
+ * 
+ * @param {scrollTop}
+ * @returns number
+ */
+export function getScrollFraction(scrollTop = getScrollTop()): number {
+  return scrollTop / (document.documentElement.scrollHeight - window.innerHeight) || 0;
 }
 
 /**

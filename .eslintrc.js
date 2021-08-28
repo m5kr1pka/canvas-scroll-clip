@@ -4,6 +4,9 @@ module.exports = {
   globals: {
     global: true
   },
+  rules: {
+    "@typescript-eslint/no-inferrable-types": "off"
+  },
   plugins: [
     '@typescript-eslint',
   ],

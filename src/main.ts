@@ -1,9 +1,7 @@
-import { Base } from "@/common/base";
-import { NoopFunction, IOptions } from "@/helpers/intefaces";
+import { NoopFunction, IUserInputs } from "@/helpers/intefaces";
 import { Canvas } from "@/common/canvas";
-import { Options } from '@/helpers/options';
 import { BoomerangEvent } from "@/helpers/events";
-import { debounce, getFrameNumber, getScrollTop, preloadImages } from "@/helpers/utils";
+import { debounce } from "@/helpers/utils";
 
 /**
  * @module
@@ -13,27 +11,7 @@ import { debounce, getFrameNumber, getScrollTop, preloadImages } from "@/helpers
 /**
  * @class Main class
  */
-export class Main extends Base {
-
-  /**
-   * Selector class name of an HTML element.
-   */
-  public selector: keyof HTMLElementTagNameMap;
-
-  /**
-   * Canvas
-   */
-  public canvas: Canvas;
-
-  /**
-   * Options
-   */
-  public options: Options;
-
-  /**
-   * Images
-   */
-  public images: HTMLImageElement[] = [];
+export class Main extends Canvas {
 
   /**
    * This callback is called when the class is loaded
@@ -50,17 +28,9 @@ export class Main extends Base {
    * @param {function} Callback function
    * @memberof Main
    */
-  constructor(selector: string, options: IOptions, callback?: NoopFunction) {
-    super();
-
-    // CSS class of a HTML element
-    this.selector = selector as keyof HTMLElementTagNameMap;
-
-    // Set options
-    this.options = new Options(options);
-
-    // Set Canvas
-    this.canvas = new Canvas(this);
+  constructor(element: HTMLElement, options: IUserInputs, callback?: NoopFunction) {
+    // Instantiate Canvas Class
+    super(element, options);
 
     // Callback function if defined
     this.callback = callback || (() => {
@@ -79,45 +49,11 @@ export class Main extends Base {
    */
   private init(): void {
 
-    // Preload Images
-    preloadImages(this.options).then(images => {
-      this.images = images;
-
-      // Raise images loaded event
-      this.events.emit(BoomerangEvent.images.loaded);
-    })
-
-    // On all images loaded event
+    // Bind images loaded event
     this.events.on(BoomerangEvent.images.loaded, () => {
-      // Initial image load
-      this.drawImageByScrollTop();
-
-      // Bind window events
-      window.addEventListener("resize", debounce(this.handleResize.bind(this)));
-      window.addEventListener("scroll", debounce(this.handleScroll.bind(this)));
+      // Next tick of instance
+      debounce(this.callback());
     });
-
-    // On scroll event
-    this.events.on(BoomerangEvent.viewport.scroll, (scrollTop) => {
-      this.drawImageByScrollTop(scrollTop);
-    });
-
-    // Next tick of instance
-    debounce(this.callback());
-  }
-
-  /**
-   * Draw image in canvas by scroll top position.
-   * @param {scrollTop} number
-   * @private
-   * 
-   * Hidden in order to not display this method in docs
-   * @hidden
-   */
-  private drawImageByScrollTop(scrollTop: number = getScrollTop()): void {
-    const frameNumber = getFrameNumber(this.options.count, scrollTop);
-
-    this.canvas.drawImage(this.images[frameNumber]);
   }
 }
 

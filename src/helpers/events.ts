@@ -10,8 +10,7 @@ export const BoomerangEvent = {
     scroll: 'viewport.scroll'
   },
   images: {
-    loaded: 'images.loaded',
-    progress: 'images.progress'
+    loaded: 'images.loaded'
   }
 }
 

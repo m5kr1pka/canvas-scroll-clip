@@ -13,6 +13,11 @@ describe('Options', () => {
     });
 
     const expected = {
+      identifier: 'boomerang',
+      inputs: {
+        framePath: '/frames/frame_0001.jpg',
+        frameCount: 121
+      },
       path: '/frames/',
       count: 121,
       image: {
@@ -21,7 +26,8 @@ describe('Options', () => {
         padStart: 4,
         ending: '.jpg',
         extension: '.jpg',
-      }
+      },
+      scrollArea: 0
     }
 
     expect(options).toEqual(expected);

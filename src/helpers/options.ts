@@ -1,5 +1,5 @@
 import { RegExpLastDigitsMatch } from '@/helpers/utils'
-import { IOptions, IFrame, IFrameSequence } from '@/helpers/intefaces'
+import { IUserInputs, IFrame, IFrameSequence } from '@/helpers/intefaces'
 import { BoomerangError } from '@/helpers/error';
 
 /**
@@ -11,29 +11,66 @@ import { BoomerangError } from '@/helpers/error';
  */
 export class Options implements IFrame {
 
-  // public frame: IFrame;
+  // User inputs
+  public inputs: IUserInputs;
+
+  // Identifier for appended elements
+  public identifier: string;
+
+  // Animation Height
+  public scrollArea: number = 0;
+
+  // Image base path
   public path: string;
+
+  // Sequence frame count
   public count: number;
+
+  // Sequence image structure
   public image: IFrameSequence;
 
   /**
    * Creates an instance of Options.
-   * @param {IOptions} [options] Options to copy properties.
+   * @param {IUserInputs} [options] Options to copy properties.
    * @memberof Options
    */
-  constructor(options: IOptions) {
+  constructor(options: IUserInputs) {
 
+    // test framePath is defined
     if (!options.framePath) {
       throw new BoomerangError('Frame path is not defined.');
     }
 
+    // test frameCount is defined
     if (!options.frameCount) {
       throw new BoomerangError('Frame count is not defined.');
     }
 
-    this.count = options.frameCount;
-    this.path = this.getImageBasePath(options.framePath);
-    this.image = this.getImageStructure(options.framePath, this.count)
+    // Set user inputs
+    this.inputs = options;
+
+    // Set identifier
+    this.identifier = options.identifier || 'boomerang';
+
+    // Set Container Height if defined
+    if (options.scrollArea) {
+      this.scrollArea = parseInt(options.scrollArea, 10);
+    }
+
+    // Set sequence related vars
+    this.count = this.inputs.frameCount;
+    this.path = this.getImageBasePath(this.inputs.framePath);
+    this.image = this.getImageStructure(this.inputs.framePath, this.count)
+  }
+
+  /**
+   * Set scrollable area height
+   */
+  public set setScrollableArea(height: number) {
+    if (this.scrollArea)
+      return
+
+    this.scrollArea = height;
   }
 
   /**

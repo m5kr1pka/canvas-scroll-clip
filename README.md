@@ -1,7 +1,7 @@
 # Boomerang.js
 [![Build Status](https://travis-ci.com/m5kr1pka/boomerang.js.svg?branch=main)](https://travis-ci.com/m5kr1pka/boomerang.js)
 
-Boomerang.js is a standalone JavaScript micro-library for fancy scroll based image sequence animation.
+Boomerang.js is a standalone JavaScript micro-library for a fancy scroll based image sequence animation in canvas.
 
 ## Install
 ```
@@ -23,29 +23,29 @@ Type: ```Number```
 
 Number of in total in a sequence.
 
+#### scrollArea (recommended)
+Type: ```Number```<br>
+Default: ```2x the IMAGE height```
+
+Scrollable area height that is used to play the image sequence.
+
+#### identifier
+Type: ```String```
+
+Used for container and child element css classes.
+
 ## Usage
-```diff
-!NOTE:
-Wrapper div element must have a `position: sticky` attribute. Refer to example source code.
+Initialize Boomerang on an element with required options:
 ```
-```
-new Boomerang('.element', {
+new Boomerang(document.querySelector('.element'), {
   framePath: "{first_frame_url_of_a_sequence}",
-  frameCount: 111
+  frameCount: 101,
+  scrollArea: 2000
 })
 ```
 
+
 ## Events
-
-### viewport.resize
-Event is triggerent on window resize.
-
-#### Usage
-```
-BoomerangInstance.events.on('viewport.resize', function(){
-  console.log("window resized");
-});
-```
 
 ### viewport.scroll
 Callback params: ```scrollTop```<br/>
@@ -61,6 +61,15 @@ BoomerangInstance.events.on('viewport.scroll', function(scrollTop){
 });
 ```
 
+### viewport.resize
+Event is triggerent on window resize.
+
+#### Usage
+```
+BoomerangInstance.events.on('viewport.resize', function(){
+  console.log("window resized");
+});
+```
 
 ### images.loaded
 Event is triggered after all images preloaded. Good place to implement loader animation.

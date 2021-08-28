@@ -5,7 +5,23 @@
 export type NoopFunction = (args?: any) => any;
 
 /**
+ * Input data
+ * 
+ * @export
+ * @interface IInput
+ */
+export interface IUserInputs {
+  identifier?: string,
+  framePath: string,
+  frameCount: number,
+  scrollArea?: string
+}
+
+/**
  * Viewport
+ * 
+ * @export
+ * @interface IViewport
  */
 export interface IViewport {
   x: number,
@@ -13,21 +29,21 @@ export interface IViewport {
 }
 
 /**
- * Boomerang.js options interface.
- *
+ * Canvas Viewport
+ * 
  * @export
- * @interface IOptions
+ * @interface ICanvasViewport
  */
-export interface IOptions {
-  framePath: string,
-  frameCount: number;
+export interface ICanvasViewport {
+  width: number,
+  height: number
 }
 
 /**
  * Frame Sequence interface.
  *
  * @export
- * @interface IFrame
+ * @interface IFrameSequence
  */
 export interface IFrameSequence {
   start: string,
