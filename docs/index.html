@@ -62,7 +62,7 @@
 					<h1>Boomerang.js</h1>
 				</a>
 				<p><a href="https://travis-ci.com/m5kr1pka/boomerang.js"><img src="https://travis-ci.com/m5kr1pka/boomerang.js.svg?branch=main" alt="Build Status"></a></p>
-				<p>Boomerang.js is a standalone JavaScript micro-library for fancy scroll based image sequence animation.</p>
+				<p>Boomerang.js is a standalone JavaScript micro-library for a fancy scroll based image sequence animation in canvas.</p>
 				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
 					<h2>Install</h2>
 				</a>
@@ -83,42 +83,52 @@
 				</a>
 				<p>Type: <code>Number</code></p>
 				<p>Number of in total in a sequence.</p>
+				<a href="#scrollarea-recommended" id="scrollarea-recommended" style="color: inherit; text-decoration: none;">
+					<h4>scrollArea (recommended)</h4>
+				</a>
+				<p>Type: <code>Number</code><br>
+				Default: <code>2x the IMAGE height</code></p>
+				<p>Scrollable area height that is used to play the image sequence.</p>
+				<a href="#identifier" id="identifier" style="color: inherit; text-decoration: none;">
+					<h4>identifier</h4>
+				</a>
+				<p>Type: <code>String</code></p>
+				<p>Used for container and child element css classes.</p>
 				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 					<h2>Usage</h2>
 				</a>
-				<pre><code><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Boomerang</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;.element&#039;</span><span style="color: #000000">, {</span>
+				<p>Initialize Boomerang on an element with required options:</p>
+				<pre><code><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">Boomerang</span><span style="color: #000000">(</span><span style="color: #001080">document</span><span style="color: #000000">.</span><span style="color: #795E26">querySelector</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;.element&#039;</span><span style="color: #000000">), {</span>
 <span style="color: #000000">  </span><span style="color: #001080">framePath:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;{first_frame_url_of_a_sequence}&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">  </span><span style="color: #001080">frameCount:</span><span style="color: #000000"> </span><span style="color: #098658">111</span>
+<span style="color: #000000">  </span><span style="color: #001080">frameCount:</span><span style="color: #000000"> </span><span style="color: #098658">101</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">scrollArea:</span><span style="color: #000000"> </span><span style="color: #098658">2000</span>
 <span style="color: #000000">})</span>
 </code></pre>
 				<a href="#events" id="events" style="color: inherit; text-decoration: none;">
 					<h2>Events</h2>
 				</a>
-				<a href="#viewportresize" id="viewportresize" style="color: inherit; text-decoration: none;">
-					<h3>viewport.resize</h3>
-				</a>
-				<p>Event is triggerent on window resize.</p>
-				<a href="#usage-1" id="usage-1" style="color: inherit; text-decoration: none;">
-					<h4>Usage</h4>
-				</a>
-				<pre><code><span style="color: #001080">BoomerangInstance</span><span style="color: #000000">.</span><span style="color: #001080">events</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;viewport.resize&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">function</span><span style="color: #000000">(){</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;window resized&quot;</span><span style="color: #000000">);</span>
-<span style="color: #000000">});</span>
-</code></pre>
 				<a href="#viewportscroll" id="viewportscroll" style="color: inherit; text-decoration: none;">
 					<h3>viewport.scroll</h3>
 				</a>
 				<p>Callback params: <code>scrollTop</code><br/>
 				Type: <code>Number</code></p>
 				<p>Event is triggered with scroll event. Returns <code>scrollTop</code> position.</p>
+				<a href="#usage-1" id="usage-1" style="color: inherit; text-decoration: none;">
+					<h4>Usage</h4>
+				</a>
+				<pre><code><span style="color: #001080">BoomerangInstance</span><span style="color: #000000">.</span><span style="color: #001080">events</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;viewport.scroll&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">function</span><span style="color: #000000">(</span><span style="color: #001080">scrollTop</span><span style="color: #000000">){</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">scrollTop</span><span style="color: #000000">);</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<a href="#viewportresize" id="viewportresize" style="color: inherit; text-decoration: none;">
+					<h3>viewport.resize</h3>
+				</a>
+				<p>Event is triggerent on window resize.</p>
 				<a href="#usage-2" id="usage-2" style="color: inherit; text-decoration: none;">
 					<h4>Usage</h4>
 				</a>
-				<blockquote>
-					<p><strong>NOTE:</strong> wrapper div element must have a <code>position: sticky</code> attribute. Refer to example source code.</p>
-				</blockquote>
-				<pre><code><span style="color: #001080">BoomerangInstance</span><span style="color: #000000">.</span><span style="color: #001080">events</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;viewport.scroll&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">function</span><span style="color: #000000">(</span><span style="color: #001080">scrollTop</span><span style="color: #000000">){</span>
-<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">scrollTop</span><span style="color: #000000">);</span>
+				<pre><code><span style="color: #001080">BoomerangInstance</span><span style="color: #000000">.</span><span style="color: #001080">events</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;viewport.resize&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">function</span><span style="color: #000000">(){</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;window resized&quot;</span><span style="color: #000000">);</span>
 <span style="color: #000000">});</span>
 </code></pre>
 				<a href="#imagesloaded" id="imagesloaded" style="color: inherit; text-decoration: none;">
@@ -173,6 +183,7 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
