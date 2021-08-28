@@ -2,7 +2,7 @@ import { Base } from "./base";
 import { IUserInputs } from "@/helpers/intefaces";
 import { BoomerangError } from "@/helpers/error";
 import { Options } from "@/helpers/options";
-import { BoomerangEvent } from "@/helpers/events";
+import { BoomerangEvent } from "@/common/events";
 import * as utils from "@/helpers/utils";
 
 /**

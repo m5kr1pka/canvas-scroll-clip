@@ -1,5 +1,5 @@
 import { BoomerangEvent, EventEmitter } from "./events";
-import { BoomerangWarning } from "./error"
+import { BoomerangWarning } from "../helpers/error"
 
 describe('Event', () => {
 

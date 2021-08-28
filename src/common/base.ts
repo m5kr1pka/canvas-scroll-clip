@@ -1,5 +1,5 @@
 import { IViewport } from "@/helpers/intefaces";
-import { BoomerangEvent, EventEmitter } from "@/helpers/events";
+import { BoomerangEvent, EventEmitter } from "@/common/events";
 import { BoomerangError } from "@/helpers/error";
 import * as utils from "@/helpers/utils";
 
