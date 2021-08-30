@@ -57,7 +57,7 @@ export class Canvas extends Options {
     super(options);
 
     // Check if HTMLCanvasElement exists
-    if (typeof element === undefined) {
+    if (!element) {
       throw new BoomerangError('HTML element is not defined.');
     }
 
