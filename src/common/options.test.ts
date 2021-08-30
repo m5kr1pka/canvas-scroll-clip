@@ -6,33 +6,6 @@ describe('Options', () => {
     jest.clearAllMocks();
   });
 
-  test('validate frame options', () => {
-    const options = new Options({
-      framePath: '/frames/frame_0001.jpg',
-      frameCount: 121
-    });
-
-    const expected = {
-      identifier: 'boomerang',
-      inputs: {
-        framePath: '/frames/frame_0001.jpg',
-        frameCount: 121
-      },
-      path: '/frames/',
-      count: 121,
-      image: {
-        start: 'frame_',
-        sequence: 1,
-        padStart: 4,
-        ending: '.jpg',
-        extension: '.jpg',
-      },
-      scrollArea: 0
-    }
-
-    expect(options).toEqual(expected);
-  });
-
   test('verify option frame path not defined', () => {
     const fn = () => {
       new Options({
@@ -68,8 +41,8 @@ describe('Options', () => {
       frameCount: 121
     });
 
-    expect(a).toHaveProperty(['path'], '/');
-    expect(b).toHaveProperty(['path'], '/frames/');
+    expect(a).toHaveProperty(['frame', 'path'], '/');
+    expect(b).toHaveProperty(['frame', 'path'], '/frames/');
   });
 
   test('verify not supported image extension', () => {
