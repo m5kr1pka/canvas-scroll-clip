@@ -1,5 +1,4 @@
 import { IUserInputs, IFrame } from '@/helpers/intefaces'
-import { BoomerangError } from '@/helpers/error';
 import { Frame } from './frame';
 import Base from './base';
 
@@ -19,7 +18,7 @@ export class Options extends Base {
   public identifier: string;
 
   // Animation Height
-  public scrollArea: number = 0;
+  public scrollArea: string | number = 0;
 
   // Frame
   protected frame: IFrame;
@@ -32,16 +31,6 @@ export class Options extends Base {
   constructor(options: IUserInputs) {
     super();
 
-    // test framePath is defined
-    if (!options.framePath) {
-      throw new BoomerangError('Frame path is not defined.');
-    }
-
-    // test frameCount is defined
-    if (!options.frameCount) {
-      throw new BoomerangError('Frame count is not defined.');
-    }
-
     // Set user inputs
     this.inputs = options;
 
@@ -52,7 +41,9 @@ export class Options extends Base {
     this.frame = new Frame(options);
 
     // Set Container Height if defined
-    if (options.scrollArea) {
+    this.scrollArea = options.scrollArea || 0;
+
+    if (options.scrollArea && typeof options.scrollArea == "string") {
       this.scrollArea = parseInt(options.scrollArea, 10);
     }
   }

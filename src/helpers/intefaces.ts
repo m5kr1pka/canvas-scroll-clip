@@ -14,7 +14,7 @@ export interface IUserInputs {
   identifier?: string,
   framePath: string,
   frameCount: number,
-  scrollArea?: string
+  scrollArea?: string | number
 }
 
 /**

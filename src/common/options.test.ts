@@ -6,28 +6,39 @@ describe('Options', () => {
     jest.clearAllMocks();
   });
 
-  test('verify option frame path not defined', () => {
-    const fn = () => {
-      new Options({
-        framePath: '',
-        frameCount: 121
-      });
+  test('verify default identifier is boomerang', () => {
+    const userInputs = {
+      framePath: '/frames/frame_0001.jpg',
+      frameCount: 121
     };
 
-    expect(fn).toThrowError(BoomerangError);
-    expect(fn).toThrowError(new RegExp('Frame path'));
+    expect(new Options(userInputs)).toHaveProperty('identifier', 'boomerang');
   });
 
-  test('verify option frame count not defined', () => {
-    const fn = () => {
-      new Options({
-        framePath: '/frames/frame_0001.jpg',
-        frameCount: 0
-      });
+  test('verify user inputs are stored', () => {
+    const userInputs = {
+      framePath: '/frames/frame_0001.jpg',
+      frameCount: 121,
+      identifier: 'test',
+      scrollArea: '1000'
     };
 
-    expect(fn).toThrowError(BoomerangError);
-    expect(fn).toThrowError(new RegExp('Frame count'));
+    expect(new Options(userInputs)).toHaveProperty('inputs', userInputs);
+    expect(new Options(userInputs)).toHaveProperty('identifier', 'test');
+  });
+
+  test('verify when scroll area is not set to be possible to update', () => {
+    const userInputs = {
+      framePath: '/frames/frame_0001.jpg',
+      frameCount: 121,
+      scrollArea: 0
+    };
+
+    const options = new Options(userInputs);
+    expect(options).toHaveProperty('scrollArea', 0);
+
+    options.setScrollableArea = 777;
+    expect(options).toHaveProperty('scrollArea', 777)
   });
 
   test('verify option path to be valid', () => {
@@ -68,4 +79,5 @@ describe('Options', () => {
     expect(fn).toThrowError(BoomerangError);
     expect(fn).toThrowError(new RegExp('Leading zeros'));
   });
+
 });
