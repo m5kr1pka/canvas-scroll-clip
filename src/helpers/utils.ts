@@ -1,17 +1,34 @@
 import { BoomerangError } from "./error";
-import { IFrame } from "./intefaces";
+import { IFrame, IFrameSequence } from "./intefaces";
 
 /**
  * RegExp expression to find last digits in a string
  */
 export const RegExpLastDigitsMatch = /\d+(?!.*\d+)/;
 
+/** 
+* Available events
+**/
+export const BoomerangEvent = {
+  viewport: {
+    resize: 'viewport.resize',
+    scroll: 'viewport.scroll'
+  },
+  images: {
+    loaded: 'images.loaded'
+  }
+}
+
+/** 
+* List of events
+**/
+export const EventList = Object.values(BoomerangEvent).map((e: Record<string, unknown>) => Object.values(e)).flat();
+
 /**
  * Debounce ot throttle function
  * 
  * @param {func} 
  * @param {threshold} 
- * @param {execAsap} 
  * @returns 
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -98,4 +115,92 @@ export function getFramePathByIndex(frameOptions: IFrame, frameNumber = 1): stri
     frameNumber.toString().padStart(frameOptions.image.padStart, "0"),
     frameOptions.image.ending
   ].join("");
+}
+
+/**
+   * Get image base path
+   * 
+   * @param firstFramePath 
+   * @returns 
+   */
+export function getImageBasePath(firstFramePath: string): string {
+  const path = firstFramePath.split('/');
+
+  path.pop();
+
+  return `${path.join('/')}/`;
+}
+
+/**
+   * Get frame image structure
+   * 
+   * @param {string} firstFramePath 
+   * @param {number} frameCount 
+   * @returns
+   * @throws {BoomerangError}
+   */
+export function getImageStructure(firstFramePath: string, frameCount: number): IFrameSequence {
+  const img = getPathEnding(firstFramePath);
+  const ext = getFileSuffix(img);
+  const seq = getImageSequence(img);
+
+  if (frameCount.toString().length > seq.length) {
+    throw new BoomerangError(`Leading zeros in first frame path has to be more than the frame count and sequence at the end.`);
+  }
+
+  return {
+    start: img.slice(0, img.indexOf(seq)),
+    sequence: parseInt(seq),
+    padStart: seq.length,
+    ending: img.slice(img.indexOf(seq) + seq.length),
+    extension: ext,
+  };
+}
+
+/**
+ * Get image sequence with leading zeros
+ * 
+ * @param {string} imageName 
+ * @returns {string}
+ * @throws {BoomerangError} image sequence format not supported
+ */
+export function getImageSequence(imageName: string): string {
+  const match = imageName.match(RegExpLastDigitsMatch);
+  const sequence = (match && match[0] !== null) ? match[0] : "";
+
+  if (sequence.length < 2) {
+    throw new BoomerangError('Bad image sequence format. Should start with 0 and be longer than 2 numbers, f.e. "frame_01.jpg"')
+  }
+
+  return sequence;
+}
+
+/**
+ * Get file extension/suffix 
+ * Test whether is within supported extension/suffixes list
+ * 
+ * @param fileName 
+ * @returns {string}
+ * @throws {BoomerangError} Unsupported image
+ */
+export function getFileSuffix(fileName: string): string {
+  const ext = fileName.split('.').pop() || ' ';
+
+  if (!['jpg', 'jpeg', 'png'].includes(ext)) {
+    throw new BoomerangError(`Image with extension ['${ext}'] is not supported.`);
+  }
+
+  return `.${ext}`;
+}
+
+/**
+ * Get ending of a url
+ * 
+ * @param path 
+ * @returns 
+ */
+export function getPathEnding(path: string): string {
+  const splitted = path.split('/');
+
+  return splitted.pop() || '';
 }

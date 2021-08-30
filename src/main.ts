@@ -1,7 +1,6 @@
 import { NoopFunction, IUserInputs } from "@/helpers/intefaces";
 import { Canvas } from "@/common/canvas";
-import { BoomerangEvent } from "@/common/events";
-import { debounce } from "@/helpers/utils";
+import { debounce, BoomerangEvent } from "@/helpers/utils";
 
 /**
  * @module

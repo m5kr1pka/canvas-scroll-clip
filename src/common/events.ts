@@ -1,23 +1,6 @@
 import { NoopFunction } from "@/helpers/intefaces";
 import { BoomerangWarning } from "@/helpers/error";
-
-/** 
-* Available events
-**/
-export const BoomerangEvent = {
-  viewport: {
-    resize: 'viewport.resize',
-    scroll: 'viewport.scroll'
-  },
-  images: {
-    loaded: 'images.loaded'
-  }
-}
-
-/** 
-* List of events
-**/
-export const EventList = Object.values(BoomerangEvent).map((e: Record<string, unknown>) => Object.values(e)).flat();
+import { EventList } from "@/helpers/utils";
 
 /** 
 * Event emitter

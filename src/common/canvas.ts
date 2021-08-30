@@ -1,8 +1,6 @@
-import { Base } from "./base";
-import { IUserInputs } from "@/helpers/intefaces";
+import { ICanvasViewport, IUserInputs } from "@/helpers/intefaces";
 import { BoomerangError } from "@/helpers/error";
-import { Options } from "@/helpers/options";
-import { BoomerangEvent } from "@/common/events";
+import { Options } from "@/common/options";
 import * as utils from "@/helpers/utils";
 
 /**
@@ -11,53 +9,42 @@ import * as utils from "@/helpers/utils";
  * @export
  * @class Canvas
  */
-export class Canvas extends Base {
+export class Canvas extends Options {
 
   /**
    * Loading
    */
-  public loading: boolean = true;
-
-  /**
-   * Selector class name of an HTML element.
-   */
-  public selector: string;
-
-  /**
-   * Options
-   */
-  public options: Options;
+  private loading: boolean = true;
 
   /**
    * Wrapper HTML element
    */
-  public container: HTMLElement;
+  private _container: HTMLElement;
 
   /**
    * HTML element 
    */
-  public wrapper: HTMLElement;
-
-  /**
-   * Images
-   */
-  public images: HTMLImageElement[] = [];
+  private _wrapper: HTMLElement;
 
   /**
    * Canvas DOM element
    */
-  public canvas: HTMLCanvasElement;
+  private _canvas: HTMLCanvasElement;
+
+  /**
+   * Images
+   */
+  private images: HTMLImageElement[] = [];
 
   /**
    * Canvas context
    */
-  public context: CanvasRenderingContext2D;
+  private context: CanvasRenderingContext2D;
 
   /**
    * Canvas viewport
    */
-  private _width: number = 0;
-  private _height: number = 0;
+  protected viewport: ICanvasViewport;
 
   /**
    * Creates an instance of Canvas.
@@ -67,7 +54,7 @@ export class Canvas extends Base {
    * @memberof Canvas
    */
   constructor(element: HTMLElement, options: IUserInputs) {
-    super();
+    super(options);
 
     // Check if HTMLCanvasElement exists
     if (typeof element === undefined) {
@@ -75,34 +62,37 @@ export class Canvas extends Base {
     }
 
     // Set container
-    this.container = element;
-
-    // Set options
-    this.options = new Options(options);
-
-    // CSS class of a HTML element
-    this.selector = this.options.identifier || 'boomerang';
+    this._container = element;
 
     // Append canvas and loader to an element
-    this.container.classList.add(`${this.selector}-container`);
+    this._container.classList.add(`${this.identifier}-container`);
+    this._container.style.setProperty('height', `${this.scrollArea}px`);
 
     // Create canvas element
-    this.canvas = document.createElement('canvas');
-    this.canvas.classList.add(`${this.selector}-canvas`);
+    this._canvas = document.createElement('canvas');
+    this._canvas.classList.add(`${this.identifier}-canvas`);
 
     // Create wrapper container
-    this.wrapper = document.createElement('div')
-    this.wrapper.classList.add(this.selector);
-    this.wrapper.appendChild(this.canvas);
+    this._wrapper = document.createElement('div')
+    this._wrapper.classList.add(this.identifier);
+    this._wrapper.appendChild(this._canvas);
 
     // Output template
-    this.container.appendChild(this.wrapper);
+    this._container.appendChild(this._wrapper);
 
     // Get context
-    this.context = this.canvas.getContext("2d") as CanvasRenderingContext2D;
+    this.context = this._canvas.getContext("2d") as CanvasRenderingContext2D;
+
+    // Set viewport default
+    this.viewport = {
+      width: this.screen.x,
+      height: this.screen.y,
+      top: 0,
+      bottom: this.screen.y
+    };
 
     // Bind scroll event
-    this.events.on(BoomerangEvent.viewport.scroll, (scrollTop) => {
+    this.events.on(utils.BoomerangEvent.viewport.scroll, (scrollTop) => {
       if (!this.loading)
         this.drawImageByScrollTop(scrollTop);
     });
@@ -117,54 +107,39 @@ export class Canvas extends Base {
    * @returns 
    */
   private async preload() {
+
     // TODO: should I refactor this
-    return await utils.preloadImages(this.options).then(images => {
+    return await utils.preloadImages(this.frame).then(images => {
       this.images = images;
 
       // Set Canvas viewport
-      this.width = this.images[0]?.width;
-      this.height = this.images[0]?.height;
+      this.viewport = {
+        width: this.images[0]?.width,
+        height: this.images[0]?.height,
+        top: this._container.getBoundingClientRect().top + utils.getScrollTop() || 0,
+        bottom: this._container.getBoundingClientRect().bottom + utils.getScrollTop() || 0
+      };
 
       // Set canvas size
       // TODO async/await for first image earlier
-      this.canvas.width = this.width;
-      this.canvas.height = this.height;
-      this.options.setScrollableArea = this.height * 2;
-      this.container.style.setProperty('height', `${this.options.scrollArea}px`);
+      this._canvas.width = this.viewport.width;
+      this._canvas.height = this.viewport.height;
+      this.setScrollableArea = this.viewport.height * 2;
+      this._container.style.setProperty('height', `${this.scrollArea}px`);
 
       // Initial image load
       this.drawImageByScrollTop();
 
       // Add loaded classes
-      this.container.classList.add(`${this.selector}--loaded`);
+      this._container.classList.add(`${this.identifier}--loaded`);
 
       // Images loaded
       this.loading = false;
 
       // Emit images loaded event
-      this.events.emit(BoomerangEvent.images.loaded);
+      // End of everything
+      this.events.emit(utils.BoomerangEvent.images.loaded);
     });
-  }
-
-  /**
-   * Canvas viewport
-   */
-  // height
-  public set width(width: number) {
-    this._width = width;
-  }
-
-  public get width(): number {
-    return this._width
-  }
-
-  // width
-  public set height(height: number) {
-    this._height = height;
-  }
-
-  public get height(): number {
-    return this._height
   }
 
   /**
@@ -173,7 +148,7 @@ export class Canvas extends Base {
    * @param image 
    */
   public drawImage(image: HTMLImageElement): void {
-    this.context.drawImage(image, 0, 0, this.width, this.height);
+    this.context.drawImage(image, 0, 0, this.viewport.width, this.viewport.height);
   }
 
   /**
@@ -198,8 +173,8 @@ export class Canvas extends Base {
     let frameIndex;
 
     frameIndex = Math.min(
-      this.options.count - 1, // Due to array index
-      Math.ceil(scrollFraction * this.options.count)
+      this.frame.count - 1, // Due to array index
+      Math.ceil(scrollFraction * this.frame.count)
     );
 
     if (frameIndex <= 0)

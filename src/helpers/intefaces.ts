@@ -21,9 +21,9 @@ export interface IUserInputs {
  * Viewport
  * 
  * @export
- * @interface IViewport
+ * @interface IScreenViewport
  */
-export interface IViewport {
+export interface IScreenViewport {
   x: number,
   y: number
 }
@@ -36,7 +36,9 @@ export interface IViewport {
  */
 export interface ICanvasViewport {
   width: number,
-  height: number
+  height: number,
+  top: number,
+  bottom: number
 }
 
 /**

@@ -1,5 +1,5 @@
-import { IViewport } from "@/helpers/intefaces";
-import { BoomerangEvent, EventEmitter } from "@/common/events";
+import { IScreenViewport } from "@/helpers/intefaces";
+import { EventEmitter } from "@/common/events";
 import { BoomerangError } from "@/helpers/error";
 import * as utils from "@/helpers/utils";
 
@@ -13,7 +13,7 @@ export class Base {
   /**
    * Viewport
    */
-  public viewport: IViewport;
+  public screen: IScreenViewport;
 
   /**
    * Creates an instance.
@@ -38,7 +38,7 @@ export class Base {
     this.events = new EventEmitter();
 
     // Set viewport
-    this.viewport = this.getViewport();
+    this.screen = this.getScreenViewport();
 
     // Bind events
     this.bind()
@@ -53,18 +53,18 @@ export class Base {
     window.addEventListener("scroll", utils.debounce(this.handleScroll.bind(this)));
 
     // on viewport resize event
-    this.events.on(BoomerangEvent.viewport.resize, (viewport: IViewport) => {
+    this.events.on(utils.BoomerangEvent.viewport.resize, (viewport: IScreenViewport) => {
       // Update vieport
-      this.viewport = viewport;
+      this.screen = viewport;
     });
   }
 
   /**
    * Get window viewport size
    * 
-   * @returns {IViewport}
+   * @returns {IScreenViewport}
    */
-  public getViewport(): IViewport {
+  public getScreenViewport(): IScreenViewport {
     return {
       x: window.innerWidth || document.documentElement?.clientWidth,
       y: window.innerHeight || document.documentElement?.clientHeight
@@ -75,7 +75,7 @@ export class Base {
    * Set Viewport sizes on window resize event
    */
   public handleResize(): void {
-    this.events.emit(BoomerangEvent.viewport.resize, this.getViewport());
+    this.events.emit(utils.BoomerangEvent.viewport.resize, this.getScreenViewport());
   }
 
   /**
@@ -85,7 +85,7 @@ export class Base {
     // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    this.events.emit(BoomerangEvent.viewport.scroll, scrollTop)
+    this.events.emit(utils.BoomerangEvent.viewport.scroll, scrollTop)
   }
 }
 
