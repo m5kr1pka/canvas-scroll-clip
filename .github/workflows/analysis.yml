@@ -9,7 +9,7 @@
 # the `language` matrix defined below to confirm you have the correct set of
 # supported CodeQL languages.
 #
-name: "Boomerang.js CodeQL Analysis"
+name: "CSC CodeQl Analysis"
 
 on:
   push:

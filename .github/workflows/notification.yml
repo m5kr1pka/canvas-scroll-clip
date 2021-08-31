@@ -2,7 +2,7 @@ name: "Send Notification"
 
 on:
   workflow_run:
-    workflows: ["Boomerang.js CI", "Boomerang.js Publish"]
+    workflows: ["CSC CI", "CSC Publish"]
     branches: [main]
     types:
       - completed
