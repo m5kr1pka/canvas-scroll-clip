@@ -1,6 +1,6 @@
 {
   "name": "canvas-scroll-clip",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Canvas based image sequence scroll animation. Zero dependencies.",
   "author": "Mantas Skripkauskas (https://github.com/m5kr1pka)",
   "homepage": "https://github.com/m5kr1pka/canvas-scroll-clip",
