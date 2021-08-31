@@ -1,6 +1,6 @@
 import { IScreenViewport } from "@/helpers/intefaces";
 import { EventEmitter } from "@/common/events";
-import { BoomerangError } from "@/helpers/error";
+import { AppError } from "@/helpers/error";
 import * as utils from "@/helpers/utils";
 
 export class Base {
@@ -26,12 +26,12 @@ export class Base {
 
     // Test window is defined
     if (!window) {
-      throw new BoomerangError("window is not found.");
+      throw new AppError("window is not found.");
     }
 
     // Test document is defined
     if (!document) {
-      throw new BoomerangError("document is not found.");
+      throw new AppError("document is not found.");
     }
 
     // Event bus
@@ -53,7 +53,7 @@ export class Base {
     window.addEventListener("scroll", utils.debounce(this.handleScroll.bind(this)));
 
     // on viewport resize event
-    this.events.on(utils.BoomerangEvent.viewport.resize, (viewport: IScreenViewport) => {
+    this.events.on(utils.AppEvent.viewport.resize, (viewport: IScreenViewport) => {
       // Update vieport
       this.screen = viewport;
     });
@@ -75,7 +75,7 @@ export class Base {
    * Set Viewport sizes on window resize event
    */
   public handleResize(): void {
-    this.events.emit(utils.BoomerangEvent.viewport.resize, this.getScreenViewport());
+    this.events.emit(utils.AppEvent.viewport.resize, this.getScreenViewport());
   }
 
   /**
@@ -85,7 +85,7 @@ export class Base {
     // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-    this.events.emit(utils.BoomerangEvent.viewport.scroll, scrollTop)
+    this.events.emit(utils.AppEvent.viewport.scroll, scrollTop)
   }
 }
 

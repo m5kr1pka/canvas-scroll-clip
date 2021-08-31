@@ -3,7 +3,7 @@
 
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <title>Boomerang.js</title>
+  <title>csc.js</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
@@ -203,29 +203,29 @@
       height: 500px;
     }
 
-    /* Boomerang - required */
+    /* CanvasScrollClip - required */
     .container {
       position: relative;
     }
 
-    .boomerang-container {
+    /* .csc-container {
       min-height: 100%;
       position: relative;
-    }
+    } */
 
-    .boomerang {
+    .csc {
       height: 100vh;
-      display: flex;
       width: 100%;
       position: sticky;
       top: 0;
+      display: flex;
       align-items: center;
       justify-content: center;
       z-index: 1;
       padding: 5rem;
     }
 
-    .boomerang-canvas {
+    .csc-canvas {
       display: block;
       max-width: 100%;
       max-height: 100%;
@@ -236,12 +236,12 @@
       transition: opacity 300ms ease-in-out;
     }
 
-    .boomerang--loaded .boomerang-canvas {
+    .csc--loaded .csc-canvas {
       opacity: 1;
     }
 
     /* Loader - optional */
-    .boomerang::after {
+    .csc::after {
       content: " ";
       display: block;
       width: 50px;
@@ -259,7 +259,7 @@
       z-index: 2;
     }
 
-    .boomerang--loaded .boomerang::after {
+    .csc--loaded .csc::after {
       display: none;
     }
   </style>
@@ -287,9 +287,9 @@
       };
 
       const element = document.querySelector('.canvas-container');
-      const boomerang = new window.boomerang(element, options);
+      const csc = new window.csc(element, options);
 
-      boomerang.events.on('viewport.scroll', (scrollTop) => {
+      csc.events.on('viewport.scroll', (scrollTop) => {
         const element = document.querySelector('.promo');
         const screenHeight = window.innerHeight;
         const when = document.documentElement.scrollHeight - innerHeight - 200;

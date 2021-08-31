@@ -1,5 +1,4 @@
-// import { BoomerangError } from "../helpers/error";
-import { BoomerangEvent } from "../helpers/utils";
+import { AppEvent } from "../helpers/utils";
 import { Base } from "./base"
 
 describe('Base', () => {
@@ -36,8 +35,8 @@ describe('Base', () => {
     expect(base).toHaveProperty('screen', { x: 1024, y: 768 });
 
     // emit resize event
-    base.events.on(BoomerangEvent.viewport.resize, callback);
-    base.events.emit(BoomerangEvent.viewport.resize, { x: 800, y: 600 });
+    base.events.on(AppEvent.viewport.resize, callback);
+    base.events.emit(AppEvent.viewport.resize, { x: 800, y: 600 });
 
     // Test whether the screen property has changed
     expect(base).toHaveProperty('screen', { x: 800, y: 600 });
@@ -49,7 +48,7 @@ describe('Base', () => {
     const base = new Base();
 
     // bind
-    base.events.on(BoomerangEvent.viewport.resize, fn);
+    base.events.on(AppEvent.viewport.resize, fn);
 
     // trigger
     base.handleResize();
@@ -64,7 +63,7 @@ describe('Base', () => {
     const base = new Base();
 
     // bind
-    base.events.on(BoomerangEvent.viewport.scroll, fn);
+    base.events.on(AppEvent.viewport.scroll, fn);
 
     // trigger
     base.handleScroll();

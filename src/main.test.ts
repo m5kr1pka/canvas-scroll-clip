@@ -1,6 +1,6 @@
-import Boomerang from './main'
+import CanvasClip from './main'
 
-describe("Boomerang", () => {
+describe("CanvasClip", () => {
   const defaultOptions = {
     framePath: "/frame_0001.jpg",
     frameCount: 30
@@ -11,22 +11,11 @@ describe("Boomerang", () => {
     jest.clearAllMocks();
   });
 
-  test("verify if default element is found", () => {
-    // const container = document.createElement('div');
-    const mock = jest.spyOn(document, 'querySelector');
-    // const instance = new Boomerang(container, defaultOptions);
-
-    // expect(document.querySelector).toBeCalledTimes(1);
-    // expect(document.querySelector).toReturn();
-
-    mock.mockRestore();
-  });
-
   test('verify callback is triggered at nextTick', done => {
     const container = document.createElement('div');
     const callback = jest.fn();
 
-    new Boomerang(container, defaultOptions, callback);
+    new CanvasClip(container, defaultOptions, callback);
 
     expect.assertions(1);
     setTimeout(() => {

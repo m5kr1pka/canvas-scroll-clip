@@ -1,18 +1,18 @@
-import { BoomerangError, BoomerangLogger, BoomerangWarning } from "./error";
+import { AppError, AppLogger, AppWarning } from "./error";
 
-describe("BoomerangError", () => {
+describe("AppError", () => {
 
   test('verify that error is thrown', () => {
     const fn = () => {
-      throw new BoomerangError(`throws ${BoomerangError.name} error.`);
+      throw new AppError(`throws ${AppError.name} error.`);
     };
 
-    expect(fn).toThrowError(BoomerangError);
+    expect(fn).toThrowError(AppError);
   });
 });
 
-describe("BoomerangLogger", () => {
-  const boomer = new BoomerangLogger();
+describe("AppLogger", () => {
+  const boomer = new AppLogger();
 
   test('verify console.warn message in console', () => {
     const log = jest.spyOn(console, "log").mockImplementation();
@@ -21,7 +21,7 @@ describe("BoomerangLogger", () => {
     boomer.log(message);
 
     expect(console.log).toBeCalledTimes(1);
-    expect(console.log).toBeCalledWith(expect.stringContaining(BoomerangLogger.name));
+    expect(console.log).toBeCalledWith(expect.stringContaining(AppLogger.name));
     expect(console.log).toBeCalledWith(expect.stringContaining(message));
 
     log.mockReset();
@@ -34,23 +34,23 @@ describe("BoomerangLogger", () => {
     boomer.warn(message);
 
     expect(console.warn).toBeCalledTimes(1);
-    expect(console.warn).toBeCalledWith(expect.stringContaining(BoomerangLogger.name));
+    expect(console.warn).toBeCalledWith(expect.stringContaining(AppLogger.name));
     expect(console.warn).toBeCalledWith(expect.stringContaining(message));
 
     warn.mockReset();
   })
 });
 
-describe("BoomerangWarning", () => {
+describe("AppWarning", () => {
 
   test('verify console.warn message in console', () => {
     const warn = jest.spyOn(console, "warn").mockImplementation();
-    const message = `Raises ${BoomerangWarning.name} in console.`;
+    const message = `Raises ${AppWarning.name} in console.`;
 
-    new BoomerangWarning(message);
+    new AppWarning(message);
 
     expect(console.warn).toBeCalledTimes(1);
-    expect(console.warn).toBeCalledWith(expect.stringContaining(BoomerangWarning.name));
+    expect(console.warn).toBeCalledWith(expect.stringContaining(AppWarning.name));
     expect(console.warn).toBeCalledWith(expect.stringContaining(message));
 
     warn.mockReset();

@@ -3,7 +3,7 @@ import { Frame } from './frame';
 import Base from './base';
 
 /**
- * Boomerang options.
+ * Plugin options.
  *
  * @export
  * @class Options
@@ -35,7 +35,7 @@ export class Options extends Base {
     this.inputs = options;
 
     // Set identifier
-    this.identifier = options.identifier || 'boomerang';
+    this.identifier = options.identifier || 'csc';
 
     // Set frame
     this.frame = new Frame(options);

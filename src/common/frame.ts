@@ -1,4 +1,4 @@
-import { BoomerangError } from "@/helpers/error";
+import { AppError } from "@/helpers/error";
 import { IFrame, IFrameSequence, IUserInputs } from "@/helpers/intefaces";
 import * as utils from "@/helpers/utils"
 
@@ -22,12 +22,12 @@ export class Frame implements IFrame {
 
     // test framePath is defined
     if (!framePath.length) {
-      throw new BoomerangError('Frame path is not defined.');
+      throw new AppError('Frame path is not defined.');
     }
 
     // test frameCount is defined
     if (!frameCount) {
-      throw new BoomerangError('Frame count is not defined.');
+      throw new AppError('Frame count is not defined.');
     }
 
     // Set frame count

@@ -1,4 +1,4 @@
-import { BoomerangError } from "./error";
+import { AppError } from "./error";
 import { IFrame, IFrameSequence } from "./intefaces";
 
 /**
@@ -9,7 +9,7 @@ export const RegExpLastDigitsMatch = /\d+(?!.*\d+)/;
 /** 
 * Available events
 **/
-export const BoomerangEvent = {
+export const AppEvent = {
   viewport: {
     resize: 'viewport.resize',
     scroll: 'viewport.scroll'
@@ -22,7 +22,7 @@ export const BoomerangEvent = {
 /** 
 * List of events
 **/
-export const EventList = Object.values(BoomerangEvent).map((e: Record<string, unknown>) => Object.values(e)).flat();
+export const EventList = Object.values(AppEvent).map((e: Record<string, unknown>) => Object.values(e)).flat();
 
 /**
  * Debounce ot throttle function
@@ -63,7 +63,7 @@ export async function getImage(imageLink: string): Promise<HTMLImageElement> {
     image.src = imageLink;
 
     image.onerror = () => {
-      reject(new BoomerangError(`Image with name '...${imageLink.slice(-20)}' was not found.`));
+      reject(new AppError(`Image with name '...${imageLink.slice(-20)}' was not found.`));
     }
   })
 }
@@ -137,7 +137,7 @@ export function getImageBasePath(firstFramePath: string): string {
    * @param {string} firstFramePath 
    * @param {number} frameCount 
    * @returns
-   * @throws {BoomerangError}
+   * @throws {AppError}
    */
 export function getImageStructure(firstFramePath: string, frameCount: number): IFrameSequence {
   const img = getPathEnding(firstFramePath);
@@ -145,7 +145,7 @@ export function getImageStructure(firstFramePath: string, frameCount: number): I
   const seq = getImageSequence(img);
 
   if (frameCount.toString().length > seq.length) {
-    throw new BoomerangError(`Leading zeros in first frame path has to be more than the frame count and sequence at the end.`);
+    throw new AppError(`Leading zeros in first frame path has to be more than the frame count and sequence at the end.`);
   }
 
   return {
@@ -162,14 +162,14 @@ export function getImageStructure(firstFramePath: string, frameCount: number): I
  * 
  * @param {string} imageName 
  * @returns {string}
- * @throws {BoomerangError} image sequence format not supported
+ * @throws {AppError} image sequence format not supported
  */
 export function getImageSequence(imageName: string): string {
   const match = imageName.match(RegExpLastDigitsMatch);
   const sequence = (match && match[0] !== null) ? match[0] : "";
 
   if (sequence.length < 2) {
-    throw new BoomerangError('Bad image sequence format. Should start with 0 and be longer than 2 numbers, f.e. "frame_01.jpg"')
+    throw new AppError('Bad image sequence format. Should start with 0 and be longer than 2 numbers, f.e. "frame_01.jpg"')
   }
 
   return sequence;
@@ -181,13 +181,13 @@ export function getImageSequence(imageName: string): string {
  * 
  * @param fileName 
  * @returns {string}
- * @throws {BoomerangError} Unsupported image
+ * @throws {AppError} Unsupported image
  */
 export function getFileSuffix(fileName: string): string {
   const ext = fileName.split('.').pop() || ' ';
 
   if (!['jpg', 'jpeg', 'png'].includes(ext)) {
-    throw new BoomerangError(`Image with extension ['${ext}'] is not supported.`);
+    throw new AppError(`Image with extension ['${ext}'] is not supported.`);
   }
 
   return `.${ext}`;

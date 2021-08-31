@@ -1,4 +1,4 @@
-import { BoomerangError } from "../helpers/error";
+import { AppError } from "../helpers/error";
 import { Frame } from "./frame";
 
 describe('Frame', () => {
@@ -31,7 +31,7 @@ describe('Frame', () => {
       });
     };
 
-    expect(fn).toThrowError(BoomerangError);
+    expect(fn).toThrowError(AppError);
     expect(fn).toThrowError(new RegExp('Frame path'));
   });
 
@@ -43,7 +43,7 @@ describe('Frame', () => {
       });
     };
 
-    expect(fn).toThrowError(BoomerangError);
+    expect(fn).toThrowError(AppError);
     expect(fn).toThrowError(new RegExp('Frame count'));
   });
 });

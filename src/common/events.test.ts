@@ -1,6 +1,6 @@
 import { EventEmitter } from "./events";
-import { BoomerangWarning } from "../helpers/error"
-import { BoomerangEvent } from "../helpers/utils"
+import { AppWarning } from "../helpers/error"
+import { AppEvent } from "../helpers/utils"
 
 describe('Event', () => {
 
@@ -9,8 +9,8 @@ describe('Event', () => {
 
     const emitter = new EventEmitter();
 
-    emitter.on(BoomerangEvent.viewport.resize, callback);
-    emitter.emit(BoomerangEvent.viewport.resize);
+    emitter.on(AppEvent.viewport.resize, callback);
+    emitter.emit(AppEvent.viewport.resize);
 
     expect(callback).toHaveBeenCalled();
   });
@@ -24,7 +24,7 @@ describe('Event', () => {
     emitter.on(randomEvent, callback);
 
     expect(console.warn).toBeCalledTimes(1);
-    expect(console.warn).toBeCalledWith(expect.stringContaining(BoomerangWarning.name));
+    expect(console.warn).toBeCalledWith(expect.stringContaining(AppWarning.name));
     expect(console.warn).toBeCalledWith(expect.stringContaining(randomEvent));
 
     warn.mockReset();
@@ -35,10 +35,10 @@ describe('Event', () => {
 
     const emitter = new EventEmitter();
 
-    emitter.on(BoomerangEvent.viewport.resize, callback);
-    emitter.on(BoomerangEvent.viewport.resize, callback);
-    emitter.on(BoomerangEvent.viewport.resize, callback);
-    emitter.emit(BoomerangEvent.viewport.resize);
+    emitter.on(AppEvent.viewport.resize, callback);
+    emitter.on(AppEvent.viewport.resize, callback);
+    emitter.on(AppEvent.viewport.resize, callback);
+    emitter.emit(AppEvent.viewport.resize);
 
     expect(callback).toHaveBeenCalledTimes(3);
   });
@@ -49,9 +49,9 @@ describe('Event', () => {
 
     const emitter = new EventEmitter();
 
-    emitter.on(BoomerangEvent.viewport.resize, callback1);
-    emitter.on(BoomerangEvent.viewport.scroll, callback2);
-    emitter.emit(BoomerangEvent.viewport.resize);
+    emitter.on(AppEvent.viewport.resize, callback1);
+    emitter.on(AppEvent.viewport.scroll, callback2);
+    emitter.emit(AppEvent.viewport.resize);
 
     expect(callback1).toHaveBeenCalled();
     expect(callback2).not.toHaveBeenCalled();

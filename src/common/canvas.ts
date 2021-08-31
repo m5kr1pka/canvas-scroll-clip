@@ -1,5 +1,5 @@
 import { ICanvasViewport, IUserInputs } from "@/helpers/intefaces";
-import { BoomerangError } from "@/helpers/error";
+import { AppError } from "@/helpers/error";
 import { Options } from "@/common/options";
 import * as utils from "@/helpers/utils";
 
@@ -58,7 +58,7 @@ export class Canvas extends Options {
 
     // Check if HTMLCanvasElement exists
     if (!element) {
-      throw new BoomerangError('HTML element is not defined.');
+      throw new AppError('HTML element is not defined.');
     }
 
     // Set container
@@ -92,7 +92,7 @@ export class Canvas extends Options {
     };
 
     // Bind scroll event
-    this.events.on(utils.BoomerangEvent.viewport.scroll, (scrollTop) => {
+    this.events.on(utils.AppEvent.viewport.scroll, (scrollTop) => {
       if (!this.loading)
         this.drawImageByScrollTop(scrollTop);
     });
@@ -138,7 +138,7 @@ export class Canvas extends Options {
 
       // Emit images loaded event
       // End of everything
-      this.events.emit(utils.BoomerangEvent.images.loaded);
+      this.events.emit(utils.AppEvent.images.loaded);
     });
   }
 

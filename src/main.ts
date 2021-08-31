@@ -1,10 +1,10 @@
 import { NoopFunction, IUserInputs } from "@/helpers/intefaces";
 import { Canvas } from "@/common/canvas";
-import { debounce, BoomerangEvent } from "@/helpers/utils";
+import { debounce, AppEvent } from "@/helpers/utils";
 
 /**
  * @module
- * Boomerang.js
+ * CanvasClip.js
  */
 
 /**
@@ -20,7 +20,7 @@ export class Main extends Canvas {
   public callback: NoopFunction;
 
   /**
-   * An instance of boomerang.js.
+   * An instance of App.js.
    * 
    * @constructor
    * @param {String} class name of an HTML element.
@@ -49,7 +49,7 @@ export class Main extends Canvas {
   private init(): void {
 
     // Bind images loaded event
-    this.events.on(BoomerangEvent.images.loaded, () => {
+    this.events.on(AppEvent.images.loaded, () => {
       // Next tick of instance
       debounce(this.callback());
     });

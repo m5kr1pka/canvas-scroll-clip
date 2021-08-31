@@ -1,5 +1,5 @@
 import { NoopFunction } from "@/helpers/intefaces";
-import { BoomerangWarning } from "@/helpers/error";
+import { AppWarning } from "@/helpers/error";
 import { EventList } from "@/helpers/utils";
 
 /** 
@@ -30,7 +30,7 @@ export class EventEmitter {
   // eslint-disable-next-line  @typescript-eslint/no-explicit-any
   on = (event: string, cb: NoopFunction): void => {
     if (!EventList.includes(event)) {
-      new BoomerangWarning(`Event ['${event}'] is not supported.`);
+      new AppWarning(`Event ['${event}'] is not supported.`);
     }
 
     // get list of cb for this event

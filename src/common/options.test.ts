@@ -1,18 +1,18 @@
 import Options from './options'
-import { BoomerangError } from "../helpers/error"
+import { AppError } from "../helpers/error"
 
 describe('Options', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  test('verify default identifier is boomerang', () => {
+  test('verify default identifier is csc', () => {
     const userInputs = {
       framePath: '/frames/frame_0001.jpg',
       frameCount: 121
     };
 
-    expect(new Options(userInputs)).toHaveProperty('identifier', 'boomerang');
+    expect(new Options(userInputs)).toHaveProperty('identifier', 'csc');
   });
 
   test('verify user inputs are stored', () => {
@@ -64,7 +64,7 @@ describe('Options', () => {
       });
     }
 
-    expect(fn).toThrowError(BoomerangError);
+    expect(fn).toThrowError(AppError);
     expect(fn).toThrowError(new RegExp('Image with extension'));
   });
 
@@ -76,7 +76,7 @@ describe('Options', () => {
       });
     }
 
-    expect(fn).toThrowError(BoomerangError);
+    expect(fn).toThrowError(AppError);
     expect(fn).toThrowError(new RegExp('Leading zeros'));
   });
 

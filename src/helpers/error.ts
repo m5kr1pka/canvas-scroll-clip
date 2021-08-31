@@ -1,16 +1,16 @@
 /**
- * BoomerangError class.
+ * AppError class.
  *
  * @export
- * @class BoomerangError
+ * @class AppError
  * @extends {Error}
  */
-export class BoomerangError extends Error {
+export class AppError extends Error {
 
   /**
-   * Creates an instance of BoomerangError.
+   * Creates an instance of AppError.
    * @param {string} warning message.
-   * @memberof BoomerangError
+   * @memberof AppError
    */
   constructor(message?: string) {
 
@@ -24,7 +24,7 @@ export class BoomerangError extends Error {
     Object.setPrototypeOf(this, Object.getPrototypeOf(this));
 
     if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, BoomerangError);
+      Error.captureStackTrace(this, AppError);
     }
   }
 
@@ -32,7 +32,7 @@ export class BoomerangError extends Error {
    * Name of the property [of "this" or one of its prototypes] that holds
    * the current function
    *
-   * @memberof BoomerangError
+   * @memberof AppError
    */
   get name(): string {
     return this.constructor.name
@@ -40,13 +40,13 @@ export class BoomerangError extends Error {
 }
 
 /**
- * BoomerangLogger class.
+ * AppLogger class.
  *
  * @export
- * @class BoomerangLogger
- * @extends {BoomerangError}
+ * @class AppLogger
+ * @extends {AppError}
  */
-export class BoomerangLogger extends BoomerangError {
+export class AppLogger extends AppError {
 
   /**
    * wrapper logger for console.log
@@ -70,18 +70,18 @@ export class BoomerangLogger extends BoomerangError {
 }
 
 /**
- * BoomerangWarning class.
+ * AppWarning class.
  *
  * @export
- * @class BoomerangWarning
- * @extends {BoomerangLogger}
+ * @class AppWarning
+ * @extends {AppLogger}
  */
-export class BoomerangWarning extends BoomerangLogger {
+export class AppWarning extends AppLogger {
 
   /**
-   * Creates an instance of BoomerangWarning.
+   * Creates an instance of AppWarning.
    * @param {string} warning message.
-   * @memberof BoomerangWarning
+   * @memberof AppWarning
    */
   constructor(message: string) {
     super(message);
