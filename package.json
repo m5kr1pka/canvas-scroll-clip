@@ -33,7 +33,7 @@
     "esbuild-browser": "esbuild src/browser.ts --bundle --minify --sourcemap=external --outfile=dist/build/browser.js",
     "esbuild-browser:dev": "esbuild src/browser.ts --bundle --outfile=dist/esbuild/browser.js",
     "esbuild-browser:watch": "esbuild src/browser.ts --bundle --watch --outfile=dist/esbuild/browser.js",
-    "preview": "esbuild src/browser.ts --servedir=www  --outdir=www/js --bundle",
+    "preview": "esbuild src/browser.ts --servedir=www  --outdir=www/build --bundle",
     "preview:docs": "esbuild --servedir=docs",
     "post-update": "yarn upgrade --latest"
   },
