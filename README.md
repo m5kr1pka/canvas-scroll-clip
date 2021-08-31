@@ -1,7 +1,7 @@
 # Canvas Scroll Clip
 [![Build Status](https://github.com/m5kr1pka/canvas-scroll-clip/actions/workflows/build.yml/badge.svg)](https://github.com/m5kr1pka/canvas-scroll-clip/actions/workflows/build.yml)
 
-Canvas Scroll Clip is a standalone JavaScript micro-library for a fancy scroll based image sequence animation in canvas. Zero dependencies.
+Canvas Scroll Clip is a standalone JavaScript micro-library for a fancy scroll based image sequence animation in canvas. There is no third party dependencies.
 
 ## Install
 ```
@@ -13,14 +13,12 @@ Options object is required and takes these parameters:
 
 #### framePath (required)
 Type: ```String```
-
 URL of first image of a sequence.
 
 **Important note:** Sequence should start with leading 0, minimum 2 digits and at the end of the name. for example: ```https://<URL>/frame_0001.jpg```. 
 
 #### frameCount (required)
 Type: ```Number```
-
 Number of in total in a sequence.
 
 #### scrollArea (recommended)
@@ -31,11 +29,10 @@ Scrollable area height that is used to play the image sequence.
 
 #### identifier
 Type: ```String```
-
 Used for container and child element css classes.
 
 ## Usage
-Initialize CSC on an element with required options:
+Initialize Canvas Scroll Clip on an element with options:
 ```
 new CanvasScrollClip(document.querySelector('.element'), {
   framePath: "{first_frame_url_of_a_sequence}",
@@ -56,7 +53,7 @@ Event is triggered with scroll event. Returns ```scrollTop``` position.
 #### Usage
 
 ```
-CSCInstance.events.on('viewport.scroll', function(scrollTop){
+CanvasScrollClip.events.on('viewport.scroll', function(scrollTop){
   console.log(scrollTop);
 });
 ```
@@ -66,7 +63,7 @@ Event is triggerent on window resize.
 
 #### Usage
 ```
-CSCInstance.events.on('viewport.resize', function(){
+CanvasScrollClip.events.on('viewport.resize', function(){
   console.log("window resized");
 });
 ```
@@ -76,7 +73,7 @@ Event is triggered after all images preloaded. Good place to implement loader an
 
 #### Usage
 ```
-CSCInstance.events.on('images.loaded', function() {
+CanvasScrollClip.events.on('images.loaded', function() {
   console.log("images.loaded");
 });
 ```
