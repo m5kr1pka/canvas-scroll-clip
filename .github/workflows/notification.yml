@@ -2,7 +2,7 @@ name: "Send Notification"
 
 on:
   workflow_run:
-    workflows: ["CSC CI", "CSC Publish"]
+    workflows: ["Build", "Publish"]
     branches: [main]
     types:
       - completed
