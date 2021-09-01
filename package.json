@@ -30,7 +30,6 @@
     "docs": "typedoc --entryPoints src/main.ts",
     "build": "tsc -p tsconfig.json",
     "build-all": "yarn clean && yarn build && yarn esbuild-browser",
-    "esbuild-module": "esbuild src/main.ts --format=esm --platform=node --sourcemap=external --outfile=dist/esbuild/main.js",
     "esbuild-browser": "esbuild src/browser.ts --format=esm --bundle --minify --sourcemap=external --outfile=dist/esbuild/browser.js",
     "esbuild-browser:dev": "esbuild src/browser.ts --format=esm --bundle --outfile=dist/esbuild/browser.js",
     "esbuild-browser:watch": "esbuild src/browser.ts --format=esm --bundle --watch --outfile=dist/esbuild/browser.js",
