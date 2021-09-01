@@ -1,7 +1,7 @@
-import { IScreenViewport } from "@/helpers/intefaces";
-import { EventEmitter } from "@/common/events";
-import { AppError } from "@/helpers/error";
-import * as utils from "@/helpers/utils";
+import { IScreenViewport } from "../helpers/intefaces";
+import { EventEmitter } from "../common/events";
+import { AppError } from "../helpers/error";
+import * as utils from "../helpers/utils";
 
 export class Base {
 

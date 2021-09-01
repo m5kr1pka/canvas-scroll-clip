@@ -1,16 +1,20 @@
-import { NoopFunction, IUserInputs } from "@/helpers/intefaces";
-import { Canvas } from "@/common/canvas";
-import { debounce, AppEvent } from "@/helpers/utils";
+import { NoopFunction, IUserInputs } from "./helpers/intefaces";
+import { debounce, AppEvent } from "./helpers/utils";
+import Canvas from "./common/canvas";
 
 /**
  * @module
  * CanvasClip.js
  */
 
+interface IMain {
+  callback: NoopFunction;
+}
+
 /**
  * @class Main class
  */
-export class Main extends Canvas {
+class Main extends Canvas implements IMain {
 
   /**
    * This callback is called when the class is loaded

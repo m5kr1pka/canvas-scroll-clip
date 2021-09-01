@@ -10,9 +10,6 @@ module.exports = {
     "^.+\\.(ts|tsx)$": "ts-jest"
   },
   modulePaths: ['<rootDir>/src'],
-  moduleNameMapper: {
-    '@/(.*)': '<rootDir>/src/$1'
-  },
   setupFiles: [
     "<rootDir>/src/__mocks__/canvas.ts",
     "<rootDir>/src/__mocks__/client.ts",

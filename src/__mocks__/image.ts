@@ -1,4 +1,4 @@
-import { debounce } from "@/helpers/utils";
+import { debounce } from "../helpers/utils";
 
 class ImageMock {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

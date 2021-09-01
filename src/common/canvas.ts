@@ -1,7 +1,7 @@
-import { ICanvasViewport, IUserInputs } from "@/helpers/intefaces";
-import { AppError } from "@/helpers/error";
-import { Options } from "@/common/options";
-import * as utils from "@/helpers/utils";
+import { ICanvasViewport, IUserInputs } from "../helpers/intefaces";
+import { AppError } from "../helpers/error";
+import * as utils from "../helpers/utils";
+import Options from "../common/options";
 
 /**
  * Canvas

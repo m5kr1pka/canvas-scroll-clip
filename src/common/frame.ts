@@ -1,6 +1,6 @@
-import { AppError } from "@/helpers/error";
-import { IFrame, IFrameSequence, IUserInputs } from "@/helpers/intefaces";
-import * as utils from "@/helpers/utils"
+import { AppError } from "../helpers/error";
+import { IFrame, IFrameSequence, IUserInputs } from "../helpers/intefaces";
+import * as utils from "../helpers/utils"
 
 export class Frame implements IFrame {
 
@@ -40,3 +40,5 @@ export class Frame implements IFrame {
     this.image = utils.getImageStructure(framePath, this.count)
   }
 }
+
+export default Frame;

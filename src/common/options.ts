@@ -1,6 +1,6 @@
-import { IUserInputs, IFrame } from '@/helpers/intefaces'
-import { Frame } from './frame';
+import { IUserInputs, IFrame } from '../helpers/intefaces'
 import Base from './base';
+import Frame from './frame';
 
 /**
  * Plugin options.

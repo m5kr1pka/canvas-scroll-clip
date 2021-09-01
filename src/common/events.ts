@@ -1,6 +1,6 @@
-import { NoopFunction } from "@/helpers/intefaces";
-import { AppWarning } from "@/helpers/error";
-import { EventList } from "@/helpers/utils";
+import { NoopFunction } from "../helpers/intefaces";
+import { AppWarning } from "../helpers/error";
+import { EventList } from "../helpers/utils";
 
 /** 
 * Event emitter

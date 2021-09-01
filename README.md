@@ -34,6 +34,8 @@ Used for container and child element css classes.
 ## Usage
 Initialize Canvas Scroll Clip on an element with options:
 ```
+import CanvasScrollClip from "canvas-scroll-clip";
+
 new CanvasScrollClip(document.querySelector('.element'), {
   framePath: "{first_frame_url_of_a_sequence}",
   frameCount: 101,

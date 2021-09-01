@@ -19,9 +19,9 @@
     "html5",
     "typescript"
   ],
-  "main": "./dist/tsc/main.js",
-  "types": "./dist/tsc/main.d.ts",
-  "browser": "./dist/esbuild/browser.js",
+  "main": "./dist/tsc/main",
+  "types": "./dist/tsc/main.d",
+  "browser": "./dist/esbuild/browser",
   "scripts": {
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "test": "jest",
@@ -30,9 +30,10 @@
     "docs": "typedoc --entryPoints src/main.ts",
     "build": "tsc -p tsconfig.json",
     "build-all": "yarn clean && yarn build && yarn esbuild-browser",
-    "esbuild-browser": "esbuild src/browser.ts --bundle --minify --sourcemap=external --outfile=dist/build/browser.js",
-    "esbuild-browser:dev": "esbuild src/browser.ts --bundle --outfile=dist/esbuild/browser.js",
-    "esbuild-browser:watch": "esbuild src/browser.ts --bundle --watch --outfile=dist/esbuild/browser.js",
+    "esbuild-module": "esbuild src/main.ts --format=esm --platform=node --sourcemap=external --outfile=dist/esbuild/main.js",
+    "esbuild-browser": "esbuild src/browser.ts --format=esm --bundle --minify --sourcemap=external --outfile=dist/esbuild/browser.js",
+    "esbuild-browser:dev": "esbuild src/browser.ts --format=esm --bundle --outfile=dist/esbuild/browser.js",
+    "esbuild-browser:watch": "esbuild src/browser.ts --format=esm --bundle --watch --outfile=dist/esbuild/browser.js",
     "preview": "esbuild src/browser.ts --servedir=www  --outdir=www/build --bundle",
     "preview:docs": "esbuild --servedir=docs",
     "post-update": "yarn upgrade --latest"
@@ -50,6 +51,7 @@
     "jsdom": "^17.0.0",
     "ts-jest": "^27.0.4",
     "ts-node": "^10.1.0",
+    "tslib": "^2.3.1",
     "typedoc": "^0.21.5",
     "typescript": "^4.3.5"
   }
