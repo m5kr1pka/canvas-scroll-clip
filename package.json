@@ -1,6 +1,6 @@
 {
   "name": "canvas-scroll-clip",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Canvas based image sequence scroll animation. Zero dependencies.",
   "author": "Mantas Skripkauskas (https://github.com/m5kr1pka)",
   "homepage": "https://github.com/m5kr1pka/canvas-scroll-clip",
@@ -22,12 +22,19 @@
   "main": "./dist/tsc/main.js",
   "types": "./dist/tsc/main.d.ts",
   "browser": "./dist/esbuild/browser.js",
+  "size-limit": [
+    {
+      "path": "dist/esbuild/browser.js",
+      "limit": "10 KB"
+    }
+  ],
   "scripts": {
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "test": "jest",
     "clean": "rm -rf dist build package",
     "ts-node": "ts-node",
     "docs": "typedoc --entryPoints src/main.ts",
+    "size": "yarn size-limit",
     "build": "tsc -p tsconfig.json",
     "build-all": "yarn clean && yarn build && yarn esbuild-browser",
     "esbuild-browser": "esbuild src/browser.ts --format=esm --bundle --sourcemap=external --outfile=dist/esbuild/browser.js",
@@ -39,6 +46,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@size-limit/preset-small-lib": "^5.0.3",
     "@types/jest": "^27.0.1",
     "@types/jsdom": "^16.2.13",
     "@types/node": "^16.4.13",
@@ -48,6 +56,8 @@
     "eslint": "^7.22.0",
     "jest": "^27.0.6",
     "jsdom": "^17.0.0",
+    "semantic-release": "^17.4.7",
+    "size-limit": "^5.0.3",
     "ts-jest": "^27.0.4",
     "ts-node": "^10.1.0",
     "tslib": "^2.3.1",
