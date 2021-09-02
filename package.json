@@ -19,9 +19,9 @@
     "html5",
     "typescript"
   ],
-  "main": "./dist/tsc/main",
-  "types": "./dist/tsc/main.d",
-  "browser": "./dist/esbuild/browser",
+  "main": "./dist/tsc/main.js",
+  "types": "./dist/tsc/main.d.ts",
+  "browser": "./dist/esbuild/browser.js",
   "scripts": {
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "test": "jest",
@@ -30,7 +30,7 @@
     "docs": "typedoc --entryPoints src/main.ts",
     "build": "tsc -p tsconfig.json",
     "build-all": "yarn clean && yarn build && yarn esbuild-browser",
-    "esbuild-browser": "esbuild src/browser.ts --format=esm --bundle --minify --sourcemap=external --outfile=dist/esbuild/browser.js",
+    "esbuild-browser": "esbuild src/browser.ts --format=esm --bundle --sourcemap=external --outfile=dist/esbuild/browser.js",
     "esbuild-browser:dev": "esbuild src/browser.ts --format=esm --bundle --outfile=dist/esbuild/browser.js",
     "esbuild-browser:watch": "esbuild src/browser.ts --format=esm --bundle --watch --outfile=dist/esbuild/browser.js",
     "preview": "esbuild src/browser.ts --servedir=www  --outdir=www/build --bundle",

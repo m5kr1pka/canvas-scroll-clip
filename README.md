@@ -4,8 +4,26 @@
 Canvas Scroll Clip is a standalone JavaScript micro-library for a fancy scroll based image sequence animation in canvas. There is no third party dependencies. Checkout a **[demo](https://m5kr1pka.github.io/canvas-scroll-clip/example/)**.
 
 ## Install
+Yarn:
 ```
 yarn add canvas-scroll-clip
+```
+
+NPM:
+```
+npm install --save canvas-scroll-clip
+```
+
+## Usage
+Initialize Canvas Scroll Clip on an element with options:
+```
+import CanvasScrollClip from "canvas-scroll-clip";
+
+new CanvasScrollClip(document.querySelector('.element'), {
+  framePath: "{first_frame_url_of_a_sequence}",
+  frameCount: 101,
+  scrollArea: 2000
+})
 ```
 
 ## Options
@@ -30,19 +48,6 @@ Scrollable area height that is used to play the image sequence.
 #### identifier
 Type: ```String```
 Used for container and child element css classes.
-
-## Usage
-Initialize Canvas Scroll Clip on an element with options:
-```
-import CanvasScrollClip from "canvas-scroll-clip";
-
-new CanvasScrollClip(document.querySelector('.element'), {
-  framePath: "{first_frame_url_of_a_sequence}",
-  frameCount: 101,
-  scrollArea: 2000
-})
-```
-
 
 ## Events
 
