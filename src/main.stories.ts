@@ -72,6 +72,6 @@ const Template: Story<ICSCProps> = (args) => createPageTemplate(args);
 export const Default = Template.bind({});
 Default.args = {
   framePath: 'https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/0001.jpg',
-  frameCount: 50,
-  scrollArea: 1500
+  frameCount: 140,
+  scrollArea: 2000
 }

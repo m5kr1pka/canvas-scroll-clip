@@ -1,7 +1,8 @@
 # Canvas Scroll Clip
-[![Build Status](https://github.com/m5kr1pka/canvas-scroll-clip/actions/workflows/build.yml/badge.svg)](https://github.com/m5kr1pka/canvas-scroll-clip/actions/workflows/build.yml)
+[![Build Status](https://github.com/m5kr1pka/canvas-scroll-clip/actions/workflows/build.yml/badge.svg)](https://github.com/m5kr1pka/canvas-scroll-clip/actions/workflows/build.yml) [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@main/badge/badge-storybook.svg)](https://m5kr1pka.github.io/canvas-scroll-clip/)
 
-Canvas Scroll Clip is a standalone JavaScript micro-library for a fancy scroll based image sequence animation in canvas. There is no third party dependencies. Checkout a **[demo](https://m5kr1pka.github.io/canvas-scroll-clip/example/)**.
+
+Canvas Scroll Clip is a standalone JavaScript micro-library for a fancy scroll based image sequence animation in canvas. There is no third party dependencies. Checkout a **[demo](https://m5kr1pka.github.io/canvas-scroll-clip/)**.
 
 ## Install
 ```

@@ -45,7 +45,7 @@
     "preview:docs": "esbuild --servedir=docs",
     "post-update": "yarn upgrade --latest",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook --output-dir docs"
   },
   "dependencies": {},
   "devDependencies": {
