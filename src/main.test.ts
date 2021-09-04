@@ -1,10 +1,11 @@
 import CanvasClip from './main'
+import { IUserInputs } from './helpers/intefaces';
 
 describe("CanvasClip", () => {
   const defaultOptions = {
     framePath: "/frame_0001.jpg",
     frameCount: 30
-  }
+  } as IUserInputs;
 
   beforeEach(() => {
     document.body.innerHTML = "";

@@ -276,18 +276,16 @@
     <span>scroll down</span>
   </div>
 
-  <script src="./js/browser.js"></script>
-  <script>
+  <script type="module">
+    import CSC from "./js/main.js";
+
     window.addEventListener("DOMContentLoaded", function () {
-      const firstFramePath = "https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/0001.jpg"
-      const options = {
-        framePath: firstFramePath,
+      const element = document.querySelector('.canvas-container');
+      const csc = new CSC(element, {
+        framePath: "https://www.apple.com/105/media/us/airpods-pro/2019/1299e2f5_9206_4470_b28e_08307a42f19b/anim/sequence/large/01-hero-lightpass/0001.jpg",
         frameCount: 140,
         scrollArea: 2000
-      };
-
-      const element = document.querySelector('.canvas-container');
-      const csc = new window.csc(element, options);
+      });
 
       csc.events.on('viewport.scroll', (scrollTop) => {
         const element = document.querySelector('.promo');

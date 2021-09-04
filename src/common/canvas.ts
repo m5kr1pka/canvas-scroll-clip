@@ -71,10 +71,14 @@ export class Canvas extends Options {
     // Create canvas element
     this._canvas = document.createElement('canvas');
     this._canvas.classList.add(`${this.identifier}-canvas`);
+    this._canvas.style.setProperty('max-width', '100%');
+    this._canvas.style.setProperty('height', 'auto');
 
     // Create wrapper container
     this._wrapper = document.createElement('div')
     this._wrapper.classList.add(this.identifier);
+    this._wrapper.style.setProperty('position', 'sticky');
+    this._wrapper.style.setProperty('top', '0');
     this._wrapper.appendChild(this._canvas);
 
     // Output template

@@ -1,4 +1,4 @@
-import CanvasScrollClip from './main';
+// import CanvasScrollClip from './main';
 
-module.exports = CanvasScrollClip;
-export default CanvasScrollClip;
+// module.exports = CanvasScrollClip;
+// export default CanvasScrollClip;

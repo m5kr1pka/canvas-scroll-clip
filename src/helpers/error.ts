@@ -5,12 +5,12 @@
  * @class AppError
  * @extends {Error}
  */
-export class AppError extends Error {
+export class CanvasScrollClipError extends Error {
 
   /**
    * Creates an instance of AppError.
    * @param {string} warning message.
-   * @memberof AppError
+   * @memberof CanvasScrollClipError
    */
   constructor(message?: string) {
 
@@ -24,7 +24,7 @@ export class AppError extends Error {
     Object.setPrototypeOf(this, Object.getPrototypeOf(this));
 
     if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, AppError);
+      Error.captureStackTrace(this, CanvasScrollClipError);
     }
   }
 
@@ -32,10 +32,24 @@ export class AppError extends Error {
    * Name of the property [of "this" or one of its prototypes] that holds
    * the current function
    *
-   * @memberof AppError
+   * @memberof CanvasScrollClipError
    */
   get name(): string {
     return this.constructor.name
+  }
+}
+
+/**
+ * AppError decorator class.
+ *
+ * @export
+ * @class AppError
+ * @extends {AppError}
+ */
+export class AppError extends CanvasScrollClipError {
+
+  get name(): string {
+    return 'CanvasScrollClipError';
   }
 }
 
@@ -46,7 +60,7 @@ export class AppError extends Error {
  * @class AppLogger
  * @extends {AppError}
  */
-export class AppLogger extends AppError {
+export class AppLogger extends CanvasScrollClipError {
 
   /**
    * wrapper logger for console.log

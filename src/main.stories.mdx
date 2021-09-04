@@ -1,7 +1,39 @@
-# Canvas Scroll Clip
-[![Build Status](https://github.com/m5kr1pka/canvas-scroll-clip/actions/workflows/build.yml/badge.svg)](https://github.com/m5kr1pka/canvas-scroll-clip/actions/workflows/build.yml)
+import { Meta } from '@storybook/addon-docs';
 
-Canvas Scroll Clip is a standalone JavaScript micro-library for a fancy scroll based image sequence animation in canvas. There is no third party dependencies. Checkout a **[demo](https://m5kr1pka.github.io/canvas-scroll-clip/example/)**.
+<Meta title="Intro" />
+
+<style>{`
+
+  .tip {
+    display: inline-block;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 700;
+    background: #E7FDD8;
+    color: #66BF3C;
+    padding: 5px 8px;
+    margin-right: 10px;
+    vertical-align: top;
+  }
+
+  .tip-wrapper {
+    font-size: 13px;
+    line-height: 26px;
+    margin-top: 15px;
+    margin-bottom: 40px;
+  }
+
+  .tip-wrapper code {
+    font-size: 12px;
+    display: inline-block;
+  }
+
+`}</style>
+
+# Canvas Scroll Clip
+
+Canvas Scroll Clip is a standalone JavaScript micro-library for a fancy scroll based image sequence animation in canvas. There is no third party dependencies. Checkout a default **[demo](/story/canvas-scroll-clip--default)** and it's variations.
 
 ## Install
 ```
@@ -12,6 +44,7 @@ npm install --save canvas-scroll-clip
 ```
 
 ## Usage
+
 Initialize Canvas Scroll Clip on an element with options:
 
 ```
@@ -30,30 +63,34 @@ When importing a module using require use .default `const CanvasScrollClip = req
 ## Options
 Options object is required and takes these parameters:
 
-#### framePath (required)
+### framePath (required)
 Type: ```String```
+
 URL of first image of a sequence.
+<div className="tip-wrapper">
+  <span className="tip">Important note</span>Sequence should start with leading 0, minimum 2 digits and at the end of the name. for example: 
+  <code>https://..URL../frame_0001.jpg</code>
+</div>
 
-**Important note:** Sequence should start with leading 0, minimum 2 digits and at the end of the name. for example: ```https://<URL>/frame_0001.jpg```. 
-
-#### frameCount (required)
+### frameCount (required)
 Type: ```Number```
+
 Number of in total in a sequence.
 
-#### scrollArea (recommended)
-Type: ```Number```<br>
+### scrollArea (recommended)
+Type: ```Number```
 Default: ```2x the IMAGE height```
 
 Scrollable area height that is used to play the image sequence.
 
-#### identifier
+### identifier
 Type: ```String```
 Used for container and child element css classes.
 
 ## Events
 
 ### viewport.scroll
-Callback params: ```scrollTop```<br/>
+Callback params: ```scrollTop```
 Type: ```Number```
 
 Event is triggered with scroll event. Returns ```scrollTop``` position.
@@ -90,6 +127,3 @@ CanvasScrollClip.events.on('images.loaded', function() {
 
 ### License
 MIT license
-
-### Esbuild and UMD pending feature
-Pending esbuild UMD format feature [--format=umd](https://github.com/evanw/esbuild/issues/507) support.
