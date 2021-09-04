@@ -1,0 +1,149 @@
+*,
+:after,
+:before {
+  box-sizing: border-box;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+:root {
+  --color-white: #fff;
+  --color-black: #000;
+  --font-weight-bold: 700;
+}
+
+.main {
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  width: 100%;
+  font-family: Helvetica Neue, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.scroll-indicator {
+  font-size: 10px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 50px;
+  margin: 0 auto;
+  color: #fff;
+  text-align: center;
+  font-weight: 500;
+  z-index: 100;
+  opacity: 0.8;
+}
+
+.scroll-indicator .scroll-indicator-icon {
+  position: relative;
+  display: block;
+  width: 35px;
+  height: 55px;
+  margin: 0 auto 20px;
+  border: 2px solid var(--color-white);
+  border-radius: 23px;
+}
+
+.scroll-indicator .scroll-indicator-icon::before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 20%;
+  left: 50%;
+  width: 4px;
+  margin-left: -2px;
+  height: 12px;
+  background: var(--color-white);
+  border-radius: 6px;
+  animation: ani-mouse 2s linear infinite;
+}
+
+@keyframes ani-mouse {
+  0% {
+    opacity: 1;
+    top: 20%;
+  }
+
+  20% {
+    opacity: 1;
+    top: 30%;
+  }
+
+  70% {
+    opacity: 0.5;
+    top: 40%;
+  }
+
+  100% {
+    opacity: 0;
+    top: 20%;
+  }
+}
+
+.dummy {
+  height: 100vh;
+  width: 100%;
+  content: "";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: 600;
+}
+
+.csc {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.csc-canvas {
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 300ms ease-in-out;
+}
+
+.csc--loaded .csc-canvas {
+  opacity: 1;
+}
+
+/* Loader - optional */
+.csc::after {
+  content: " ";
+  display: block;
+  width: 50px;
+  height: 50px;
+  margin: -17px 8px 8px 8px;
+  border-radius: 50%;
+  border: 6px double var(--color-white);
+  border-color: var(--color-white) transparent var(--color-white) transparent;
+  animation: ani-loader 1.2s linear infinite;
+  position: absolute;
+  top: 50%;
+  transition: opacity 300ms ease-in-out;
+  opacity: 0.6;
+  z-index: 2;
+}
+
+.csc--loaded .csc::after {
+  display: none;
+}
+
+@keyframes ani-loader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

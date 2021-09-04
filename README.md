@@ -87,8 +87,6 @@ CanvasScrollClip.events.on('images.loaded', function() {
 });
 ```
 
-## Other
-
 ### License
 MIT license
 

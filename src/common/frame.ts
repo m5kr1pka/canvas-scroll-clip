@@ -21,7 +21,7 @@ export class Frame implements IFrame {
   constructor({ framePath, frameCount }: IUserInputs) {
 
     // test framePath is defined
-    if (!framePath.length) {
+    if (!framePath?.length) {
       throw new AppError('Frame path is not defined.');
     }
 
