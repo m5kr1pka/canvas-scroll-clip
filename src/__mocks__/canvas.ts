@@ -74,6 +74,8 @@ export function mockCanvas(window: any): void {
         // eslint - do nothing.
       },
       measureText: function (): TextMetrics {
+        // eslint-disable-next-line
+        // @ts-ignore
         return {
           actualBoundingBoxAscent: 0,
           actualBoundingBoxDescent: 0,
