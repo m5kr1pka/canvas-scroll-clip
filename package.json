@@ -1,18 +1,20 @@
 {
   "name": "canvas-scroll-clip",
-  "version": "1.0.1",
+  "version": "0.0.0-development",
   "description": "Canvas based image sequence scroll animation. Zero dependencies.",
   "author": "Mantas Skripkauskas (https://github.com/m5kr1pka)",
   "homepage": "https://github.com/m5kr1pka/canvas-scroll-clip",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/m5kr1pka/canvas-scroll-clip.git"
+    "url": "https://github.com/m5kr1pka/canvas-scroll-clip.git"
   },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/m5kr1pka/canvas-scroll-clip/issues"
   },
   "keywords": [
+    "web",
+    "fron-end",
     "canvas",
     "animation",
     "scroll",
@@ -23,19 +25,12 @@
   "module": "./dist/tsc/main.js",
   "browser": "./dist/esbuild/main.esm.js",
   "types": "./dist/tsc/main.d.ts",
-  "size-limit": [
-    {
-      "path": "dist/esbuild/browser.js",
-      "limit": "10 KB"
-    }
-  ],
   "scripts": {
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "test": "jest",
     "clean": "rm -rf dist build package",
     "ts-node": "ts-node",
     "docs": "typedoc --entryPoints src/main.ts --out typedoc-docs",
-    "size": "yarn size-limit",
     "build": "tsc -p tsconfig.json",
     "build-all": "yarn clean && yarn build && yarn esbuild-esm",
     "esbuild-esm": "esbuild src/main.ts --format=esm --target=es6 --bundle --sourcemap=external --outfile=dist/esbuild/main.esm.js",
@@ -45,16 +40,15 @@
     "preview:docs": "esbuild --servedir=docs",
     "post-update": "yarn upgrade --latest",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook --output-dir docs"
+    "build-storybook": "build-storybook --output-dir docs",
+    "semantic-release": "semantic-release"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.15.4",
-    "@size-limit/preset-small-lib": "^5.0.3",
-    "@storybook/addon-essentials": "^6.3.7",
-    "@storybook/addon-links": "^6.3.7",
+    "@storybook/addon-essentials": "^6.3.8",
+    "@storybook/addon-links": "^6.3.8",
     "@storybook/addon-postcss": "^2.0.0",
-    "@storybook/html": "^6.3.7",
+    "@storybook/html": "^6.3.8",
     "@types/jest": "^27.0.1",
     "@types/jsdom": "^16.2.13",
     "@types/node": "^16.4.13",
@@ -65,8 +59,8 @@
     "eslint": "^7.22.0",
     "jest": "^27.0.6",
     "jsdom": "^17.0.0",
-    "sb": "^6.3.7",
-    "size-limit": "^5.0.3",
+    "sb": "^6.3.8",
+    "semantic-release": "^17.4.7",
     "ts-jest": "^27.0.4",
     "ts-node": "^10.1.0",
     "tslib": "^2.3.1",
