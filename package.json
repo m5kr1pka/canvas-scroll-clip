@@ -25,11 +25,6 @@
   "module": "./dist/tsc/main.js",
   "browser": "./dist/esbuild/main.esm.js",
   "types": "./dist/tsc/main.d.ts",
-  "release": {
-    "branches": [
-      "main"
-    ]
-  },
   "scripts": {
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "test": "jest",

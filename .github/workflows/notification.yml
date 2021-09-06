@@ -2,7 +2,7 @@ name: "Send Notification"
 
 on:
   workflow_run:
-    workflows: ["Build", "Publish"]
+    workflows: ["Build and Release"]
     branches: [main]
     types:
       - completed
