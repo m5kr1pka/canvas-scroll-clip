@@ -50,6 +50,8 @@ jobs:
       - name: Release
         env:
           always-auth: true
+          GIT_AUTHOR_NAME: ${{ secrets.AUTHOR_NAME }}
+          GIT_AUTHOR_EMAIL: ${{ secrets.AUTHOR_EMAIL }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}
         run: yarn semantic-release
