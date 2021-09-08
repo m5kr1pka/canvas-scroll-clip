@@ -30,29 +30,30 @@ jobs:
     - run: yarn test
 
   release:
-    name: Release
-    needs:
-      - build
+    needs: build
 
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: GoogleCloudPlatform/release-please-action@v2
+        id: release
         with:
-          fetch-depth: 0
-          persist-credentials: false
+          release-type: node
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v2
+        if: ${{ steps.release.outputs.release_created }}
+
+      - uses: actions/setup-node@v2
         with:
-          always-auth: true
-          node-version: '14.x'
+          node-version: 14
+          registry-url: 'https://registry.npmjs.org'
+        if: ${{ steps.release.outputs.release_created }}
 
-      - name: Install dependencies
-        run: yarn
+      - run: yarn
+        if: ${{ steps.release.outputs.release_created }}
 
-      - name: Release
+      - run: yarn publish --access public
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}
-        run: yarn semantic-release
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTOMATION_TOKEN}}
+        if: ${{ steps.release.outputs.release_created }}
+          

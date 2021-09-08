@@ -1,6 +1,6 @@
 {
   "name": "canvas-scroll-clip",
-  "version": "0.0.0-development",
+  "version": "1.0.3",
   "description": "Canvas based image sequence scroll animation. Zero dependencies.",
   "author": "Mantas Skripkauskas (https://github.com/m5kr1pka)",
   "homepage": "https://github.com/m5kr1pka/canvas-scroll-clip",
@@ -40,12 +40,10 @@
     "preview:docs": "esbuild --servedir=docs",
     "post-update": "yarn upgrade --latest",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook --output-dir docs",
-    "semantic-release": "semantic-release"
+    "build-storybook": "build-storybook --output-dir docs"
   },
   "devDependencies": {
     "@babel/core": "^7.15.4",
-    "@semantic-release/changelog": "^5.0.1",
     "@storybook/addon-essentials": "^6.3.8",
     "@storybook/addon-links": "^6.3.8",
     "@storybook/addon-postcss": "^2.0.0",
@@ -61,7 +59,6 @@
     "jest": "^27.0.6",
     "jsdom": "^17.0.0",
     "sb": "^6.3.8",
-    "semantic-release": "^17.4.7",
     "ts-jest": "^27.0.4",
     "ts-node": "^10.1.0",
     "tslib": "^2.3.1",
