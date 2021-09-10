@@ -91,16 +91,17 @@ export class Canvas extends Options {
 
     // Set viewport default
     this.viewport = {
-      width: this.screen.x,
-      height: this.screen.y,
+      width: this.screen.width,
+      height: this.screen.height,
       top: 0,
-      bottom: this.screen.y
+      bottom: this.screen.height,
+      screen: this.screen
     };
 
     // Bind scroll event
     this.events.on(utils.AppEvent.viewport.scroll, (scrollTop) => {
       if (!this.loading)
-        this.drawImageByScrollTop(scrollTop);
+        this.drawImageByScrollFraction(utils.getScrollFraction(this.viewport, scrollTop));
     });
 
     // Preload Images
@@ -120,10 +121,11 @@ export class Canvas extends Options {
 
       // Set Canvas viewport
       this.viewport = {
+        ...this.viewport,
         width: this.images[0]?.width,
         height: this.images[0]?.height,
         top: this._container.getBoundingClientRect().top + utils.getScrollTop() || 0,
-        bottom: this._container.getBoundingClientRect().bottom + utils.getScrollTop() || 0
+        bottom: this._container.getBoundingClientRect().bottom + utils.getScrollTop() || this.screen.height
       };
 
       // Set canvas size
@@ -134,7 +136,7 @@ export class Canvas extends Options {
       this._container.style.setProperty('height', `${this.scrollArea}px`);
 
       // Initial image load
-      this.drawImageByScrollTop();
+      this.drawImageByScrollFraction(utils.getScrollFraction(this.viewport));
 
       // Add loaded classes
       this._container.classList.add(`${this.identifier}--loaded`);
@@ -174,8 +176,7 @@ export class Canvas extends Options {
    * 
    * @param {scrollTop} number
    */
-  public drawImageByScrollTop(scrollTop?: number): void {
-    const scrollFraction = utils.getScrollFraction(scrollTop);
+  public drawImageByScrollFraction(scrollFraction: number): void {
     let frameIndex;
 
     frameIndex = Math.min(

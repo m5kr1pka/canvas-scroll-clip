@@ -1,5 +1,5 @@
 import { AppError } from "./error";
-import { IFrame, IFrameSequence } from "./intefaces";
+import { ICanvasViewport, IFrame, IFrameSequence } from "./intefaces";
 
 /**
  * RegExp expression to find last digits in a string
@@ -95,10 +95,11 @@ export function getScrollTop(): number {
  * Get scroll top position 
  * 
  * @param {scrollTop}
+ * @param {ICanvasViewport}
  * @returns number
  */
-export function getScrollFraction(scrollTop = getScrollTop()): number {
-  return scrollTop / (document.documentElement.scrollHeight - window.innerHeight) || 0;
+export function getScrollFraction(cViewport: ICanvasViewport, scrollTop = getScrollTop()): number {
+  return (scrollTop - cViewport.top) / (cViewport.bottom - cViewport.screen.height - cViewport.top);
 }
 
 /**
