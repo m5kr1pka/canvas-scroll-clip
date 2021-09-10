@@ -36,7 +36,7 @@
     "esbuild-esm": "esbuild src/main.ts --format=esm --target=es6 --bundle --sourcemap=external --outfile=dist/esbuild/main.esm.js",
     "esbuild-browser:dev": "esbuild src/main.ts --format=esm --bundle --outfile=dist/esbuild/main.js",
     "esbuild-browser:watch": "esbuild src/main.ts --format=esm --bundle --watch --outfile=dist/esbuild/main.js",
-    "preview": "esbuild src/main.ts --format=esm --servedir=example  --outdir=example/js --bundle",
+    "preview": "esbuild src/main.ts --format=esm --servedir=www  --outdir=www/js --bundle",
     "preview:docs": "esbuild --servedir=docs",
     "post-update": "yarn upgrade --latest",
     "storybook": "start-storybook -p 6006",
