@@ -21,8 +21,8 @@
     "html5",
     "typescript"
   ],
-  "main": "./dist/tsc/main.js",
-  "module": "./dist/tsc/main.js",
+  "main": "./dist/esbuild/main.esm.js",
+  "module": "./dist/esbuild/main.esm.js",
   "browser": "./dist/esbuild/main.esm.js",
   "types": "./dist/tsc/main.d.ts",
   "scripts": {
