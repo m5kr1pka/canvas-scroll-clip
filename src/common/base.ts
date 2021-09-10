@@ -66,8 +66,8 @@ export class Base {
    */
   public getScreenViewport(): IScreenViewport {
     return {
-      x: window.innerWidth || document.documentElement?.clientWidth,
-      y: window.innerHeight || document.documentElement?.clientHeight
+      width: window.innerWidth || document.documentElement?.clientWidth,
+      height: window.innerHeight || document.documentElement?.clientHeight
     };
   }
 

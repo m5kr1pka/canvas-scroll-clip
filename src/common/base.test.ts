@@ -11,8 +11,8 @@ describe('Base', () => {
     const base = new Base();
 
     expect(base).toHaveProperty('screen', {
-      x: 1024,
-      y: 768
+      width: 1024,
+      height: 768
     });
   });
 
@@ -32,14 +32,14 @@ describe('Base', () => {
     const callback = jest.fn();
     const base = new Base();
 
-    expect(base).toHaveProperty('screen', { x: 1024, y: 768 });
+    expect(base).toHaveProperty('screen', { width: 1024, height: 768 });
 
     // emit resize event
     base.events.on(AppEvent.viewport.resize, callback);
-    base.events.emit(AppEvent.viewport.resize, { x: 800, y: 600 });
+    base.events.emit(AppEvent.viewport.resize, { width: 800, height: 600 });
 
     // Test whether the screen property has changed
-    expect(base).toHaveProperty('screen', { x: 800, y: 600 });
+    expect(base).toHaveProperty('screen', { width: 800, height: 600 });
     expect(callback).toHaveBeenCalled();
   });
 
