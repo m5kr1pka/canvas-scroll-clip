@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://www.github.com/m5kr1pka/canvas-scroll-clip/compare/v1.0.4...v1.1.0) (2021-09-10)
+
+
+### Features
+
+* **issue:** closes [#1](https://www.github.com/m5kr1pka/canvas-scroll-clip/issues/1) - animation inconsistency ([1e59759](https://www.github.com/m5kr1pka/canvas-scroll-clip/commit/1e597590439c184691c474d58e56bc28149940f0))
+
 ### [1.0.4](https://www.github.com/m5kr1pka/canvas-scroll-clip/compare/v1.0.3...v1.0.4) (2021-09-08)
 
 
