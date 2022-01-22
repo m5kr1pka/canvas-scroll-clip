@@ -30,6 +30,7 @@ jobs:
     - run: yarn test
 
   release:
+    if: ${{ github.event_name == 'push' }}
     needs: build
 
     runs-on: ubuntu-latest
