@@ -156,6 +156,7 @@ export class Canvas extends Options {
    * @param image 
    */
   public drawImage(image: HTMLImageElement): void {
+    this.context.clearRect(0, 0, this.viewport.width, this.viewport.height);
     this.context.drawImage(image, 0, 0, this.viewport.width, this.viewport.height);
   }
 
