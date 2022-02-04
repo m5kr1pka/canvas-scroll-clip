@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.1.1](https://github.com/m5kr1pka/canvas-scroll-clip/compare/v1.1.0...v1.1.1) (2022-02-04)
+
+
+### Bug Fixes
+
+* clear older frames to prevent overlapping images ([e0fe590](https://github.com/m5kr1pka/canvas-scroll-clip/commit/e0fe5908e2c71b5dbd1f0092439a49503fea3c3a))
+
 ## [1.1.0](https://www.github.com/m5kr1pka/canvas-scroll-clip/compare/v1.0.4...v1.1.0) (2021-09-10)
 
 
