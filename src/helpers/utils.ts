@@ -187,7 +187,7 @@ export function getImageSequence(imageName: string): string {
 export function getFileSuffix(fileName: string): string {
   const ext = fileName.split('.').pop() || ' ';
 
-  if (!['jpg', 'jpeg', 'png'].includes(ext)) {
+  if (!['jpg', 'jpeg', 'png', 'webp'].includes(ext)) {
     throw new AppError(`Image with extension ['${ext}'] is not supported.`);
   }
 
