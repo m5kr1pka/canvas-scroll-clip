@@ -59,7 +59,7 @@ describe('Options', () => {
   test('verify not supported image extension', () => {
     const fn = () => {
       new Options({
-        framePath: '/frames/frame_01.webp',
+        framePath: '/frames/frame_01.gif',
         frameCount: 121
       });
     }
