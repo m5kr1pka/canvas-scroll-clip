@@ -15,6 +15,7 @@ export const AppEvent = {
     scroll: 'viewport.scroll'
   },
   images: {
+    progress: "images.progress",
     loaded: 'images.loaded'
   }
 }
@@ -69,17 +70,17 @@ export async function getImage(imageLink: string): Promise<HTMLImageElement> {
 }
 
 /**
- * Preloading images
- * TODO: Maybe implement progress
+ * Preloading image list
  * 
- * @returns Promise<HTMLImageElement[]> 
+ * @returns Promise<HTMLImageElement>[]
  */
-export function preloadImages(frameOptions: IFrame): Promise<HTMLImageElement[]> {
-  const arrayOfImages = new Array(frameOptions.count).fill(0).map((_elem, index) => {
+export function preloadImages(frameOptions: IFrame): Promise<HTMLImageElement>[] {
+  return new Array(frameOptions.count).fill(0).map((_elem, index) => {
     return getImage(getFramePathByIndex(frameOptions, index + 1));
   });
-
-  return Promise.all(arrayOfImages);
+  // console.log(arrayOfImages);
+  // return new Promise()
+  // // return Promise.all(arrayOfImages);
 }
 
 /**

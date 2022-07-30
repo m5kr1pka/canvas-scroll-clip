@@ -87,6 +87,20 @@ CanvasScrollClip.events.on('images.loaded', function() {
 });
 ```
 
+### images.progress
+Callback params (```object```): <br/>
+```total: frameCount```<br/>
+```loaded: loadedImageCount```<br/>
+
+Event is triggered after every image preloaded. Good place to implement progress bar.
+
+#### Usage
+```
+CanvasScrollClip.events.on('images.progress', function(progress) {
+  console.log(progress);
+});
+```
+
 ### License
 MIT license
 

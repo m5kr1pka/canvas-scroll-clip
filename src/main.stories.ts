@@ -14,9 +14,10 @@ export default {
     frameCount: { control: 'number' },
     scrollArea: { control: 'number' },
     identifier: { control: 'text' },
-    _EventOnViewporResize: { action: 'resized' },
-    _EventOnViewportScroll: { action: 'scrollTop' },
-    _EventOnImagesLoaded: { action: 'loaded' }
+    eventOnViewporResize: { action: 'resized' },
+    eventOnViewportScroll: { action: 'scrollTop' },
+    eventOnImagesLoaded: { action: 'loaded' },
+    EventOnImagesProgress: { action: 'progress' }
   }
 } as Meta;
 
@@ -25,9 +26,10 @@ export default {
  */
 export interface ICSCProps extends IUserInputs {
   dummyContent?: boolean;
-  _EventOnImagesLoaded: () => void;
-  _EventOnViewportScroll?: () => void;
-  _EventOnViewporResize?: () => void;
+  eventOnImagesLoaded: () => void;
+  eventOnViewportScroll?: () => void;
+  eventOnViewporResize?: () => void;
+  eventOnImageLoadProgress?: () => void;
 }
 
 /**
@@ -61,14 +63,18 @@ const createPageTemplate = (args: ICSCProps) => {
     frameCount: args.frameCount,
     scrollArea: args.scrollArea,
     identifier: args.identifier
-  }, args._EventOnImagesLoaded);
+  }, args.eventOnImagesLoaded);
 
-  if (args._EventOnViewportScroll !== undefined) {
-    csc.events.on('viewport.scroll', args._EventOnViewportScroll)
+  if (args.eventOnViewportScroll !== undefined) {
+    csc.events.on('viewport.scroll', args.eventOnViewportScroll)
   }
 
-  if (args._EventOnViewporResize !== undefined) {
-    csc.events.on('viewport.resize', args._EventOnViewporResize)
+  if (args.eventOnViewporResize !== undefined) {
+    csc.events.on('viewport.resize', args.eventOnViewporResize)
+  }
+
+  if (args.eventOnImageLoadProgress !== undefined) {
+    csc.events.on('images.progress', args.eventOnImageLoadProgress)
   }
 
   container.appendChild(canvas);

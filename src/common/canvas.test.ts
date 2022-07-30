@@ -1,5 +1,6 @@
 import Canvas from "./canvas";
 import { AppError } from "../helpers/error"
+import { AppEvent } from "../helpers/utils";
 
 describe('Canvas', () => {
   const defaultOptions = {
@@ -43,7 +44,18 @@ describe('Canvas', () => {
     expect(container.firstElementChild?.firstElementChild?.classList.contains(`App-canvas`)).toBe(true);
   });
 
-  test('verify preload', async () => {
-    // eslint - do nothing.
+  test('verify preload', () => {
+    document.body.innerHTML = '<div class="canvas-container"></div>';
+    const container = document.querySelector('.canvas-container') as HTMLElement;
+    const canvas = new Canvas(container, defaultOptions);
+    const cb = jest.fn((progress) => {
+      return progress;
+    });
+
+    canvas.events.on(AppEvent.images.progress, cb);
+
+    canvas.events.on(AppEvent.images.loaded, () => {
+      expect(cb).toHaveBeenCalledTimes(defaultOptions.frameCount);
+    });
   });
 });

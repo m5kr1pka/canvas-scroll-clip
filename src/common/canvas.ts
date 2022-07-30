@@ -114,9 +114,24 @@ export class Canvas extends Options {
    * @returns 
    */
   private async preload() {
+    const progress = {
+      total: this.frame.count,
+      loaded: 0
+    }
+
+    // Create array of promises and raise loading event
+    const imageList = utils.preloadImages(this.frame).map(p => {
+      return p.then((image) => {
+        progress.loaded = ++progress.loaded
+
+        this.events.emit(utils.AppEvent.images.progress, progress);
+
+        return image
+      })
+    })
 
     // TODO: should I refactor this
-    return await utils.preloadImages(this.frame).then(images => {
+    return await Promise.all(imageList).then(images => {
       this.images = images;
 
       // Set Canvas viewport
