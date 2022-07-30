@@ -33,7 +33,7 @@ import { Meta } from '@storybook/addon-docs';
 
 # Canvas Scroll Clip
 
-Canvas Scroll Clip is a standalone JavaScript micro-library for a fancy scroll based image sequence animation in canvas. There is no third party dependencies. Checkout a default **[demo](/story/canvas-scroll-clip--default)** and it's variations.
+Canvas Scroll Clip is a standalone JavaScript micro-library for a fancy scroll based image sequence animation in canvas. There is no third party dependencies. Checkout a **[demo](https://m5kr1pka.github.io/canvas-scroll-clip/?path=/story/canvas-scroll-clip--default)**.
 
 ## Install
 ```
@@ -120,6 +120,20 @@ Event is triggered after all images preloaded. Good place to implement loader an
 ```
 CanvasScrollClip.events.on('images.loaded', function() {
   console.log("images.loaded");
+});
+```
+
+### images.progress
+Callback params (```object```): <br/>
+```total: frameCount```<br/>
+```loaded: loadedImageCount```<br/>
+
+Event is triggered after every image preloaded. Good place to implement progress bar.
+
+#### Usage
+```
+CanvasScrollClip.events.on('images.progress', function(progress) {
+  console.log(progress);
 });
 ```
 
