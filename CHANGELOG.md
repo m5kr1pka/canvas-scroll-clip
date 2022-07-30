@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.0](https://github.com/m5kr1pka/canvas-scroll-clip/compare/v1.1.1...v1.2.0) (2022-07-30)
+
+
+### Features
+
+* **core:** image load progress event ([9bfc730](https://github.com/m5kr1pka/canvas-scroll-clip/commit/9bfc730c5cd5f0eb1bf3e83b939f797cef723df3))
+* **docs:** updated storybook ([a998896](https://github.com/m5kr1pka/canvas-scroll-clip/commit/a998896705508972770544e8bcff76448a260e48))
+
+
+### Bug Fixes
+
+* **build:** removed node@12 from build script ([30343ce](https://github.com/m5kr1pka/canvas-scroll-clip/commit/30343ce677811f009f3c86add7a134352cb4b7df))
+
 ### [1.1.1](https://github.com/m5kr1pka/canvas-scroll-clip/compare/v1.1.0...v1.1.1) (2022-02-04)
 
 
