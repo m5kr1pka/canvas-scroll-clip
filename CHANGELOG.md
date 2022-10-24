@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.2](https://github.com/m5kr1pka/canvas-scroll-clip/compare/v1.2.1...v1.2.2) (2022-10-24)
+
+
+### Bug Fixes
+
+* **common:** canvas to be full width and height of the screen ([41b07c6](https://github.com/m5kr1pka/canvas-scroll-clip/commit/41b07c6ec749a199e547302e47d989584ed1e57f))
+
 ## [1.2.1](https://github.com/m5kr1pka/canvas-scroll-clip/compare/v1.2.0...v1.2.1) (2022-10-24)
 
 
