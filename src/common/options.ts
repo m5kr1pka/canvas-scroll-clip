@@ -18,7 +18,7 @@ export class Options extends Base {
   public identifier: string;
 
   // Animation Height
-  public scrollArea: string | number = 0;
+  public scrollArea: number = 0;
 
   // Frame
   protected frame: IFrame;
@@ -41,10 +41,8 @@ export class Options extends Base {
     this.frame = new Frame(options);
 
     // Set Container Height if defined
-    this.scrollArea = options.scrollArea || 0;
-
-    if (options.scrollArea && typeof options.scrollArea == "string") {
-      this.scrollArea = parseInt(options.scrollArea, 10);
+    if (options.scrollArea) {
+      this.scrollArea = parseInt(options.scrollArea as unknown as string, 10);
     }
   }
 
@@ -55,7 +53,7 @@ export class Options extends Base {
     if (this.scrollArea)
       return
 
-    this.scrollArea = height;
+    this.scrollArea = parseInt(height as unknown as string);
   }
 }
 

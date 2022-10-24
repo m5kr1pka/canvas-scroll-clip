@@ -2,7 +2,10 @@
 [![Build Status](https://github.com/m5kr1pka/canvas-scroll-clip/actions/workflows/build.yml/badge.svg)](https://github.com/m5kr1pka/canvas-scroll-clip/actions/workflows/build.yml) [![Storybook](https://cdn.jsdelivr.net/gh/storybookjs/brand@main/badge/badge-storybook.svg)](https://m5kr1pka.github.io/canvas-scroll-clip/?path=/story/canvas-scroll-clip--default)
 
 
-Canvas Scroll Clip is a standalone JavaScript micro-library for a fancy scroll based image sequence animation in canvas. There is no third party dependencies. Checkout a **[demo](https://m5kr1pka.github.io/canvas-scroll-clip/?path=/story/canvas-scroll-clip--default)**.
+Canvas Scroll Clip is a standalone JavaScript micro-library for a fancy scroll based image sequence animation in canvas. There is no third party dependencies. 
+- Check the **[demo](https://m5kr1pka.github.io/canvas-scroll-clip/?path=/story/canvas-scroll-clip--default)**. 
+- View [example](https://github.com/m5kr1pka/canvas-scroll-clip/blob/main/www/index.html) implementation.
+- React component [Gist example](https://gist.github.com/m5kr1pka/f02c2afcaf5c73cc38546a801c48368a)
 
 ## Install
 ```
@@ -19,7 +22,7 @@ Initialize Canvas Scroll Clip on an element with options:
 import CanvasScrollClip from "canvas-scroll-clip";
 
 new CanvasScrollClip(document.querySelector('.element'), {
-  framePath: "{first_frame_url_of_a_sequence}",
+  framePath: "{url_of_first_frame_in_a_sequence}",
   frameCount: 101,
   scrollArea: 2000
 })

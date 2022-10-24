@@ -47,8 +47,6 @@ class Main extends Canvas implements IMain {
   /**
    * Hidden in order not to display this method in docs
    * Initializes in constructor
-   * 
-   * @hidden
    */
   private init(): void {
 

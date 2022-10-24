@@ -13,8 +13,8 @@ export type NoopFunction = (args?: any) => any;
 export interface IUserInputs {
   identifier?: string,
   framePath: string,
-  frameCount: number,
-  scrollArea?: string | number
+  frameCount: string | number,
+  scrollArea?: string | number | undefined
 }
 
 /**

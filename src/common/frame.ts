@@ -31,7 +31,7 @@ export class Frame implements IFrame {
     }
 
     // Set frame count
-    this.count = frameCount;
+    this.count = parseInt(frameCount as unknown as string);
 
     // Set frame base path
     this.path = utils.getImageBasePath(framePath);

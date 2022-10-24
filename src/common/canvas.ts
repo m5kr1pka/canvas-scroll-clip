@@ -63,6 +63,7 @@ export class Canvas extends Options {
 
     // Set container
     this._container = element;
+    // this._container.innerHTML = "";
 
     // Append canvas and loader to an element
     this._container.classList.add(`${this.identifier}-container`);
@@ -75,6 +76,8 @@ export class Canvas extends Options {
     this._canvas.style.setProperty('max-height', '100%');
     this._canvas.style.setProperty('max-width', '100%');
     this._canvas.style.setProperty('object-fit', 'contain');
+    // this._canvas.style.setProperty("height", "100vh");
+    // this._canvas.style.setProperty("width", "100%");
 
     // Create wrapper container
     this._wrapper = document.createElement('div')
@@ -113,7 +116,7 @@ export class Canvas extends Options {
    * 
    * @returns 
    */
-  private async preload() {
+  public async preload() {
     const progress = {
       total: this.frame.count,
       loaded: 0
@@ -171,6 +174,10 @@ export class Canvas extends Options {
    * @param image 
    */
   public drawImage(image: HTMLImageElement): void {
+    if (!image) {
+      return
+    }
+
     this.context.clearRect(0, 0, this.viewport.width, this.viewport.height);
     this.context.drawImage(image, 0, 0, this.viewport.width, this.viewport.height);
   }
