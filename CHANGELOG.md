@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/m5kr1pka/canvas-scroll-clip/compare/v1.2.2...v1.3.0) (2022-10-24)
+
+
+### Features
+
+* **upgrade:** updated docs ([29694b3](https://github.com/m5kr1pka/canvas-scroll-clip/commit/29694b359cb5a895d2144fe0fa4406d88d6bfc48))
+
 ## [1.2.2](https://github.com/m5kr1pka/canvas-scroll-clip/compare/v1.2.1...v1.2.2) (2022-10-24)
 
 
