@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/m5kr1pka/canvas-scroll-clip/compare/v1.2.0...v1.2.1) (2022-10-24)
+
+
+### Bug Fixes
+
+* **common:** string to integer conversion ([cb1ea35](https://github.com/m5kr1pka/canvas-scroll-clip/commit/cb1ea351433b406ca92dcd1a4068517d2dcc4ba6))
+
 ## [1.2.0](https://github.com/m5kr1pka/canvas-scroll-clip/compare/v1.1.1...v1.2.0) (2022-07-30)
 
 
