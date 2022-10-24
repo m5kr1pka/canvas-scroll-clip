@@ -76,8 +76,8 @@ export class Canvas extends Options {
     this._canvas.style.setProperty('max-height', '100%');
     this._canvas.style.setProperty('max-width', '100%');
     this._canvas.style.setProperty('object-fit', 'contain');
-    // this._canvas.style.setProperty("height", "100vh");
-    // this._canvas.style.setProperty("width", "100%");
+    this._canvas.style.setProperty("height", "100vh");
+    this._canvas.style.setProperty("width", "100%");
 
     // Create wrapper container
     this._wrapper = document.createElement('div')
