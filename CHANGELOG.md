@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.1](https://github.com/m5kr1pka/canvas-scroll-clip/compare/v1.3.0...v1.3.1) (2022-10-26)
+
+
+### Bug Fixes
+
+* **common:** contents the window ([f6f50c0](https://github.com/m5kr1pka/canvas-scroll-clip/commit/f6f50c0f5303429d65109d94e143b9594abafb28))
+* **common:** reset content due to multiple initializations when used in react ([c2a3b7a](https://github.com/m5kr1pka/canvas-scroll-clip/commit/c2a3b7aa83bcdd20bb1effd30b26de10e743e9d5))
+
 ## [1.3.0](https://github.com/m5kr1pka/canvas-scroll-clip/compare/v1.2.2...v1.3.0) (2022-10-24)
 
 
