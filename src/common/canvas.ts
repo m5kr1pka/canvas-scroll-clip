@@ -63,7 +63,7 @@ export class Canvas extends Options {
 
     // Set container
     this._container = element;
-    // this._container.innerHTML = "";
+    this._container.innerHTML = "";
 
     // Append canvas and loader to an element
     this._container.classList.add(`${this.identifier}-container`);
