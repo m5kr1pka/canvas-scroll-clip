@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/m5kr1pka/canvas-scroll-clip/compare/v1.3.1...v1.3.2) (2024-12-01)
+
+
+### Bug Fixes
+
+* **deps:** upgrade dependencies ([ad8cd2d](https://github.com/m5kr1pka/canvas-scroll-clip/commit/ad8cd2d815252a34e5200cbd985db27eb5ef23ea))
+
 ## [1.3.1](https://github.com/m5kr1pka/canvas-scroll-clip/compare/v1.3.0...v1.3.1) (2022-10-26)
 
 
